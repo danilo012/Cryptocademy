@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Halant:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+.font-title {
+    font-family: 'Poppins', sans-serif;
+}
+
+.font-paragraph {
+    font-family: 'Halant', serif;
+}
+
+.font-redressed {
+    font-family: 'Redressed', cursive;
+}
+
+#show {
+    visibility: visible;
+}
+
+#hide {
+    visibility: hidden;
+}
