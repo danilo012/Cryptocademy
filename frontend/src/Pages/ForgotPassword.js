@@ -51,6 +51,11 @@ function ForgotPassword() {
             <SuccessToast message={successMessage} ref={successToastRef} />
             <div className="grid grid-cols-1 lg:grid-cols-2 bg-black text-white">
                 <div className="w-full h-screen px-4 py-20 mx-auto  xl:py-32 md:w-3/5 lg:w-4/5 xl:w-3/5">
+                    <Link to="/app">
+                        <svg  xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 mb-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                    </Link>
                     <h1 className="mb-8 -mt-3 text-2xl font-extrabold leading-snug  text-left text-green-400 md:text-4xl font-title tracking-wide">Forgot Password</h1>
                     {/* email password signin */}
                     <Formik 
