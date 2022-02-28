@@ -5,9 +5,11 @@ import NotFound404 from './Pages/NotFound404';
 import Signup from './Pages/Signup';
 import ResetPassword from './Pages/ResetPassword';
 import Dashboard from './Pages/Dashboard';
+import News from './Pages/News';
 import ProtectedRoute from './Components/ProtectedRoute'
 import ForgotPassword from './Pages/ForgotPassword';
 import ScrollToTop from './Components/ScrollToTop';
+import CurrencyDetailsPage from './Pages/CurrencyDetailsPage';
 function App() {
   return (
     <div className="App">
@@ -16,6 +18,8 @@ function App() {
         <Routes>
           <Route path = "/" element={<Login/>} />
           <Route path = "/app" element={<Dashboard/>} />
+          <Route path = "/app/coin/:id" element={<CurrencyDetailsPage/>} />
+          <Route path = "/app/news" element={<News/>} />
           {/* <Route path = "/app" 
             element={
               <ProtectedRoute>
