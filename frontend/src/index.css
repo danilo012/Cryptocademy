@@ -26,3 +26,20 @@
 #hide {
     visibility: hidden;
 }
+
+
+/* Spinner */
+.dots-5 {
+    width:12px;
+    height:12px;
+    background: #1ce950;
+    border-radius: 50%;
+    box-shadow: 20px 0 #fff,-20px 0 #1ce950;
+    animation:d5 1s infinite linear alternate;
+}
+
+@keyframes d5 {
+    0% {box-shadow: 20px 0 #1ce950,-20px 0 #fff;background: #1ce950}
+    33%{box-shadow: 20px 0 #1ce950,-20px 0 #fff;background: #fff}
+    66%{box-shadow: 20px 0 #fff,-20px 0 #1ce950;background: #fff}
+}

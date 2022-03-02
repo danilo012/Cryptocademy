@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useGetCoinsDataQuery } from '../services/coinsDataApi'
 import Pagination from './Pagination'
 import ReactPaginate from 'react-paginate'
 import { useNavigate } from 'react-router'
+import ErrorToast from '../Components/ErrorToast';
+import Loader from './Loader'
 
 
 const CoinsTable = () => {
     const navigate = useNavigate()
+    const toastRef = useRef(null)
+
     const [coinsData,setCoinsData] = useState()
     const [currency,setCurrency] = useState('usd')
     const [search,setSearch] = useState('')
@@ -15,6 +19,11 @@ const CoinsTable = () => {
     
     const { data, error, isLoading,isFetching,isSuccess,refetch } = useGetCoinsDataQuery(currency,{pollingInterval: 2000,})
 
+    useEffect(()=>{
+        if(error){
+            toastRef.current.show()
+        }
+    },[error])
 
     const handleSearch = () => {
         const filteredData = data.filter(
@@ -23,8 +32,9 @@ const CoinsTable = () => {
             coin.symbol.toLowerCase().includes(search)
         );
         setSearchData(filteredData)
-        console.log(searchData)
     }
+
+    
 
   const normalizeMarketCap = (marketCap) => {
       if(marketCap > 1_000_000_000_000) {
@@ -44,8 +54,8 @@ const CoinsTable = () => {
 
   return (
     <div>
-        {isLoading && <p className='text-white text-3xl'>...Loading</p>}
-        {error && <p className='text-red-500 text-3xl'>Something went wrong</p>}
+        {isLoading && <Loader/>}
+        {error && <ErrorToast message="Something Went Wrong!" ref={toastRef}/>}
         {/* search Bar */}
         <div className="p-4">
             <label for="table-search" className="sr-only">Search</label>
