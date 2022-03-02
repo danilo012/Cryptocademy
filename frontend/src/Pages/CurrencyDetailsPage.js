@@ -13,21 +13,15 @@ import { Link } from 'react-router-dom'
 const CurrencyDetailsPage = () => {
   const {id} = useParams()
   const toastRef = useRef(null)
-  const [chartDays,setChartDays] = useState('365')
 
   const { data, error, isLoading,isFetching,isSuccess,refetch } = useGetCoinDataQuery(id,{pollingInterval: 2000,})
 
-  const { data:historicalData, error:historicalDataError, isLoading:historicalDataLoading,isFetching:historicalDataFetching,isSuccess:historicalDataSuccess,refetch:refetchHistoricalData } = useGetHistoricalDataQuery({id,chartDays})
-   
-  useEffect(()=> {
-    refetchHistoricalData()
-  },[chartDays])
   
   useEffect(()=>{
-      if(error || historicalDataError){
+      if(error){
           toastRef.current.show()
       }
-  },[error,historicalDataError])
+  },[error])
 
 
   const normalizeMarketCap = (marketCap) => {
@@ -129,26 +123,9 @@ const CurrencyDetailsPage = () => {
 
             <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:ring-red-800 font-medium rounded-lg px-8 py-2  text-center mr-2 mb-2 text-">Sell</button>
           </div>
-          {historicalDataLoading && <p className='text-white text-3xl'>...Loading</p>}
-          <div className="my-6 inline-flex justify-center rounded-md shadow-sm" role="group">
-              <button onClick={() => setChartDays(() => '1')} type="button" className="py-2 px-4 text-sm font-medium  rounded-l-lg border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white">
-                24 Hours
-              </button>
-              <button onClick={() => setChartDays(() =>'30')} type="button" className="py-2 px-4 text-sm font-medium  border-t border-b  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white">
-                30 Days
-              </button>
-              <button onClick={() => setChartDays(() =>'90')} type="button" className="py-2 px-4 text-sm font-medium   border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white">
-                3 Months
-              </button>
-              <button onClick={() => setChartDays(() =>'365')}  type="button" className="py-2 px-4 text-sm font-medium  rounded-r-md border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white">
-                1 Year
-              </button>
-          </div>
-          {historicalDataError && <ErrorToast message="Something Went Wrong!" ref={toastRef}/>}
-          {
-            historicalDataSuccess &&
-            <CoinChart historicalData = {historicalData}/>
-          }
+
+          <CoinChart id={id} />
+
           {
             isSuccess &&
             <CoinStats data={data}/>
