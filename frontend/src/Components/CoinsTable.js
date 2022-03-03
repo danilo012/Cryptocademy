@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useGetCoinsDataQuery } from '../services/coinsDataApi'
-import Pagination from './Pagination'
 import ReactPaginate from 'react-paginate'
 import { useNavigate } from 'react-router'
 import ErrorToast from '../Components/ErrorToast';
@@ -16,8 +15,8 @@ const CoinsTable = () => {
     const [search,setSearch] = useState('')
     const [searchData,setSearchData] = useState('')
     const [page,setPage] = useState(1)
-    
-    const { data, error, isLoading,isFetching,isSuccess,refetch } = useGetCoinsDataQuery(currency,{pollingInterval: 2000,})
+
+    const { data, error, isLoading,isFetching,isSuccess,refetch } = useGetCoinsDataQuery({currency,page},{pollingInterval: 2000,})
 
     useEffect(()=>{
         if(error){
@@ -69,17 +68,9 @@ const CoinsTable = () => {
                 }} />
             </div>
         </div>
-        {/* pagination */}
-        {/* <Pagination count={(data?.length/30).toFixed(0)} /> */}
-        {/* <ReactPaginate 
-            previousLabel={'<'}
-            nextLabel = {'>'}
-            breakLabel={'...'}
-            pageCount={(data?.length/30).toFixed(0)}
-            onPageChange={(data)=> setPage(Number(data.selected+1))}
-        /> */}
+
         {/* coin table */}
-        <ul className="md:px-4 flex flex-col space-y-1 pb-28 text-white">
+        <ul className="md:px-4 flex flex-col space-y-1 pb-12 text-white">
             {/* Table Head */}
             <li className="grid grid-cols-2 md:grid-cols-4 text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white" >
                 <div className="flex justify-start items-center space-x-4"> 
@@ -176,6 +167,21 @@ const CoinsTable = () => {
                 ))
             }
         </ul>
+        {/* pagination */}
+        <ReactPaginate 
+            previousLabel={'<'}
+            nextLabel = {'>'}
+            breakLabel={'...'}
+            pageCount={52}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={1}
+            onPageChange={(data)=> setPage(Number(data.selected+1))}
+            containerClassName={`flex justify-center space-x-2 text-xs font-medium text-white`}
+            pageClassName={`inline-flex items-center justify-center w-8 h-8 border text-white border-gray-100 rounded-full`}
+            pageLinkClassName={`block w-8 h-8 leading-8 text-center text-white  border-green-600 rounded-full`}
+            previousLinkClassName={`block w-8 h-8 leading-8 text-center text-white  bg-green-600 border-green-600 rounded-full`}
+            nextLinkClassName={`block w-8 h-8 leading-8 text-center text-white  bg-green-600 border-green-600 rounded-full`}
+        />
     </div>
   )
 }

@@ -7,7 +7,7 @@ export const coinsDataApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl}),
     endpoints:(builder) => ({
         getCoinsData: builder.query({
-            query: (currency) => `/markets?vs_currency=${currency}&order=market_cap_desc&per_page=250&page=1&sparkline=false`
+            query: ({currency,page}) => `/markets?vs_currency=${currency}&order=market_cap_desc&per_page=250&page=${page}&sparkline=false`
         }),
         getCoinData: builder.query({
             query:(id) => `/${id}`

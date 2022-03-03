@@ -59,7 +59,7 @@ const CoinStats = ({data}) => {
             </div>
 
                         
-            <div class=" shadow-lg mx-auto rounded-2xl bg-white dark:bg-black w-[90%]">
+            <div class=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
                 <p class="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
                     {data.name} Statistics
                 </p>
@@ -147,7 +147,7 @@ const CoinStats = ({data}) => {
         </div>
         <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
 
-            <div class=" shadow-lg mx-auto rounded-2xl bg-white dark:bg-black w-[90%]">
+            <div class=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
                 <p class="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
                     {data.name} Social Media Stats
                 </p>
@@ -208,7 +208,7 @@ const CoinStats = ({data}) => {
                 </ul>
             </div>
 
-            <div class=" shadow-lg mx-auto rounded-2xl bg-white dark:bg-black w-[90%]">
+            <div class=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
                 <p class="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
                     {data.name} Social Media Links
                 </p>
@@ -216,12 +216,12 @@ const CoinStats = ({data}) => {
                     
                     <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
                         <div class="flex items-center justify-start text-sm">
-                            <span className='text-xl'>
+                            <span className='text-xl '>
                                 {data.name} Official Website
                             </span>
                         </div>
                         <div>
-                            <p className='text-xl'>
+                            <p className='text-xl text-right'>
                                 {data.links.homepage[0]
                                     ? 
                                     <a href={data.links.homepage[0]} target="_blank" className='text-emerald-400 underline'>
@@ -239,7 +239,7 @@ const CoinStats = ({data}) => {
                             </span>
                         </div>
                         <div>
-                            <p className='text-xl'>
+                            <p className='text-xl text-right'>
                             {data.links.homepage[0]
                                     ? 
                                     <a href={data.links.blockchain_site[0]} target="_blank" className='text-emerald-400 underline'>
@@ -332,7 +332,7 @@ const CoinStats = ({data}) => {
         </div>
 
         <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
-            <div class=" shadow-lg mx-auto rounded-2xl bg-white dark:bg-black w-[90%]">
+            <div class=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
                 <p class="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
                     {data.name} Percentage Change
                 </p>
