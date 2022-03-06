@@ -7,9 +7,6 @@ const CoinStats = ({data}) => {
 
     const changeCoinValue = (e) => {
        setCoinValue(e.target.value)
-       if(!e.target.value){
-           setCoinUsdPrice(0)
-       }
        setCoinUsdPrice((data.market_data.current_price.usd) * e.target.value)
     }
 
@@ -32,7 +29,7 @@ const CoinStats = ({data}) => {
                     </div>
                 </div>
                 <div className='mx-2'>
-                    <input type="number" id='coinValue' name='coinValue' value={coinValue} onChange={changeCoinValue}  className='w-20 md:w-40 h-full rounded-lg text-xl  font-title focus:ring-0 text-gray-50 bg-gray-900 px-2'  />
+                    <input type="number" id='coinValue' name='coinValue'  min="0" value={coinValue} onChange={changeCoinValue}  className='w-20 md:w-40 h-full rounded-lg text-xl  font-title focus:ring-0 text-gray-50 bg-gray-900 px-2'  />
                 </div>
             </div>
             <div className='flex justify-center'>
@@ -51,7 +48,7 @@ const CoinStats = ({data}) => {
                     </div>
                 </div>
                 <div className='mx-2'>
-                    <input type="number" id='coinUsdValue' name='coinUsdValue' value={coinUsdPrice} onChange={changeUsdValue}  className='w-20 md:w-40 h-full rounded-lg text-xl  font-title focus:ring-0 text-gray-50 bg-gray-900 px-2'  />
+                    <input type="number"  min="0" id='coinUsdValue' name='coinUsdValue' value={coinUsdPrice} onChange={changeUsdValue}  className='w-20 md:w-40 h-full rounded-lg text-xl  font-title focus:ring-0 text-gray-50 bg-gray-900 px-2'  />
                     
                 </div>
             </div>
