@@ -33,7 +33,13 @@ const CoinsTable = () => {
         setSearchData(filteredData)
     }
 
-    
+    const handlePagination = (data) => {
+        setPage(Number(data.selected+1))
+    }
+  
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [page]);
 
   const normalizeMarketCap = (marketCap) => {
       if(marketCap > 1_000_000_000_000) {
@@ -68,7 +74,6 @@ const CoinsTable = () => {
                 }} />
             </div>
         </div>
-
         {/* coin table */}
         <ul className="md:px-4 flex flex-col space-y-1 pb-12 text-white">
             {/* Table Head */}
@@ -175,7 +180,7 @@ const CoinsTable = () => {
             pageCount={52}
             marginPagesDisplayed={2}
             pageRangeDisplayed={1}
-            onPageChange={(data)=> setPage(Number(data.selected+1))}
+            onPageChange={handlePagination}
             containerClassName={`flex justify-center space-x-2 text-xs font-medium text-white`}
             pageClassName={`inline-flex items-center justify-center w-8 h-8 border text-white border-gray-100 rounded-full`}
             pageLinkClassName={`block w-8 h-8 leading-8 text-center text-white  border-green-600 rounded-full`}

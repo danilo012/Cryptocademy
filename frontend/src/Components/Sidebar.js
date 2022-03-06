@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import robot from '../Assets/images/robot.png'
 const Sidebar = ({openSidebar}) => {
     return (
         <aside
@@ -25,6 +25,21 @@ const Sidebar = ({openSidebar}) => {
                         </svg>
                     </span>
                     <span className="ml-3">Coins</span>
+                    </Link>
+                </li>
+                
+                <li className="my-px">
+                    <Link
+                    to="/app"
+                    className="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:text-black hover:bg-gray-100 "
+                    >
+                    <span className="flex items-center justify-center text-lg text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 inline-block  text-gray-300 mb-1 "  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </span>
+                    
+                    <span className="ml-3">AI Predictions</span>
                     </Link>
                 </li>
 
