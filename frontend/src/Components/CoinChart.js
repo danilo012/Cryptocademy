@@ -69,7 +69,7 @@ const CoinChart = ({id}) => {
   }
   return (
     <>
-      <div className="my-6 inline-flex justify-center rounded-md shadow-sm" role="group">
+      <div className="mb-6 ml-4 inline-flex  rounded-md shadow-sm" role="group">
         <button onClick={() => setChartDays(() => '1')} type="button" className="py-2 px-4 text-sm font-medium  rounded-l-lg border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white">
           24 Hours
         </button>

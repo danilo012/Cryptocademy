@@ -9,11 +9,13 @@ import CoinStats from '../Components/CoinStats'
 import ErrorToast from '../Components/ErrorToast'
 import Loader from '../Components/Loader'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../Context/AuthContext'
 
 const CurrencyDetailsPage = () => {
   const {id} = useParams()
   const toastRef = useRef(null)
-
+  const {currentUser,gun} = useAuth() 
+  
   const { data, error, isLoading,isFetching,isSuccess,refetch } = useGetCoinDataQuery(id,{pollingInterval: 2000,})
 
   
@@ -22,6 +24,11 @@ const CurrencyDetailsPage = () => {
           toastRef.current.show()
       }
   },[error])
+
+  async function watchlistHandler(e) {
+    e.preventDefault()
+    const chats = gun.get('watchlist')
+  }
 
 
   const normalizeMarketCap = (marketCap) => {
@@ -117,14 +124,17 @@ const CurrencyDetailsPage = () => {
           }
 
           <div className='mt-4 mx-2 md:mx-4 flex space-x-2'>
-            <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:ring-blue-800 font-medium rounded-lg px-5 py-2 text-center mr-2 mb-2 text-">Watchlist</button>
+            <button type="button" onClick={watchlistHandler} class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:ring-blue-800 font-medium rounded-lg px-5 py-2 text-center mr-2 mb-2 text-">Watchlist</button>
 
             <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:ring-green-800 font-medium rounded-lg px-8 py-2 text-center mr-2 mb-2 text-">Buy</button>
 
             <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:ring-red-800 font-medium rounded-lg px-8 py-2  text-center mr-2 mb-2 text-">Sell</button>
           </div>
-
-          <CoinChart id={id} />
+          {
+            isSuccess &&
+            <p className='text-white font-bold text-2xl font-title my-4 ml-4'>{data.name} Price Chart ({data.symbol.toUpperCase()})</p>
+          }
+          <CoinChart id={id}  />
 
           {
             isSuccess &&

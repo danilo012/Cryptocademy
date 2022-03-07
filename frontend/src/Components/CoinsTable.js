@@ -58,7 +58,7 @@ const CoinsTable = () => {
   }
 
   return (
-    <div>
+    <div >
         {isLoading && <Loader/>}
         {error && <ErrorToast message="Something Went Wrong!" ref={toastRef}/>}
         {/* search Bar */}
@@ -166,7 +166,7 @@ const CoinsTable = () => {
                             </p>
                         </div>
                         <div className="hidden lg:flex items-center justify-end ml-auto md:ml-0 ">
-                            <p className="w-24 md:w-40  ">{coins.market_cap}</p>
+                            <p className="w-24 md:w-40  ">${coins.market_cap}</p>
                         </div>
                     </li>
                 ))

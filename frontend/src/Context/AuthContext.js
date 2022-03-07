@@ -1,6 +1,8 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth'
 import {createContext, useContext, useEffect, useState} from 'react'
 import {auth} from '../Utils/init-firebase'
+import Gun from 'gun'
+
 
 // create a context with a placeholder value initially
 const AuthContext = createContext()
@@ -12,6 +14,12 @@ export const useAuth = () => useContext(AuthContext)
 // Provider that wraps our app.js
 export default function AuthContextProvider({children}) {
     const [currentUser,setCurrentUser] = useState(null)
+    
+    const gun = Gun({
+        peers:[
+            'http://localhost:8765/gun'
+        ]
+    })
 
     function signUp(email, password) {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -53,7 +61,8 @@ export default function AuthContextProvider({children}) {
         login,
         logout,
         signInWithGoogle,
-        forgotPassword
+        forgotPassword,
+        gun
     }
 
     return <AuthContext.Provider value={value}>
