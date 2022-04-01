@@ -30,5 +30,5 @@ export const coinsDataApi = createApi({
         // })
     })
 })
-
+ 
 export const {useGetCoinsDataQuery,useGetCoinDataQuery,useGetHistoricalDataQuery} = coinsDataApi

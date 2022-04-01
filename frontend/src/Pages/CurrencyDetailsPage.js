@@ -11,8 +11,8 @@ import Loader from '../Components/Loader'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../Context/AuthContext'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateWatchlist } from '../Features/watchlistSlice'
 import { supabase } from '../Utils/init-supabase'
+import SellCoins from '../Components/SellCoins'
 
 const CurrencyDetailsPage = () => {
   const {id} = useParams()
@@ -29,6 +29,7 @@ const CurrencyDetailsPage = () => {
   const [gunErrorMessage, setGunErrorMessage] = useState('')
   
   const [toggleBuyCoinsModal,setToggleBuyCoinsModal] = useState(false)
+  const [toggleSellCoinsModal,setToggleSellCoinsModal] = useState(false)
 
   const { data, error, isLoading,isFetching,isSuccess,refetch } = useGetCoinDataQuery(id,{pollingInterval: 2000,})
 
@@ -107,6 +108,10 @@ const CurrencyDetailsPage = () => {
       {
         isSuccess &&
         <BuyCoins data = {data} modal={toggleBuyCoinsModal} setModal = {setToggleBuyCoinsModal} /> 
+      }
+      {
+        isSuccess &&
+        <SellCoins data = {data} modal={toggleSellCoinsModal} setModal = {setToggleSellCoinsModal} /> 
       }
       {/* desktop dasboard */}
       <div className="flex flex-row min-h-screen bg-black  md:overflow-x-hidden">
@@ -210,7 +215,7 @@ const CurrencyDetailsPage = () => {
             
             <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:ring-green-800 font-medium rounded-lg px-8 py-2 text-center mr-2 mb-2 text-" onClick={()=> setToggleBuyCoinsModal(true)} >Buy</button>
 
-            <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:ring-red-800 font-medium rounded-lg px-8 py-2  text-center mr-2 mb-2 text-">Sell</button>
+            <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:ring-red-800 font-medium rounded-lg px-8 py-2  text-center mr-2 mb-2 text-" onClick={()=> setToggleSellCoinsModal(true)}>Sell</button>
           </div>
           {
             isSuccess &&

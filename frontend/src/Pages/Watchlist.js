@@ -7,14 +7,12 @@ import Sidebar from '../Components/Sidebar'
 import TabNavigation from '../Components/TabNavigation'
 import { useAuth } from '../Context/AuthContext'
 import { fetchWatchlistData } from '../Features/watchlistDataSlice'
-import { updateWatchlist } from '../Features/watchlistSlice'
 import { supabase } from '../Utils/init-supabase'
  
 const Watchlist = () => {
   const navigate = useNavigate()
   const {currentUser} = useAuth() 
   const dispatch = useDispatch()
-  const watchlist = useSelector(state=> state.watchlist)
   const watchlistData = useSelector(state=> state.watchlistData)
   const toastRef = useRef(null)
 

@@ -1,15 +1,19 @@
 import {configureStore} from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { coinsDataApi } from '../services/coinsDataApi'
-import watchlistReducer from '../Features/watchlistSlice'
 import watchlistDataReducer from '../Features/watchlistDataSlice'
+import portfolioDataReducer from '../Features/portfolioDataSlice'
+import availableCoinsReducer from '../Features/availableCoins'
 import userReducer from '../Features/UserSlice'
+import { supabaseApi } from '../services/supabaseApi'
 
 export const store =  configureStore({
     reducer: {
          [coinsDataApi.reducerPath]: coinsDataApi.reducer,
-         watchlist: watchlistReducer,
+         [supabaseApi.reducerPath]: supabaseApi.reducer,
          watchlistData: watchlistDataReducer,
+         portfolioData: portfolioDataReducer,
+         availableCoins: availableCoinsReducer,
          user: userReducer
     },
     middleware: (getDefaultMiddleware) =>

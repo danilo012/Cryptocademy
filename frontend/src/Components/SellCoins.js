@@ -7,17 +7,31 @@ import { useAuth } from '../Context/AuthContext'
 import { fetchAvailableCoins } from '../Features/availableCoins'
 import { supabase } from '../Utils/init-supabase'
 
-const BuyCoins = ({data,modal,setModal}) => {
+const SellCoins = ({data,modal,setModal}) => {
     const {currentUser} = useAuth() 
     const [coinValue,setCoinValue] = useState(1)
     const [coinUsdPrice,setCoinUsdPrice] = useState(data.market_data.current_price.usd)
     const [orderLoading,setOrderLoading] = useState(false)
     
+    const [availabeCoinAmt,setAvailabeCoinAmt] = useState(0)
+
     const availableUsdCoins = useSelector(state => state.availableCoins)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(fetchAvailableCoins(currentUser.uid)) 
+        // get amount of coin that you have purchased
+        async function coinAmount(){
+            let { data: availableCoinAmount, error } = await supabase
+            .from('portfolio')
+            .select('coinName,coinAmount')
+            .eq('userId',`${currentUser.uid}`)
+            .eq('coinId',`${data.id}`)
+            if(availableCoinAmount.length !== 0){
+                setAvailabeCoinAmt(availableCoinAmount[0].coinAmount)
+            }
+        }   
+        coinAmount()
     }, [])
     
 
@@ -35,40 +49,35 @@ const BuyCoins = ({data,modal,setModal}) => {
     async function onPlaceOrder() {
         try {
             setOrderLoading(true)
-            // get available coins and check if it is lesser than what we want to purchase
-            let { data: availableUsdCoin, error } = await supabase
-            .from('portfolio')
-            .select('coinId,coinName,amount')
-            .eq('userId',`${currentUser.uid}`)
-            .eq('coinId','USD')
-            
-            if(coinUsdPrice > availableUsdCoin[0].amount) {
+            // get available coins and check if it coin amount is more than what we want to sell
+
+            if(coinValue > availabeCoinAmt) {
                 throw new Error('Not enough coins!')
             }
 
-            // check if the coin is already purchased i.e. add the coin amount coin to our existing coin in portfolio db
+            // check if the coin is already purchased i.e. add the coin amount  to our existing coin in portfolio db
 
-            // add the purchased coin to database
-            const { data:addToPortfolio, error: addToPortfolioError } = await supabase
+            // update the sold coin to database
+            const portfolioUsdAmount = data.market_data.current_price.usd *(availabeCoinAmt - coinValue)
+            const updatedCoinAmount = availabeCoinAmt - coinValue
+            
+            const { data:removefromPortfolio, error: removefromPortfolioError } = await supabase
             .from('portfolio')
-            .insert([
+            .update([
                 { 
-                    userId: `${currentUser.uid}`,
-                    coinId: `${data.id}`,
-                    coinSymbol:`${data.symbol}`,
-                    coinName:`${data.name}`,
-                    image: `${data.image.large}`,
-                    amount: `${coinUsdPrice}`,
-                    coinAmount: `${coinValue}` 
+                    amount: `${portfolioUsdAmount.toFixed(3)}`,
+                    coinAmount: `${updatedCoinAmount.toFixed(3)}` 
                 },
             ])
+            .eq('userId',`${currentUser.uid}`)
+            .eq('coinId',`${data.id}`)
 
-            if(addToPortfolioError){
+            if(removefromPortfolioError){
                 throw new Error('Something went wrong, Please try again!')
             }
 
-            // deduct the value from virtual usd
-            let updatedUsdValue = availableUsdCoin[0].amount - coinUsdPrice
+            // add the value to virtual usd
+            let updatedUsdValue = availableUsdCoins.data.amount + coinUsdPrice
             
 
             let { data: updateUsdCoin, error: updateUsdCoinError } = await supabase
@@ -81,12 +90,20 @@ const BuyCoins = ({data,modal,setModal}) => {
                 throw new Error("Something went wrong!")
             }
             
+            // delete the portfolio from db if the coinValue is 0
+            if(updatedCoinAmount === 0) {
+                const { data:deleteRow, error:errorRow } = await supabase
+                .from('portfolio')
+                .delete()
+                .eq('userId',`${currentUser.uid}`)
+                .eq('coinId',`${data.id}`)
+            }
             
             // calculate networth
 
 
             setOrderLoading(false)
-            alert('Coin purchased successfully')   
+            alert('Coin Sold Successfully')   
         } catch (error) {
             setOrderLoading(false)
             alert(error) 
@@ -102,7 +119,7 @@ const BuyCoins = ({data,modal,setModal}) => {
                 <div className="flex justify-between items-center px-5 py-3 md:p-5 rounded-t border-b border-gray-600">
                     
                     <h3 className="text-md md:text-xl font-medium  text-white">
-                        Buy {data.name} | {data.symbol.toUpperCase()} 
+                        Sell {data.name} | {data.symbol.toUpperCase()} 
                     </h3>
                     <button type="button" className="text-gray-400 bg-transparent  rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-600 hover:text-white" data-modal-toggle="large-modal" onClick={()=> setModal(false)}>
                         <AiOutlineClose  className='w-5 h-5' />
@@ -117,6 +134,10 @@ const BuyCoins = ({data,modal,setModal}) => {
 
                     <p class="text-base leading-relaxed font-semibold text-gray-200">
                         Available Balance = {(availableUsdCoins.status ==="success") ? availableUsdCoins.data.amount : 0 } USD
+                    </p>
+
+                    <p class="text-base leading-relaxed font-semibold text-gray-200">
+                        Available Coin amount = {availabeCoinAmt}
                     </p>
 
                     <div className="relative py-4">
@@ -140,8 +161,8 @@ const BuyCoins = ({data,modal,setModal}) => {
                  {/* Modal footer  */}
                 <div className="flex justify-center items-center  px-6 py-3 md:p-6 space-x-2 rounded-b border-t  border-gray-600">
                     <button data-modal-toggle="large-modal" type="button" className="text-white  focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" onClick={onPlaceOrder} >
-                        {orderLoading ? `Buying ${data.name}...`
-                        :`Buy ${data.name}`}
+                        {orderLoading ? `Selling ${data.name}...`
+                        :`Sell ${data.name}`}
                     </button>
                 </div>
             </div>
@@ -150,4 +171,4 @@ const BuyCoins = ({data,modal,setModal}) => {
   )
 }
 
-export default BuyCoins
+export default SellCoins

@@ -59,7 +59,7 @@ function Signup() {
                 // if(error){
                 //     console.log(error)
                 //     await deleteUser(response.user)
-                //     alert("Something Went Wrong! Please Try Again.")
+                //     throw new Error({message:"Something Went Wrong! Please Try Again."})
                 // }
     
                 // give 100k coins to user
@@ -72,6 +72,7 @@ function Signup() {
                         coinName: "Virtual USD",
                         image: "https://img.icons8.com/fluency/96/000000/us-dollar-circled.png",
                         amount:100000,
+                        coinSymbol:"vusd"
                     },
                 ])
             }

@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../Context/AuthContext'
-import Logout from '../Components/Buttons/Logout'
 import Sidebar from '../Components/Sidebar'
 import TabNavigation from '../Components/TabNavigation'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateUserData } from '../Features/UserSlice'
-import { supabase } from '../Utils/init-supabase'
-import { useGetWatchlistData } from '../services/coinsDataApi'
+import  { fetchAvailableCoins } from '../Features/availableCoins'
 
 const Dashboard = () => {
   const {currentUser} =useAuth()
-  const userData = useSelector(state => state.user)
+  const availableUsdCoins = useSelector(state => state.availableCoins)
   const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(fetchAvailableCoins(currentUser.uid))
+  },[])
 
   return (
     <div className='bg-black'>
