@@ -3,6 +3,8 @@ import google from '../../Assets/svg/google.svg'
 import { useNavigate } from 'react-router';
 import { useAuth } from '../../Context/AuthContext';
 import ErrorToast from '../ErrorToast';
+import { supabase } from '../../Utils/init-supabase';
+import { getAdditionalUserInfo } from 'firebase/auth';
 
 const GoogleLoginBtn = () => {
   const {signInWithGoogle} =useAuth()
@@ -13,7 +15,41 @@ const GoogleLoginBtn = () => {
 
   async function googleSignInHandler() {
       try {
-          await signInWithGoogle()
+          const response = await signInWithGoogle()
+          const {isNewUser} = getAdditionalUserInfo(response)
+          if(isNewUser){
+            // add user data with networth on database
+            const { data, error } = await supabase
+            .from('users')
+            .upsert([
+                {
+                    userId: response.user.uid,
+                    username: response.user.displayName,
+                    email:response.user.email
+                },
+            ])
+  
+            // if(error){
+            //     console.log(error)
+            //     await deleteUser(response.user)
+            //     alert("Something Went Wrong! Please Try Again.")
+            // }
+  
+            // give 100k coins to user
+            console.log(data)
+            const {error:addToPortfolioError } = await supabase
+            .from('portfolio')
+            .upsert([
+                { 
+                    userId: response.user.uid,
+                    coinId: "USD",
+                    coinName: "Virtual USD",
+                    image: "https://img.icons8.com/fluency/96/000000/us-dollar-circled.png",
+                    amount:100000,
+                },
+            ])
+          }
+          
           console.log("logged in user successfully")
           navigate('/app')
       } catch (error) {

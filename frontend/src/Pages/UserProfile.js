@@ -1,4 +1,5 @@
 import React from 'react'
+import Logout from '../Components/Buttons/Logout'
 import Sidebar from '../Components/Sidebar'
 import TabNavigation from '../Components/TabNavigation'
 
@@ -10,7 +11,8 @@ const UserProfile = () => {
         <Sidebar/>
         <main className="main flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
           <p className='text-white font-bold text-2xl md:text-3xl font-title my-4 ml-3'>Your Profile</p>
-            
+          <Logout/>
+
         </main>
       </div>
       <TabNavigation/>

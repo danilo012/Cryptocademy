@@ -58,7 +58,7 @@ const CoinsTable = () => {
   }
 
   return (
-    <div >
+    <div className='z-10'>
         {isLoading && <Loader/>}
         {error && <ErrorToast message="Something Went Wrong!" ref={toastRef}/>}
         {/* search Bar */}

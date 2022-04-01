@@ -24,7 +24,7 @@ const validationSchema = Yup.object().shape({
 })
 
 function Login() {
-    const {login,currentUser} =useAuth()
+    const {login,currentUser,gun} =useAuth()
     let navigate = useNavigate();
 
     const toastRef = useRef(null)

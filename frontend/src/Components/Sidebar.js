@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom'
 import robot from '../Assets/images/robot.png'
 import { MdOutlineBusinessCenter, MdOutlineWatchLater, MdTravelExplore } from "react-icons/md";
 import { AiOutlineHome,AiOutlineRobot,AiOutlineBarChart, AiOutlineSearch} from "react-icons/ai";
+import { useAuth } from '../Context/AuthContext';
 
 const Sidebar = ({openSidebar}) => {
+    const {currentUser} =useAuth()
+
     return (
         <aside
             className={`sidebar w-64 md:shadow transform ${openSidebar ? "translate-x-0" : "-translate-x-full "}    md:translate-x-0 transition-transform duration-150 ease-in bg-black fixed top-0 left-0 h-[100vh] border-r-2 border-white `}
@@ -104,9 +107,9 @@ const Sidebar = ({openSidebar}) => {
                 </li>
                 <li>        
                     <Link to="/app/profile" className="flex items-center p-2 mt-5 space-x-4 justify-self-end cursor-pointer">
-                        <img src={`https://avatars.dicebear.com/api/initials/NarottamSahu.svg`} alt="" className="w-12 h-12 rounded-lg dark:bg-gray-500" />
+                        <img src={`https://avatars.dicebear.com/api/initials/${currentUser.displayName}.svg`} alt="" className="w-12 h-12 rounded-lg dark:bg-gray-500" />
                         <div>
-                            <h2 className="text-lg font-semibold text-white">Narottam Sahu</h2>
+                            <h2 className="text-lg font-semibold text-white">{currentUser.displayName}</h2>
                             <span className="flex items-center space-x-1">
                                 <a rel="noopener noreferrer" href="#" className="text-xs hover:underline dark:text-gray-400">View profile</a>
                             </span>

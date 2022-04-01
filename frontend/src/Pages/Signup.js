@@ -8,14 +8,21 @@ import FloatingPasswordInput from "../Components/Buttons/FloatingPasswordInput";
 import {useAuth} from '../Context/AuthContext'
 import ErrorToast from '../Components/ErrorToast';
 import FormAppInfo from '../Components/FormAppInfo';
+import { useSelector } from 'react-redux';
+import { supabase } from '../Utils/init-supabase';
+import { getAdditionalUserInfo } from 'firebase/auth';
 
 const initialValues = {
+    username:'',
     email: '',
     password:'',
     confirmPassword: '',
 }
 
 const validationSchema = Yup.object().shape({
+
+    username: Yup.string().min(3,"Username must be 3 charcters at minimum").max(30,"Username is too big!").required("Required"),
+    
     email: Yup.string().email("Invalid Email Address").required("Required"),
 
     password: Yup.string().min(6,"Password must be 6 charcters at minimum").max(30,"Password is too big!").required("Required"),
@@ -24,17 +31,51 @@ const validationSchema = Yup.object().shape({
 })
 
 function Signup() {
-   const {signUp,currentUser} =useAuth()
-   let navigate = useNavigate();
-    
+    const {signUp,currentUser,updateProfileName,deleteUser} =useAuth()
+    let navigate = useNavigate();
     const toastRef = useRef(null)
     const [errorMessage,setErrorMessage] = useState(null)
 
     async function onSubmit(values,onSubmitProps) {
         console.log("signup started!")
-        const { email, password } = values
+        const { email, password,username } = values
         try {
             const response = await signUp(email,password)
+            await updateProfileName(username)
+            
+            const {isNewUser} = getAdditionalUserInfo(response)
+            if(isNewUser){
+                // add user data with networth on database
+                const { error } = await supabase
+                .from('users')
+                .insert([
+                    {
+                        userId: response.user.uid,
+                        username,
+                        email
+                    },
+                ])
+    
+                // if(error){
+                //     console.log(error)
+                //     await deleteUser(response.user)
+                //     alert("Something Went Wrong! Please Try Again.")
+                // }
+    
+                // give 100k coins to user
+                const { error:addToPortfolioError } = await supabase
+                .from('portfolio')
+                .insert([
+                    { 
+                        userId: response.user.uid,
+                        coinId: "USD",
+                        coinName: "Virtual USD",
+                        image: "https://img.icons8.com/fluency/96/000000/us-dollar-circled.png",
+                        amount:100000,
+                    },
+                ])
+            }
+
             if (response.user) {
                 console.log("created user successfully")
                 navigate('/')
@@ -72,6 +113,7 @@ function Signup() {
                             return(
                             <Form autoComplete = "off"  className="divide-y divide-gray-200">
                                 <div className=" text-base leading-6 space-y-5 text-gray-700 sm:text-lg sm:leading-7">
+                                    <FloatingInput id="username" name="username" type="text" placeholder="Username" />
                                     <FloatingInput id="email" name="email" type="email" placeholder="Email address" />
                                     <FloatingPasswordInput id="password" name="password" type="password" placeholder="Password" />
                                     <FloatingPasswordInput id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm Password" />
