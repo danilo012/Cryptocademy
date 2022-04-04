@@ -180,7 +180,7 @@ const DesktopDashboard = () => {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 px-8 pt-4">
             {
             fetchNewsSuccess &&
-            news?.slice(0,5).map(news => (
+            news?.slice(0,6).map(news => (
                 <a
                 className="relative block p-8 overflow-hidden border border-gray-100 rounded-lg"
                 href={news.url} rel='noreferrer'target="_blank"

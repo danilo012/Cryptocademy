@@ -26,7 +26,7 @@ export const coinsDataApi = createApi({
         }),
         getHistoricalData: builder.query({
             query:(options) => `/${options.id}/ohlc?vs_currency=usd&days=${options.chartDays}`,
-        }),
+        })
         // getWatchlistData: builder.query({
         //     query: async (WatchlistIds, _queryApi, _extraOptions, baseQuery) => {
         //         const results = await Promise.all(WatchlistIds.map(WatchlistId => baseQuery(`/${WatchlistId}`)));

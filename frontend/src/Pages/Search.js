@@ -1,13 +1,43 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Sidebar from '../Components/Sidebar'
 import TabNavigation from '../Components/TabNavigation'
+import { debounce } from 'lodash';
+import Loader from '../Components/Loader';
+import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const Search = () => {
-  const [search,setSearch] = useState('')
+  const [search,setSearch] = useState('') 
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [searchData,setSearchData] = useState({})
+
+  const navigate = useNavigate()
   
-  const handleSearch = () => {
-      
+  const debouncedSearchResult = useCallback(
+    debounce(async (search) => {
+        if(search){
+          try {
+            setIsLoading(true)
+            const {data} = await axios.get(`https://api.coingecko.com/api/v3/search?query=${search}`)
+            setSearchData(data)
+            setIsLoading(false)
+          } catch (error) {
+            setError(error.message)
+          }
+        }
+    }, 500),
+    []
+  )
+
+  if(searchData) {
+    console.log(searchData)
   }
+
+  useEffect(()=> {
+    debouncedSearchResult(search)
+  },[search])
+
 
   return (
     <div className='bg-black'>
@@ -24,11 +54,34 @@ const Search = () => {
                 </div>
                 <input type="text" id="table-search" className=" border w-full   text-sm rounded-lg  block  pl-10 p-2.5  bg-black border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Search for Cryptocurrency..." onChange={(e) => {
                     setSearch(e.target.value)
-                    handleSearch()
                 }} />
             </div>
         </div>
-            
+        {
+          isLoading ? <Loader/> : error ? <p className='text-red-500 text-md'>Something went wrong!</p>
+          :
+          <ul className='mx-8'>
+            {
+              (searchData !== undefined) &&
+              searchData?.coins?.map((coin,index) => (
+                <li onClick={()=> navigate(`/app/coin/${coin.id}`)}  key={index} className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 cursor-pointer">
+                    <div className="flex items-center justify-start text-sm space-x-3">
+                        <img src={coin.large} alt={`${coin.name}`} className="w-7 h-7" />
+                        <div className=''>
+                            <p className='text-white text-md font-bold '>{coin.name}</p>
+                            <p className='text-white text-xs'>{coin.symbol}</p>
+                        </div>
+                    </div>
+                    <div className="">
+                        <p className="text-white font-medium">
+                            Rank: {coin.market_cap_rank}
+                        </p>
+                    </div>
+                </li>
+              ))
+            }
+          </ul>
+        }
         </main>
       </div>
       <TabNavigation/>
