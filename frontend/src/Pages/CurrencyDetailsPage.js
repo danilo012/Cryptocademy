@@ -116,7 +116,7 @@ const CurrencyDetailsPage = () => {
       {/* desktop dasboard */}
       <div className="flex flex-row min-h-screen bg-black  md:overflow-x-hidden">
         <Sidebar/>
-        <main className="main flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
+        <main className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
           {isLoading && <Loader/>}
           
           {error && <ErrorToast message="Something Went Wrong!" ref={toastRef}/>}

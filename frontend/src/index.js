@@ -6,7 +6,6 @@ import AuthContextProvider from './Context/AuthContext';
 import {Provider} from 'react-redux'
 import {store} from './App/store';
 
-
 ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider>

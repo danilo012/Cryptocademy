@@ -10,7 +10,7 @@ const Sidebar = ({openSidebar}) => {
 
     return (
         <aside
-            className={`sidebar w-64 md:shadow transform ${openSidebar ? "translate-x-0" : "-translate-x-full "}    md:translate-x-0 transition-transform duration-150 ease-in bg-black fixed top-0 left-0 h-[100vh] border-r-2 border-white `}
+            className={`sidebar w-64 md:shadow transform ${openSidebar ? "translate-x-0" : "-translate-x-full "}   lg:translate-x-0 transition-transform duration-150 ease-in bg-black fixed top-0 left-0 h-[100vh] border-r-2 border-white`}
             >
             <div className="sidebar-header flex items-center pl-6 py-4">
                 <Link to="/app" className="inline-flex flex-row items-center">

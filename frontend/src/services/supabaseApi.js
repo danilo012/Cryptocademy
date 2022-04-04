@@ -1,12 +1,67 @@
 import {createApi,fakeBaseQuery,fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import axios from 'axios'
 import { supabase } from '../Utils/init-supabase'
 
 export const supabaseApi = createApi({
     reducerPath: "supabaseApi",
-    baseQuery: fetchBaseQuery({ baseUrl: '/' }),
+    baseQuery: fakeBaseQuery(),
     endpoints: (builder) => ({
         getPortfolioData: builder.query({
             async queryFn(id)  {  
+                try {
+                    let { data: portfolio, error } = await supabase
+                    .from('portfolio')
+                    .select(`
+                        coinId,
+                        coinSymbol,
+                        coinName,
+                        image,
+                        amount,
+                        coinAmount
+                    `)
+                    .eq('userId',`${id}`)
+                    if(error) {
+                        throw new Error(error)
+                    }
+                    return {data: portfolio}
+                } catch (error) {
+                    return {error: error}
+                }                 
+            }
+
+        }),
+
+        getWatchlistData: builder.query({
+            queryFn: async (id) => {
+                try {
+                    let { data: watchlistData } = await supabase
+                    .from('watchlist')
+                    .select('coinId')
+                    .eq('userId',`${id}`)
+
+                    if(watchlistData.length !== 0){
+                        const watchlistId =  watchlistData.map(item => item.coinId)
+
+                        let watchlistPromise = []
+                        watchlistId.map(coinId => {
+                            // create a promise for each api call
+                            const request = axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}`)
+                            watchlistPromise.push(request)
+                        })
+                        const res = await Promise.all(watchlistPromise)   
+                        return {data: res}
+                    }
+                    else {
+                        throw new Error('Your watchlist is empty.')
+                    }
+                } catch (error) {
+                    return {error: error}
+                }
+            }
+        }),
+
+        getUserNetworth: builder.query({
+            queryFn: async(id) => {
                 try {
                     let { data: portfolio, error } = await supabase
                     .from('portfolio')
@@ -19,16 +74,37 @@ export const supabaseApi = createApi({
                     .eq('userId',`${id}`)
                     if(error) {
                         throw new Error(error)
-                    }
-                    return {data: portfolio}
-                } catch (error) {
-                    return {error: error}
-                }                 
-            }
+                    } 
 
+                    if(portfolio !== []) {
+                        const userNetworth = portfolio.reduce(
+                            (previousValue,currentCoin) => previousValue + currentCoin.amount,0
+                        )
+
+                        const { data, error } = await supabase
+                        .from('users')
+                        .update({ networth: userNetworth })
+                        .eq('userId', `${id}`)
+
+                        if(error) {
+                            throw new Error(error)
+                        }
+
+                        if(data){
+                            return {data: userNetworth}
+                        }
+                    }
+                    else{
+                        throw new Error("Something went wrong!")
+                    }
+
+                } catch (error) {
+                    return {error:error}
+                }
+            }
         })
     })
 })
 
 
-export const {useGetPortfolioData} = supabaseApi
+export const {useGetPortfolioDataQuery,useGetWatchlistDataQuery,useGetUserNetworthQuery} = supabaseApi

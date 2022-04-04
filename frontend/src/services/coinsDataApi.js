@@ -1,4 +1,5 @@
 import {createApi,fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+import axios from 'axios'
 
 const baseUrl = "https://api.coingecko.com/api/v3/coins"
 
@@ -11,6 +12,17 @@ export const coinsDataApi = createApi({
         }),
         getCoinData: builder.query({
             query:(id) => `/${id}`
+        }),
+        getTrendingCoinData: builder.query({
+            queryFn: async () => {
+                try {
+                    const response = await axios.get('https://api.coingecko.com/api/v3/search/trending')
+
+                    return {data: response.data}
+                } catch (error) {
+                    return {error: error}
+                }
+            }
         }),
         getHistoricalData: builder.query({
             query:(options) => `/${options.id}/ohlc?vs_currency=usd&days=${options.chartDays}`,
@@ -31,4 +43,4 @@ export const coinsDataApi = createApi({
     })
 })
  
-export const {useGetCoinsDataQuery,useGetCoinDataQuery,useGetHistoricalDataQuery} = coinsDataApi
+export const {useGetCoinsDataQuery,useGetCoinDataQuery,useGetHistoricalDataQuery,useGetTrendingCoinDataQuery} = coinsDataApi

@@ -5,57 +5,32 @@ import Loader from '../Components/Loader'
 import Sidebar from '../Components/Sidebar'
 import TabNavigation from '../Components/TabNavigation'
 import { useAuth } from '../Context/AuthContext'
-import { updatePortfolio } from '../Features/portfolioDataSlice'
-import { useGetPortfolioData } from '../services/supabaseApi'
-import { supabase } from '../Utils/init-supabase'
+import { useGetPortfolioDataQuery, useGetUserNetworthQuery } from '../services/supabaseApi'
 
 const Portfolio = () => {
   const {currentUser} = useAuth() 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const portfolioData = useSelector(state=> state.portfolioData)
-  // const portfolioData = useGetPortfolioData()
 
-  // if(portfolioData) {
-  //   console.log(portfolioData)
-  // }
-  console.log(portfolioData)
-  useEffect(() => {
-    async function portfolioData (){
-      let { data: portfolio, error } = await supabase
-      .from('portfolio')
-      .select(`
-          coinId,
-          coinSymbol,
-          coinName,
-          image,
-          amount,
-          coinAmount
-      `)
-      .eq('userId',`${currentUser.uid}`)
-
-      if(error) {
-        console.log(error)
-        return
-      }
-
-      if(portfolio) {
-        dispatch(updatePortfolio(portfolio))
-      }
-    }
-
-    portfolioData()
-  }, [])
+  const { data:portfolioData, error, isLoading,isFetching,isSuccess,refetch:refetchPortfolioData } = useGetPortfolioDataQuery(currentUser.uid)
+ 
+  // Get user networth
+  const { data:userNetworth, isSuccess:userNetworthSuccess, error:networthError,refetch:refetchNetworth } = useGetUserNetworthQuery(currentUser.uid)
   
+  useEffect(() => {
+    refetchPortfolioData()
+    refetchNetworth()
+  },[])
 
   return (
     <div className='bg-black'>
       {/* desktop dasboard */}
       <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
         <Sidebar/>
-        <main className="main flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
+        <main className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
           <p className='text-white font-bold text-2xl md:text-3xl font-title my-4 ml-3'>Portfolio</p>
-            
+          {isLoading && <Loader/>}
+          {error && <p className='text-red-400 text-xl'>Something went wrong!</p>}
           <ul className="md:px-4 flex flex-col space-y-1 pb-12 text-white">
           {/* Table Head */}
           <li className="grid grid-cols-2 text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white" >
@@ -64,11 +39,11 @@ const Portfolio = () => {
               </div>
               
               <div className="flex items-center justify-end ml-auto md:ml-0 ">
-                  <p className="w-28 md:w-40  text-white">Amount</p>
+                  <p className="w-28 md:w-40  text-white">Holdings</p>
               </div>
           </li>
           {
-            (portfolioData) ? 
+            (isSuccess) && 
             portfolioData.map((coin,index) => (
               <li key={index} onClick={()=> navigate(`/app/coin/${coin.coinId}`)} className="grid grid-cols-2  text-gray-500 py-2 px-1md:px-5 hover:bg-gray-900 rounded-lg cursor-pointer border-b-2 border-gray-800 " >
                 <div className="flex items-center space-x-2 "> 
@@ -84,18 +59,20 @@ const Portfolio = () => {
                 </div>
                 <div className="flex items-center justify-end ml-auto md:ml-0 ">
                     <p className="w-28 md:w-40 text-white font-medium">
-                        ${coin.amount}
+                        {coin.coinAmount ? coin.coinAmount : <span>${coin.amount}</span> } {coin.coinAmount && coin.coinSymbol}
                         <br />
-                        <span className="w-28 md:w-40 text-gray-500">Coins: {coin.coinAmount}</span>
+                        <span className="w-28 md:w-40 text-gray-500">
+                          {coin.coinAmount &&
+                            <span>${coin.amount}</span> 
+                          }
+                        </span>
                     </p>
                 </div>
             </li>
             ))
-            :
-            <Loader/>
           }
         </ul>
-
+        
         </main>
       </div>
       <TabNavigation/>

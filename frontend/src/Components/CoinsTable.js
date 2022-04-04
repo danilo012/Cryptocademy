@@ -84,10 +84,10 @@ const CoinsTable = () => {
                 <div className="flex items-center justify-end ml-auto md:ml-0 ">
                     <p className="w-28 md:w-40  text-white">Price</p>
                 </div>
-                <div className="hidden lg:flex items-center justify-end ml-auto md:ml-0 ">
+                <div className="hidden md:flex items-center justify-end ml-auto md:ml-0 ">
                     <p className="w-24 md:w-40  text-white">24h Change</p>
                 </div>
-                <div className="hidden lg:flex items-center justify-end ml-auto md:ml-0 ">
+                <div className="hidden md:flex items-center justify-end ml-auto md:ml-0 ">
                     <p className="w-24 md:w-40  text-white">Market Cap</p>
                 </div>
             </li>
@@ -119,14 +119,14 @@ const CoinsTable = () => {
                                 <span className="md:hidden w-28 md:w-40 text-gray-500">MCap: {normalizeMarketCap(coins.market_cap)}</span>
                             </p>
                         </div>
-                        <div className="hidden lg:flex items-center justify-end ml-auto md:ml-0 ">
+                        <div className="hidden md:flex items-center justify-end ml-auto md:ml-0 ">
                             <p className={`w-24 md:w-40 ${coins?.price_change_percentage_24h >= 0 ? "text-green-400" : "text-red-400"} font-semibold`}
                             >
                              {coins?.price_change_percentage_24h >= 0 && "+"} 
                              {coins?.price_change_percentage_24h?.toFixed(2)}%
                             </p>
                         </div>
-                        <div className="hidden lg:flex items-center justify-end ml-auto md:ml-0 ">
+                        <div className="hidden md:flex items-center justify-end ml-auto md:ml-0 ">
                             <p className="w-24 md:w-40  ">{coins.market_cap}</p>
                         </div>
                     </li>
@@ -158,14 +158,14 @@ const CoinsTable = () => {
                                 <span className="md:hidden w-28 md:w-40 text-gray-500">MCap: {normalizeMarketCap(coins.market_cap)}</span>
                             </p>
                         </div>
-                        <div className="hidden lg:flex items-center justify-end ml-auto md:ml-0 ">
+                        <div className="hidden md:flex items-center justify-end ml-auto md:ml-0 ">
                             <p className={`w-24 md:w-40 ${coins?.price_change_percentage_24h >= 0 ? "text-green-400" : "text-red-400"} font-semibold`}
                             >
                              {coins?.price_change_percentage_24h >= 0 && "+"} 
                              {coins?.price_change_percentage_24h?.toFixed(2)}%
                             </p>
                         </div>
-                        <div className="hidden lg:flex items-center justify-end ml-auto md:ml-0 ">
+                        <div className="hidden md:flex items-center justify-end ml-auto md:ml-0 ">
                             <p className="w-24 md:w-40  ">${coins.market_cap}</p>
                         </div>
                     </li>

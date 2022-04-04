@@ -8,7 +8,7 @@ const TabNavigation = () => {
 
 
   return (
-    <div className=" w-full h-screen md:hidden z-50 ">
+    <div className=" w-full h-screen lg:hidden z-50 ">
         <section id="bottom-navigation" className="block fixed inset-x-0 bottom-0 z-10 bg-gradient-to-b from-gray-900 to-black rounded-t-3xl ">
             <div id="tabs" className="flex justify-between">
 

@@ -1,0 +1,229 @@
+import dayjs from 'dayjs'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { useAuth } from '../Context/AuthContext'
+import { fetchAvailableCoins } from '../Features/availableCoins'
+import { useGetTrendingCoinDataQuery } from '../services/coinsDataApi'
+import { useGetNewsQuery } from '../services/NewsApi'
+import { useGetUserNetworthQuery, useGetWatchlistDataQuery } from '../services/supabaseApi'
+import Loader from './Loader'
+
+const DesktopDashboard = () => {
+    const {currentUser} =useAuth()
+    const availableUsdCoins = useSelector(state => state.availableCoins)
+    const dispatch = useDispatch()
+    
+    // fetch trending coin data
+    const { data:trendingCoins, error, isLoading,isFetching,isSuccess,refetch } = useGetTrendingCoinDataQuery()
+    
+    // fetch watchlist coin data
+    const { data:watchlistData, error:fetchWatchlistErr, isLoading:fetchWatchlistLoading,isSuccess:fetchWatchlistSuccess } = useGetWatchlistDataQuery(currentUser.uid)
+
+    // Get user networth
+    const { data:userNetworth, isSuccess:userNetworthSuccess, error:networthError } = useGetUserNetworthQuery(currentUser.uid)
+
+    // get news
+    const { data:news, isSuccess:fetchNewsSuccess, error:fetchNewsError, isLoading: fetchNewsLoading } = useGetNewsQuery()
+
+    const demoImage = 'https://source.unsplash.com/fsSGgTBoX9Y'
+
+
+    useEffect(() => {
+      dispatch(fetchAvailableCoins(currentUser.uid))
+    },[])
+
+  return (
+    <>
+        {/* loading State */}
+        {
+            (isLoading  || fetchWatchlistLoading || fetchNewsLoading) && <Loader/>
+        }
+        <div class="w-80 m-auto md:m-0 md:w-96 h-56 lg:ml-8 bg-gradient-to-tr from-gray-900 to-gray-700  rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
+            
+            <div class="w-full px-8 absolute top-8">
+                <div class="flex justify-between">
+                    <div class="">
+                        <h1 class="">
+                            Name
+                        </h1>
+                        <p class="font-medium tracking-wide">
+                            {currentUser.displayName}
+                        </p>
+                    </div>
+                    <img class="w-14 h-14" src="https://img.icons8.com/offices/80/000000/sim-card-chip.png"/>
+                </div>
+                <div class="pt-1">
+                    <h1 class="">
+                        Account Balance
+                    </h1>
+                    <p class="font-medium tracking-more-wider">
+                        ${availableUsdCoins.data.amount}
+                    </p>
+                </div>
+                <div class="pt-6 pr-6">
+                    <div class="flex justify-between">
+                        <div class="">
+                            <h1 class="font-light text-xs">
+                                Networth
+                            </h1>
+                            <p class="font-medium tracking-wider text-sm">
+                                {userNetworthSuccess && <span>${userNetworth}</span>}
+                            </p>
+                        </div>
+                        {/* <div class="">
+                            <p class="font-light text-xs ">
+                                Expiry
+                            </p>
+                            <p class="font-medium tracking-wider text-sm">
+                                03/25
+                            </p>
+                        </div> */}
+
+                        <div class="">
+                            <p class="font-light text-xs">
+                                CVV
+                            </p>
+                            <p class="font-bold tracking-more-wider text-sm">
+                                ···
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        
+
+        <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
+            <div class=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
+                <p class="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
+                    Trending Coins
+                </p>
+                {
+                    isSuccess && 
+                    <div>
+                        <ul>
+                            {
+                                trendingCoins.coins.map((coin,index) => (
+                                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                                        <div class="flex items-center justify-start text-sm space-x-3">
+                                            <img src={coin.item.large} alt={`${coin.item.name}`} className="w-10 h-10" />
+                                            <div className=''>
+                                                <p className='text-white text-xl font-bold '>{coin.item.name}</p>
+                                                <p className='text-white text-sm'>{coin.item.symbol}</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p className='text-xl'>
+                                                <p className='text-white'>${coin.item.price_btc.toFixed(9)}</p>
+                                            </p>
+                                        </div>
+                                    </li>
+                                ))
+                            }  
+                            
+                        </ul>
+                    </div>
+
+                }
+            </div>
+            {/* watchlist data */}
+            <div className=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
+                <p className="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
+                    Watchlist Data
+                </p>
+                <ul>
+                {   
+                    (fetchWatchlistErr) ?
+                    <div  className=" shadow-lg rounded-2xl  px-4 py-4 md:px-4 bg-gray-900 flex flex-col ;lg:justify-center " >
+                        <p className='text-white text-xl font-bold my-2 lg:text-center'>Your watchlist is empty</p>
+                        <p className='text-white lg:text-center mb-5'>Press the button to browse all the coins</p>
+                        <Link to='/app/market' className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                            View Coins
+                        </Link>
+                    </div>
+                    :
+                    fetchWatchlistSuccess && 
+                    watchlistData.slice(0,7).map((coin,index) => (
+                        <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                            <div className="flex items-center justify-start text-sm space-x-3">
+                                <img src={coin.data.image.large} alt={`${coin.data.name}`} className="w-10 h-10" />
+                                <div className=''>
+                                    <p className='text-white text-xl font-bold '>{coin.data.name}</p>
+                                    <p className='text-white text-sm'>{coin.data.symbol.toUpperCase()}</p>
+                                </div>
+                            </div>
+                            <div className="">
+                                <p className="text-white font-medium">
+                                    ${coin.data.market_data.current_price.usd}
+                                    <br />
+                                    
+                                </p>
+                                <p className={`text-right ${coin.data?.market_data.price_change_percentage_24h >= 0 ? "text-green-400" : "text-red-400"} font-semibold`}
+                                >
+                                    {coin.data?.market_data.price_change_percentage_24h >= 0 && "+"} 
+                                    {coin.data?.market_data.price_change_percentage_24h?.toFixed(2)}%
+                                </p>
+                            </div>
+                        </li>
+                    ))     
+                }
+                </ul>
+            </div>
+        </div>
+        {/*News*/}
+        <p className="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white px-8 mt-4">
+            Daily News
+        </p>
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 px-8 pt-4">
+            {
+            fetchNewsSuccess &&
+            news?.slice(0,5).map(news => (
+                <a
+                className="relative block p-8 overflow-hidden border border-gray-100 rounded-lg"
+                href={news.url} rel='noreferrer'target="_blank"
+                >
+                <span
+                    className="absolute inset-x-0 bottom-0 h-2  bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
+                ></span>
+
+                <div className="justify-between sm:flex">
+                    <div>
+                    <h5 className="text-xl font-bold text-white">
+                        {news.name}
+                    </h5>
+                    <p className="mt-1 text-xs font-medium text-gray-400">By {news.provider[0].name}</p>
+                    </div>
+
+                    <div className="flex-shrink-0 hidden ml-3 sm:block">
+                    <img
+                        className="object-cover w-16 h-16 rounded-lg shadow-sm"
+                        src={news?.image?.thumbnail?.contentUrl || demoImage}
+                        alt="News cover image"
+                    />
+                    </div>
+                </div>
+
+                <div className="mt-4 sm:pr-8">
+                    <p className="text-sm text-gray-500 line-clamp-4">
+                    {news.description}
+                    </p>
+                </div>
+
+                <dl className="flex mt-6">
+                    <div className="flex flex-col-reverse">
+                    <dt className="text-sm font-medium text-gray-500">Published</dt>
+                    <dd className="text-xs text-gray-500">{news.datePublished.substring(0,10)}</dd>
+                    </div>
+                </dl>
+                </a>
+            ))
+            }
+        </div>
+    </>
+  )
+}
+
+export default DesktopDashboard
