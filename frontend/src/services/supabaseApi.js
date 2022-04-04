@@ -102,9 +102,28 @@ export const supabaseApi = createApi({
                     return {error:error}
                 }
             }
+        }),
+        getLeaderboard:builder.query({
+            queryFn: async() => {
+                try {
+                    let { data: users, error } = await supabase
+                    .from('users')
+                    .select('username,networth')
+                    .order('networth', { ascending: false })
+                    .limit(100)
+
+                    if(error) {
+                        throw new Error(error)
+                    }
+
+                    return {data: users}
+                } catch (error) {
+                    return {error: error}
+                }  
+            }
         })
     })
 })
 
 
-export const {useGetPortfolioDataQuery,useGetWatchlistDataQuery,useGetUserNetworthQuery} = supabaseApi
+export const {useGetPortfolioDataQuery,useGetWatchlistDataQuery,useGetUserNetworthQuery,useGetLeaderboardQuery} = supabaseApi

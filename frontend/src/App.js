@@ -16,6 +16,7 @@ import Dashboard from './Pages/Dashboard';
 import UserProfile from './Pages/UserProfile';
 import Search from './Pages/Search';
 import AiPredections from './Pages/AiPredections';
+import Leaderboard from './Pages/Leaderboard';
 
 
 function App() {
@@ -53,6 +54,13 @@ function App() {
             element={
               <ProtectedRoute>
                 <Search/>
+              </ProtectedRoute>
+            } 
+          />
+          <Route path = "/app/leaderboard" 
+            element={
+              <ProtectedRoute>
+                <Leaderboard/>
               </ProtectedRoute>
             } 
           />
