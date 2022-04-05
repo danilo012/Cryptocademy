@@ -17,6 +17,7 @@ import UserProfile from './Pages/UserProfile';
 import Search from './Pages/Search';
 import AiPredections from './Pages/AiPredections';
 import Leaderboard from './Pages/Leaderboard';
+import MoreMobileNavPage from './Pages/MoreMobileNavPage';
 
 
 function App() {
@@ -103,6 +104,13 @@ function App() {
             element={
               <ProtectedRoute>
                 <UserProfile/>
+              </ProtectedRoute>
+            } 
+          />
+          <Route path = "/app/more" 
+            element={
+              <ProtectedRoute>
+                <MoreMobileNavPage/>
               </ProtectedRoute>
             } 
           />

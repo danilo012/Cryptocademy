@@ -100,9 +100,8 @@ const DesktopDashboard = () => {
 
         <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
             <div class=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
-                <p class="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
-                    Trending Coins
-                </p>
+                <p className='text-white font-bold text-2xl md:text-3xl font-title my-4'>Trending Coins</p>
+                
                 {
                     isSuccess && 
                     <div>
@@ -133,9 +132,8 @@ const DesktopDashboard = () => {
             </div>
             {/* watchlist data */}
             <div className=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
-                <p className="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
-                    Watchlist Data
-                </p>
+                <p className='text-white font-bold text-2xl md:text-3xl font-title my-4'>Your Watchlist</p>
+                
                 <ul>
                 {   
                     (fetchWatchlistErr) ?
@@ -177,9 +175,9 @@ const DesktopDashboard = () => {
         </div>
         {/* leaderboard */}
         <div>
-            <p className='text-white font-bold text-2xl md:text-3xl font-title my-4 ml-3 px-2 md:px-4 mt-4'>Leaderboard</p>
+            <p className='text-white font-bold text-2xl md:text-3xl font-title my-4 px-4 mt-6 md:mt-10'>Global Leaderboard</p>
             
-            <ul className="px-2 md:px-4 flex flex-col space-y-1 pb-12 text-white">
+            <ul className="px-2 md:px-12 flex flex-col space-y-1 pb-12 text-white">
                 {/* Table Head */}
                 <li className="grid grid-cols-3 text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white" >
                     <div className=""> 
@@ -231,9 +229,8 @@ const DesktopDashboard = () => {
             </ul>
         </div>
         {/*News*/}
-        <p className="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white px-8 mt-4">
-            Daily News
-        </p>
+        <p className='text-white font-bold text-2xl md:text-3xl font-title my-4 px-4'>Today Top Headlines</p>
+        
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 px-8 pt-4">
             {
             fetchNewsSuccess &&

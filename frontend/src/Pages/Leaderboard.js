@@ -97,7 +97,6 @@ const Leaderboard = () => {
                 }
 
             </ul>
-          
 
         </main>
       </div>
