@@ -121,9 +121,29 @@ export const supabaseApi = createApi({
                     return {error: error}
                 }  
             }
+        }),
+        fetchAvailableCoins:builder.query({
+            queryFn: async(id) => {
+                try {
+                    // get available coins
+                    let { data: availableUsdCoin, error } = await supabase
+                    .from('portfolio')
+                    .select('coinId,coinName,amount')
+                    .eq('userId',`${id}`)
+                    .eq('coinId','USD')
+
+                    if(error) {
+                        throw new Error(error)
+                    }
+
+                    return {data: availableUsdCoin}
+                } catch (error) {
+                    return {error: error}
+                }  
+            }
         })
     })
 })
 
 
-export const {useGetPortfolioDataQuery,useGetWatchlistDataQuery,useGetUserNetworthQuery,useGetLeaderboardQuery} = supabaseApi
+export const {useGetPortfolioDataQuery,useGetWatchlistDataQuery,useGetUserNetworthQuery,useGetLeaderboardQuery,useFetchAvailableCoinsQuery} = supabaseApi

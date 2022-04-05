@@ -1,18 +1,14 @@
-import dayjs from 'dayjs'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../Context/AuthContext'
-import { fetchAvailableCoins } from '../Features/availableCoins'
 import { useGetTrendingCoinDataQuery } from '../services/coinsDataApi'
 import { useGetNewsQuery } from '../services/NewsApi'
-import { useGetUserNetworthQuery, useGetWatchlistDataQuery } from '../services/supabaseApi'
+import { useFetchAvailableCoinsQuery, useGetLeaderboardQuery, useGetUserNetworthQuery, useGetWatchlistDataQuery } from '../services/supabaseApi'
 import Loader from './Loader'
 
 const DesktopDashboard = () => {
     const {currentUser} =useAuth()
-    const availableUsdCoins = useSelector(state => state.availableCoins)
-    const dispatch = useDispatch()
     
     // fetch trending coin data
     const { data:trendingCoins, error, isLoading,isFetching,isSuccess,refetch } = useGetTrendingCoinDataQuery()
@@ -26,19 +22,27 @@ const DesktopDashboard = () => {
     // get news
     const { data:news, isSuccess:fetchNewsSuccess, error:fetchNewsError, isLoading: fetchNewsLoading } = useGetNewsQuery()
 
+    // get available coins
+    const { data:availableUsdCoins, isSuccess:fetchAvailableUsdCoinsSuccess, error:fetchAvailableUsdCoinsError, isLoading: fetchAvailableUsdCoinsLoading,refetch:refetchAvailableCoins } = useFetchAvailableCoinsQuery(currentUser.uid)
+
+    // get Leaderboard data
+    const { data:leaderboard,  isLoading:leaderboardIsLoading,isSuccess:fetchLeaderboardSuccess,error:fetchLeaderboardError } = useGetLeaderboardQuery()
+
+
     const demoImage = 'https://source.unsplash.com/fsSGgTBoX9Y'
 
 
     useEffect(() => {
-      dispatch(fetchAvailableCoins(currentUser.uid))
+        refetchAvailableCoins()
     },[])
 
   return (
     <>
         {/* loading State */}
         {
-            (isLoading  || fetchWatchlistLoading || fetchNewsLoading) && <Loader/>
+            (isLoading  || fetchWatchlistLoading || fetchNewsLoading || fetchAvailableUsdCoinsLoading || leaderboardIsLoading) && <Loader/>
         }
+        {/* credit card */}
         <div class="w-80 m-auto md:m-0 md:w-96 h-56 lg:ml-8 bg-gradient-to-tr from-gray-900 to-gray-700  rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
             
             <div class="w-full px-8 absolute top-8">
@@ -58,7 +62,7 @@ const DesktopDashboard = () => {
                         Account Balance
                     </h1>
                     <p class="font-medium tracking-more-wider">
-                        ${availableUsdCoins.data.amount}
+                        ${fetchAvailableUsdCoinsSuccess && availableUsdCoins[0]?.amount}
                     </p>
                 </div>
                 <div class="pt-6 pr-6">
@@ -93,8 +97,6 @@ const DesktopDashboard = () => {
 
             </div>
         </div>
-
-        
 
         <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
             <div class=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
@@ -172,6 +174,61 @@ const DesktopDashboard = () => {
                 }
                 </ul>
             </div>
+        </div>
+        {/* leaderboard */}
+        <div>
+            <p className='text-white font-bold text-2xl md:text-3xl font-title my-4 ml-3 px-2 md:px-4 mt-4'>Leaderboard</p>
+            
+            <ul className="px-2 md:px-4 flex flex-col space-y-1 pb-12 text-white">
+                {/* Table Head */}
+                <li className="grid grid-cols-3 text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white" >
+                    <div className=""> 
+                        <p className='text-white pl-4'>Rank</p>
+                    </div>
+                    <div className="flex items-center justify-start ml-auto md:ml-0 ">
+                        <p className="w-28 md:w-40  text-white break-all text-left">Player</p>
+                    </div>
+                    <div className="flex items-center justify-end ml-auto md:ml-0 ">
+                        <p className="w-24 md:w-40  text-white text-right mr-2">Networth</p>
+                    </div>
+                </li>
+                {   
+                    (fetchLeaderboardError) ?
+                    <p className='text-red-500 text-xl'>Something went wrong</p>
+                    :
+                    fetchLeaderboardSuccess && 
+                    leaderboard.slice(0,5).map((user,index) => (
+                        <li key={index} className="grid grid-cols-3 text-gray-500 py-2 px-1 md:px-5 hover:bg-gray-900 rounded-lg cursor-pointer border-b-2 border-gray-800 " >
+
+                            <div className="flex items-center space-x-2 "> 
+                                <p className='pl-1'>{index+1}</p>
+                                {
+                                    ((index+1) === 1) &&
+                                    <img src="https://img.icons8.com/external-justicon-flat-justicon/64/000000/external-trophy-reward-and-badges-justicon-flat-justicon-1.png" alt='gold trophy' className='w-8 h-8' />
+                                }
+                                {
+                                    ((index+1) === 2) &&
+                                    <img src="https://img.icons8.com/external-justicon-flat-justicon/64/000000/external-trophy-baseball-justicon-flat-justicon.png" alt='silver trophy' className='w-8 h-8' />
+                                }
+                                {
+                                    ((index+1) === 3) &&
+                                    <img src="https://img.icons8.com/external-justicon-flat-justicon/64/000000/external-trophy-reward-and-badges-justicon-flat-justicon-4.png" alt='3rd rank trophy' className='w-8 h-8' />
+                                }
+                            </div>
+                            <div className="flex items-center justify-start ml-auto md:ml-0 ">
+                                <p className="w-28 md:w-40 truncate text-white font-medium">
+                                    {user.username}
+                                </p>
+                            </div>
+                            <div className="flex items-center justify-end ml-auto md:ml-0 ">
+                                <p className="w-28 md:w-40 break-all text-white font-medium text-right">
+                                    ${user.networth}
+                                </p>
+                            </div>
+                        </li>
+                    ))     
+                }
+            </ul>
         </div>
         {/*News*/}
         <p className="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white px-8 mt-4">
