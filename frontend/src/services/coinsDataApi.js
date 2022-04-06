@@ -26,7 +26,18 @@ export const coinsDataApi = createApi({
         }),
         getHistoricalData: builder.query({
             query:(options) => `/${options.id}/ohlc?vs_currency=usd&days=${options.chartDays}`,
-        })
+        }),
+        getGlobalCryptoData: builder.query({
+            queryFn: async () => {
+                try {
+                    const response = await axios.get('https://api.coingecko.com/api/v3/global')
+
+                    return {data: response.data}
+                } catch (error) {
+                    return {error: error}
+                }
+            }
+        }),
         // getWatchlistData: builder.query({
         //     query: async (WatchlistIds, _queryApi, _extraOptions, baseQuery) => {
         //         const results = await Promise.all(WatchlistIds.map(WatchlistId => baseQuery(`/${WatchlistId}`)));
@@ -43,4 +54,4 @@ export const coinsDataApi = createApi({
     })
 })
  
-export const {useGetCoinsDataQuery,useGetCoinDataQuery,useGetHistoricalDataQuery,useGetTrendingCoinDataQuery} = coinsDataApi
+export const {useGetCoinsDataQuery,useGetCoinDataQuery,useGetHistoricalDataQuery,useGetTrendingCoinDataQuery,useGetGlobalCryptoDataQuery} = coinsDataApi

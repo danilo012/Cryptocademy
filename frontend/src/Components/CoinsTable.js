@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useGetCoinsDataQuery } from '../services/coinsDataApi'
+import { useGetCoinsDataQuery, useGetGlobalCryptoDataQuery } from '../services/coinsDataApi'
 import ReactPaginate from 'react-paginate'
 import { useNavigate } from 'react-router'
 import ErrorToast from '../Components/ErrorToast';
@@ -18,20 +18,17 @@ const CoinsTable = () => {
 
     const { data, error, isLoading,isFetching,isSuccess,refetch } = useGetCoinsDataQuery({currency,page},{pollingInterval: 2000,})
 
+    const { data:globalCryptoData, error:fetchGlobalCryptoError, isLoading: fetchGlobalCryptoLoading,isSuccess: fetchGlobalCryptoSuccess} = useGetGlobalCryptoDataQuery()
+
+    if(globalCryptoData) {
+        console.log(globalCryptoData)
+    }
+
     useEffect(()=>{
         if(error){
             toastRef.current.show()
         }
     },[error])
-
-    const handleSearch = () => {
-        const filteredData = data.filter(
-            (coin) =>
-            coin.name.toLowerCase().includes(search) ||
-            coin.symbol.toLowerCase().includes(search)
-        );
-        setSearchData(filteredData)
-    }
 
     const handlePagination = (data) => {
         setPage(Number(data.selected+1))
@@ -61,20 +58,76 @@ const CoinsTable = () => {
     <div className='z-10'>
         {isLoading && <Loader/>}
         {error && <ErrorToast message="Something Went Wrong!" ref={toastRef}/>}
-        {/* search Bar */}
-        <div className="p-4">
-            <label for="table-search" className="sr-only">Search</label>
-            <div className="relative mt-1">
-                <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                    <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+        {
+            fetchGlobalCryptoSuccess &&  
+            // <div className='carousel-item px-4 mb-4 carousel carousel-center max-w-screen p-4 space-x-2'>
+            //     <div className="bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative">
+            //         <img src="https://img.clankapp.com/symbol/btc.svg" alt="btc logo" className="h-24 w-24 rounded-full absolute opacity-50 -top-6 -right-6 md:-right-4"/>
+            //         <div className="px-4 py-5 sm:p-6">
+            //             <dl>
+            //                 <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
+            //                     Active Cryptocurrencies
+            //                 </dt>
+            //                 <dd className="mt-1 text-3xl leading-9 font-semibold text-gray-200">
+            //                     {globalCryptoData.data.active_cryptocurrencies}
+            //                 </dd>
+            //             </dl>
+            //         </div>
+            //     </div>
+
+            //     <div className="carousel-item bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative">
+            //         <img src="https://img.icons8.com/fluency/96/000000/bullish.png" alt="btc logo" className="h-24 w-24 rounded-full absolute opacity-50 -top-6 -right-6 md:-right-4"/>
+            //         <div className="px-4 py-5 sm:p-6">
+            //             <dl>
+            //                 <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
+            //                     24h Market Cap Change
+            //                 </dt>
+            //                 <dd className={`mt-1 text-3xl leading-9 font-semibold ${globalCryptoData.data.market_cap_change_percentage_24h_usd >= 0 ? "text-green-400" : "text-red-400"} `}>
+            //                     {globalCryptoData.data.market_cap_change_percentage_24h_usd.toFixed(4)}
+            //                 </dd>
+            //             </dl>
+            //         </div>
+            //     </div>
+
+            // </div>
+            <div className="carousel carousel-center p-4 space-x-4 rounded-box w-screen max-w-md md:max-w-3xl  ">
+                <div className='carousel-item' >
+                    <div className="  bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative">
+                        <img src="https://img.clankapp.com/symbol/btc.svg" alt="btc logo" className="h-24 w-24 rounded-full absolute opacity-50 -top-6 -right-6 md:-right-4"/>
+                        <div className="px-4 py-5 sm:p-6">
+                            <dl>
+                                <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
+                                    Active Cryptocurrencies
+                                </dt>
+                                <dd className="mt-1 text-3xl leading-9 font-semibold text-gray-200">
+                                    {globalCryptoData.data.active_cryptocurrencies}
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
                 </div>
-                <input type="text" id="table-search" className=" border w-full   text-sm rounded-lg  block  pl-10 p-2.5  bg-black border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Search for Cryptocurrency..." onChange={(e) => {
-                    setSearch(e.target.value)
-                    handleSearch()
-                }} />
+
+                <div className='carousel-item'>
+                    <div className=" bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative">
+                        <img src="https://img.icons8.com/fluency/96/000000/bullish.png" alt="btc logo" className="h-24 w-24 rounded-full absolute opacity-50 -top-6 -right-6 md:-right-4"/>
+                        <div className="px-4 py-5 sm:p-6">
+                            <dl>
+                                <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
+                                    24h Market Cap Change
+                                </dt>
+                                <dd className={`mt-1 text-3xl leading-9 font-semibold ${globalCryptoData.data.market_cap_change_percentage_24h_usd >= 0 ? "text-green-400" : "text-red-400"} `}>
+                                    {globalCryptoData.data.market_cap_change_percentage_24h_usd.toFixed(4)}%
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
+        }
         {/* coin table */}
+        
+
         <ul className="md:px-4 flex flex-col space-y-1 pb-12 text-white">
             {/* Table Head */}
             <li className="grid grid-cols-2 md:grid-cols-4 text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white" >
@@ -93,45 +146,6 @@ const CoinsTable = () => {
             </li>
             {/* coin prices */}
             {
-                (searchData && search) ?
-                searchData?.map((coins,index) => (
-                    <li key={index} onClick={()=> navigate(`/app/coin/${coins.id}`)} className="grid grid-cols-2 md:grid-cols-4 text-gray-500 py-2 px-1md:px-5 hover:bg-gray-900 rounded-lg cursor-pointer border-b-2 border-gray-800 " >
-                        <div className="flex items-center space-x-2 "> 
-                            <p className='pl-1'>{index+1}</p>
-                            <img className="h-8 w-8 md:h-10 md:w-10 object-contain" src={coins.image} alt="cryptocurrency image " loading='lazy' />
-                            <div>
-                                <p className=" w-64 truncate text-white break-words">{coins.name}</p>
-                                <div className='flex space-x-1'>
-                                    <p>{coins.symbol}</p>
-                                    <p className={`md:hidden w-24 md:w-40 ${coins?.price_change_percentage_24h >= 0 ? "text-green-400" : "text-red-400"} font-semibold`}
-                                    >
-                                    {coins?.price_change_percentage_24h >= 0 && "+"} 
-                                    {coins?.price_change_percentage_24h?.toFixed(2)}%
-                                    </p>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div className="flex items-center justify-end ml-auto md:ml-0 ">
-                            <p className="w-28 md:w-40 text-white font-medium">
-                                ${coins.current_price}/-
-                                <br />
-                                <span className="md:hidden w-28 md:w-40 text-gray-500">MCap: {normalizeMarketCap(coins.market_cap)}</span>
-                            </p>
-                        </div>
-                        <div className="hidden md:flex items-center justify-end ml-auto md:ml-0 ">
-                            <p className={`w-24 md:w-40 ${coins?.price_change_percentage_24h >= 0 ? "text-green-400" : "text-red-400"} font-semibold`}
-                            >
-                             {coins?.price_change_percentage_24h >= 0 && "+"} 
-                             {coins?.price_change_percentage_24h?.toFixed(2)}%
-                            </p>
-                        </div>
-                        <div className="hidden md:flex items-center justify-end ml-auto md:ml-0 ">
-                            <p className="w-24 md:w-40  ">{coins.market_cap}</p>
-                        </div>
-                    </li>
-                ))
-                :
                 isSuccess &&
                 data?.map((coins,index) => (
                     <li key={index} onClick={()=> navigate(`/app/coin/${coins.id}`)} className="grid grid-cols-2 md:grid-cols-4 text-gray-500 py-2 px-1md:px-5 hover:bg-gray-900 rounded-lg cursor-pointer border-b-2 border-gray-800 " >
