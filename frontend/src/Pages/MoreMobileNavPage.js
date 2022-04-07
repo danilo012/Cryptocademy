@@ -1,6 +1,6 @@
 import React from 'react'
 import { AiOutlineRight } from 'react-icons/ai'
-import { BsFillBarChartFill, BsGlobe2 } from 'react-icons/bs'
+import { BsBank, BsFillBarChartFill, BsGlobe2 } from 'react-icons/bs'
 import { MdOutlineWatchLater } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import Sidebar from '../Components/Sidebar'
@@ -52,6 +52,14 @@ const MoreMobileNavPage = () => {
                 <div className="flex justify-center space-x-2 items-center cursor-pointer">
                     <BsFillBarChartFill className='inline-block text-gray-200 w-5 h-5 '/>
                     <h2 className="text-xl font-semibold text-gray-200">Global Leaderboard</h2>
+                </div>
+                <AiOutlineRight className='inline-block text-gray-200 w-5 h-5 mb-1'/>
+            </Link>
+            
+            <Link to="/app/market/globalStats" className='px-4  flex justify-between items-center'>        
+                <div className="flex justify-center space-x-2 items-center cursor-pointer">
+                    <BsBank className='inline-block text-gray-200 w-5 h-5 '/>
+                    <h2 className="text-xl font-semibold text-gray-200">Global Metrics</h2>
                 </div>
                 <AiOutlineRight className='inline-block text-gray-200 w-5 h-5 mb-1'/>
             </Link>
