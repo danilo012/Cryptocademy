@@ -18,6 +18,7 @@ import Search from './Pages/Search';
 import AiPredections from './Pages/AiPredections';
 import Leaderboard from './Pages/Leaderboard';
 import MoreMobileNavPage from './Pages/MoreMobileNavPage';
+import GlobalStats from './Pages/GlobalStats';
 
 
 function App() {
@@ -111,6 +112,13 @@ function App() {
             element={
               <ProtectedRoute>
                 <MoreMobileNavPage/>
+              </ProtectedRoute>
+            } 
+          />
+          <Route path = "/app/market/globalStats" 
+            element={
+              <ProtectedRoute>
+                <GlobalStats/>
               </ProtectedRoute>
             } 
           />

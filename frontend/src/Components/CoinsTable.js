@@ -4,25 +4,20 @@ import ReactPaginate from 'react-paginate'
 import { useNavigate } from 'react-router'
 import ErrorToast from '../Components/ErrorToast';
 import Loader from './Loader'
+import { Link } from 'react-router-dom';
 
 
 const CoinsTable = () => {
     const navigate = useNavigate()
     const toastRef = useRef(null)
 
-    const [coinsData,setCoinsData] = useState()
     const [currency,setCurrency] = useState('usd')
-    const [search,setSearch] = useState('')
-    const [searchData,setSearchData] = useState('')
+
     const [page,setPage] = useState(1)
 
     const { data, error, isLoading,isFetching,isSuccess,refetch } = useGetCoinsDataQuery({currency,page},{pollingInterval: 2000,})
 
     const { data:globalCryptoData, error:fetchGlobalCryptoError, isLoading: fetchGlobalCryptoLoading,isSuccess: fetchGlobalCryptoSuccess} = useGetGlobalCryptoDataQuery()
-
-    if(globalCryptoData) {
-        console.log(globalCryptoData)
-    }
 
     useEffect(()=>{
         if(error){
@@ -59,38 +54,25 @@ const CoinsTable = () => {
         {isLoading && <Loader/>}
         {error && <ErrorToast message="Something Went Wrong!" ref={toastRef}/>}
         {
-            fetchGlobalCryptoSuccess &&  
-            // <div className='carousel-item px-4 mb-4 carousel carousel-center max-w-screen p-4 space-x-2'>
-            //     <div className="bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative">
-            //         <img src="https://img.clankapp.com/symbol/btc.svg" alt="btc logo" className="h-24 w-24 rounded-full absolute opacity-50 -top-6 -right-6 md:-right-4"/>
-            //         <div className="px-4 py-5 sm:p-6">
-            //             <dl>
-            //                 <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
-            //                     Active Cryptocurrencies
-            //                 </dt>
-            //                 <dd className="mt-1 text-3xl leading-9 font-semibold text-gray-200">
-            //                     {globalCryptoData.data.active_cryptocurrencies}
-            //                 </dd>
-            //             </dl>
-            //         </div>
-            //     </div>
+            fetchGlobalCryptoSuccess && 
+            <div className="carousel carousel-center p-4 space-x-4 rounded-box w-screen max-w-md md:max-w-full lg:flex-wrap  ">
+                
+                <div className='carousel-item' >
+                    <div className="  bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative">
+                        <img src="https://img.icons8.com/clouds/200/000000/bitcoin.png" alt="btc logo" className="h-24 w-24 rounded-full absolute opacity-50 -top-6 -right-6 md:-right-4"/>
+                        <div className="px-4 py-5 sm:p-6">
+                            <dl>
+                                <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
+                                    Total Market Cap
+                                </dt>
+                                <dd className="mt-1 text-xl leading-9 font-semibold text-gray-200">
+                                    ${globalCryptoData.data.total_market_cap.usd.toFixed(4)}
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
 
-            //     <div className="carousel-item bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative">
-            //         <img src="https://img.icons8.com/fluency/96/000000/bullish.png" alt="btc logo" className="h-24 w-24 rounded-full absolute opacity-50 -top-6 -right-6 md:-right-4"/>
-            //         <div className="px-4 py-5 sm:p-6">
-            //             <dl>
-            //                 <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
-            //                     24h Market Cap Change
-            //                 </dt>
-            //                 <dd className={`mt-1 text-3xl leading-9 font-semibold ${globalCryptoData.data.market_cap_change_percentage_24h_usd >= 0 ? "text-green-400" : "text-red-400"} `}>
-            //                     {globalCryptoData.data.market_cap_change_percentage_24h_usd.toFixed(4)}
-            //                 </dd>
-            //             </dl>
-            //         </div>
-            //     </div>
-
-            // </div>
-            <div className="carousel carousel-center p-4 space-x-4 rounded-box w-screen max-w-md md:max-w-3xl  ">
                 <div className='carousel-item' >
                     <div className="  bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative">
                         <img src="https://img.clankapp.com/symbol/btc.svg" alt="btc logo" className="h-24 w-24 rounded-full absolute opacity-50 -top-6 -right-6 md:-right-4"/>
@@ -122,11 +104,14 @@ const CoinsTable = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
         }
+        {/* more global stats page */}
+        {
+            fetchGlobalCryptoSuccess &&
+            <Link to="/app/market/globalStats" className="text-md  font-semibold text-green-400 px-4 underline">Show more global stats.</Link>
+        }
         {/* coin table */}
-        
 
         <ul className="md:px-4 flex flex-col space-y-1 pb-12 text-white">
             {/* Table Head */}
