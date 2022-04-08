@@ -33,7 +33,7 @@ const UserProfile = () => {
           <p className='text-white font-bold text-2xl md:text-3xl font-title my-4 ml-3'>Your Profile</p>
 
             
-            <div class="flex flex-wrap space-x-4 justify-center md:justify-start">
+            <div class="flex flex-wrap md:space-x-4  justify-center md:justify-start">
 
               <div className="  bg-gradient-to-tr from-gray-900 to-gray-700  overflow-hidden shadow rounded-lg w-[100%] md:w-72 xl:w-80 relative mx-4">
                   <img src="https://img.icons8.com/officel/80/000000/anime-emoji.png" alt="btc logo" className="h-24 w-24 rounded-full absolute opacity-50 -top-6 -right-6 md:-right-4"/>
