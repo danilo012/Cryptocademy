@@ -68,18 +68,18 @@ const CoinChart = ({id}) => {
         enabled: true
       }
     },
-    fill: {
-      type: 'gradient',
-      gradient: {
-        shade: 'dark',
-        gradientToColors: [ '#1ce950'],
-        shadeIntensity: 1,
-        type: 'horizontal',
-        opacityFrom: 1,
-        opacityTo: 1,
-        stops: [0, 100, 100, 100]
-      },
-    },
+    // fill: {
+    //   type: 'gradient',
+    //   gradient: {
+    //     shade: 'dark',
+    //     gradientToColors: [ '#1ce950'],
+    //     shadeIntensity: 1,
+    //     type: 'horizontal',
+    //     opacityFrom: 1,
+    //     opacityTo: 1,
+    //     stops: [0, 100, 100, 100]
+    //   },
+    // },
   }
   return (
     <>

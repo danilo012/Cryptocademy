@@ -13,7 +13,11 @@ const Portfolio = () => {
   const dispatch = useDispatch()
 
   const { data:portfolioData, error, isLoading,isFetching,isSuccess,refetch:refetchPortfolioData } = useGetPortfolioDataQuery(currentUser.uid)
- 
+  
+  if(portfolioData) {
+    console.log(portfolioData)
+  }
+
   // Get user networth
   const { data:userNetworth, isSuccess:userNetworthSuccess, error:networthError,refetch:refetchNetworth } = useGetUserNetworthQuery(currentUser.uid)
   

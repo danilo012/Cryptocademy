@@ -19,6 +19,7 @@ import AiPredections from './Pages/AiPredections';
 import Leaderboard from './Pages/Leaderboard';
 import MoreMobileNavPage from './Pages/MoreMobileNavPage';
 import GlobalStats from './Pages/GlobalStats';
+import VirtualUsdPage from './Pages/VirtualUsdPage';
 
 
 function App() {
@@ -70,6 +71,13 @@ function App() {
             element={
               <ProtectedRoute>
                 <AiPredections/>
+              </ProtectedRoute>
+            } 
+          />
+          <Route path = "/app/coin/USD" 
+            element={
+              <ProtectedRoute>
+                <VirtualUsdPage/>
               </ProtectedRoute>
             } 
           />
