@@ -14,19 +14,24 @@ const Portfolio = () => {
 
   const { data:portfolioData, error, isLoading,isFetching,isSuccess,refetch:refetchPortfolioData } = useGetPortfolioDataQuery(currentUser.uid)
 
-  const { data:portfolioCoinData, error:fetchPortfolioCoinDataError, isLoading:fetchPortfolioCoinDataLoading,isSuccess:fetchPortfolioCoinDataSuccess,refetch:refetchPortfolioCoinData } = useGetPortfolioCoinDataQuery(currentUser.uid)
+  const { data:portfolioCoinData, error:fetchPortfolioCoinDataError, isLoading:fetchPortfolioCoinDataLoading,isSuccess:fetchPortfolioCoinDataSuccess,refetch:refetchPortfolioCoinData } = useGetPortfolioCoinDataQuery(currentUser.uid,{pollingInterval: 5000,})
 
   // get available coins
   const { data:availableUsdCoins, isSuccess:fetchAvailableUsdCoinsSuccess, error:fetchAvailableUsdCoinsError, isLoading: fetchAvailableUsdCoinsLoading,refetch:refetchAvailableCoins } = useFetchAvailableCoinsQuery(currentUser.uid)
   
   // get coin percentage change
   function percentageChange(coinId,coinAmount,amount) {
-    const coinData = portfolioCoinData.filter(coin => coin.data.id === coinId)
-    const currentCoinPrice = coinData[0].data.market_data.current_price.usd
-    const oneCoinAmount = amount/coinAmount
-    const coinPercentageChange = ((currentCoinPrice - oneCoinAmount)/currentCoinPrice) * 100
-    return coinPercentageChange
     
+    const coinData = portfolioCoinData.filter(coin => coin.data.id === coinId)
+    
+    if(coinData.length !== 0) {
+      const currentCoinPrice = coinData[0].data?.market_data.current_price.usd
+      const oneCoinAmount = amount/coinAmount
+      const coinPercentageChange = ((currentCoinPrice - oneCoinAmount)/currentCoinPrice) * 100
+      console.log(coinPercentageChange)
+      return coinPercentageChange
+    }
+    return
   }
 
   // Get user networth
@@ -35,6 +40,7 @@ const Portfolio = () => {
   useEffect(() => {
     refetchPortfolioData()
     refetchNetworth()
+    refetchPortfolioCoinData()
   },[])
 
   return (
@@ -105,8 +111,8 @@ const Portfolio = () => {
           {
             (isSuccess && fetchPortfolioCoinDataSuccess) && 
             portfolioData.map((coin,index) => {
+              
               const coinPercentageChange = percentageChange(coin.coinId,coin.coinAmount,coin.amount)
-
               return (
                 <li key={index} onClick={()=> navigate(`/app/coin/${coin.coinId}`)} className="grid grid-cols-3 text-gray-500 py-2 px-1md:px-5 hover:bg-gray-900 rounded-lg cursor-pointer border-b-2 border-gray-800 " >
                   <div className="flex items-center space-x-2 "> 

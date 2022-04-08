@@ -47,8 +47,40 @@ const BuyCoins = ({data,modal,setModal}) => {
             }
 
             // check if the coin is already purchased i.e. add the coin amount coin to our existing coin in portfolio db
+            let { data: existingCoin, error: existingCoinErr } = await supabase
+            .from('portfolio')
+            .select('coinId,coinName,amount,coinAmount')
+            .eq('userId',`${currentUser.uid}`)
+            .eq('coinId',`${data.id}`)
 
-            // add the purchased coin to database
+            if(existingCoin) {
+                console.log(existingCoin)
+                console.log(existingCoin.length)
+            }
+
+            if(existingCoin.length !== 0) {
+                let { data: updateExistingCoin, error: updateExistingCoinErr } = await supabase
+                .from('portfolio') 
+                .update({
+                    amount: `${Number(existingCoin[0].amount) + Number(coinUsdPrice)}`,
+                    coinAmount: `${Number(existingCoin[0].coinAmount) + Number(coinValue)}`
+                })
+                .eq('userId',`${currentUser.uid}`)  
+                .eq('coinId',`${data.id}`)
+
+
+                if(updateExistingCoin) {
+                    console.log("updated existing coin now exiting from loop")
+                    setOrderLoading(false)
+                    alert('Coin purchased successfully')
+                    return
+                }
+                if(updateExistingCoinErr){
+                    throw new Error('Something went wrong, Please try again!')
+                }
+            }
+
+            // if not already present add the purchased coin to database
             const { data:addToPortfolio, error: addToPortfolioError } = await supabase
             .from('portfolio')
             .insert([
@@ -82,7 +114,7 @@ const BuyCoins = ({data,modal,setModal}) => {
             }
             
             
-            // calculate networth
+            // // calculate networth
 
 
             setOrderLoading(false)
@@ -139,7 +171,7 @@ const BuyCoins = ({data,modal,setModal}) => {
                 </div>
                  {/* Modal footer  */}
                 <div className="flex justify-center items-center  px-6 py-3 md:p-6 space-x-2 rounded-b border-t  border-gray-600">
-                    <button data-modal-toggle="large-modal" type="button" className="text-white  focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" onClick={onPlaceOrder} >
+                    <button data-modal-toggle="large-modal" type="button" disabled={orderLoading} className="text-white  focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" onClick={onPlaceOrder} >
                         {orderLoading ? `Buying ${data.name}...`
                         :`Buy ${data.name}`}
                     </button>
