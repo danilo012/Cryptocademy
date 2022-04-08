@@ -18,11 +18,8 @@ const Watchlist = () => {
   const toastRef = useRef(null)
 
   // fetch watchlist coin data
-  const { data:watchlistData,error, isLoading,isFetching,isSuccess,refetch } = useGetWatchlistDataQuery(currentUser.uid,{pollingInterval: 2000,})
+  const { data:watchlistData,error, isLoading,isFetching,isSuccess,refetch } = useGetWatchlistDataQuery(currentUser.uid)
 
-  if(isSuccess) {
-    console.log(watchlistData)
-  }
   // useEffect(()=>{
   //     if(error){
   //         toastRef.current.show()
@@ -30,12 +27,11 @@ const Watchlist = () => {
   // },[error])
 
   useEffect(()=>{
-    // setInterval(() => {
-    //   console.log('i am running after 2 seconds')
-    //   refetch()
-    // }, 2000);
-    // return () => clearInterval()
-    refetch()
+    setInterval(() => {
+      console.log('i am running after 5 seconds')
+      refetch()
+    }, 5000);
+    return () => clearInterval()
   },[])
 
   
@@ -59,7 +55,7 @@ const Watchlist = () => {
     <div className='bg-black'>
       {/* desktop dasboard */}
       <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
-        <Sidebar/>
+        <Sidebar active={`watchlist`}/>
         <main className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
           <p className='text-white font-bold text-2xl md:text-3xl font-title my-4 ml-3'>WatchList</p>
           {(isLoading) && <Loader/>}

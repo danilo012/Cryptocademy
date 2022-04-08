@@ -10,7 +10,7 @@ const CoinMarket = () => {
     <div className='bg-black'>
       {/* desktop dasboard */}
       <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
-        <Sidebar/>
+        <Sidebar active={`market`}/>
         <main className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
           <p className='text-white font-bold text-2xl md:text-3xl font-title mt-4 ml-3'>Cryptocurrency Prices</p>
           <CoinsTable/>

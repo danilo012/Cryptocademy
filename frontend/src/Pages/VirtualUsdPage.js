@@ -39,6 +39,9 @@ const VirtualUsdPage = () => {
                 <br />
                 <br />
                 1 virtual USD coins is equal to one united states dollar
+                <br />
+                <br />
+                So go out there and enter the world of trading through Cryptocademy.
             </p>
 
         </main>

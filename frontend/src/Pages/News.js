@@ -23,11 +23,10 @@ const News = () => {
       {fetchNewsLoading && <Loader/>}
       {fetchNewsError && <p className='text-red-400 text-xl'>Something went Wrong</p>}
       <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
-        <Sidebar/>
+        <Sidebar active={`news`}/>
         <main className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
           <section className="px-4 py-12 mx-auto max-w-[90rem]">
-            <h2 className="mb-2 text-3xl font-extrabold leading-tight text-white font-title">Latest Cryptocurrency News</h2>
-            <p className="mb-20 text-lg text-gray-500">Comes directly from the desk of engineers, creators and managers at Skcript.</p>
+            <h2 className="mb-8 text-3xl font-extrabold leading-tight text-white font-title">Latest Cryptocurrency News</h2>
             
             <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
               {

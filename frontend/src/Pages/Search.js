@@ -43,7 +43,7 @@ const Search = () => {
     <div className='bg-black'>
       {/* desktop dasboard */}
       <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
-        <Sidebar/>
+        <Sidebar active={`search`}/>
         <main className="main flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
           {/* search Bar */}
         <div className="p-4">

@@ -5,7 +5,7 @@ import { AiOutlineHome,AiOutlineRobot,AiOutlineBarChart, AiOutlineSearch} from "
 import { useAuth } from '../Context/AuthContext';
 import { BsFillBarChartFill } from 'react-icons/bs';
 
-const Sidebar = ({openSidebar}) => {
+const Sidebar = ({openSidebar,active}) => {
     const {currentUser} =useAuth()
 
     return (
@@ -19,11 +19,15 @@ const Sidebar = ({openSidebar}) => {
             </div>
             <div className="sidebar-content px-4 ">
                 <ul className="flex flex-col w-full">
-                
+
                 <li className="my-px">
                     <Link
                     to="/app"
-                    className="flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300 hover:bg-gradient-to-r from-green-400 via-green-500 to-green-600 "
+                    className={
+                        `
+                        ${(active === 'home')? "bg-gradient-to-tr from-gray-900 to-gray-700" : ""}
+                        flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300  hover:bg-gradient-to-tr from-gray-900 to-gray-700 `
+                    }
                     >
                     <span className="flex items-center justify-center text-lg text-gray-400 ">
                         <AiOutlineHome className='text-white w-6 h-6 hover:text-black' />
@@ -36,7 +40,11 @@ const Sidebar = ({openSidebar}) => {
                 <li className="my-px">
                     <Link
                     to="/app/search"
-                    className="flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300 hover:bg-gradient-to-r from-green-400 via-green-500 to-green-600 "
+                    className={
+                        `
+                        ${(active === 'search')? "bg-gradient-to-tr from-gray-900 to-gray-700" : ""}
+                        flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300  hover:bg-gradient-to-tr from-gray-900 to-gray-700 `
+                    }
                     >
                     <span className="flex items-center justify-center text-lg text-gray-400">
                         <AiOutlineSearch className='text-white w-6 h-6 '/>
@@ -44,11 +52,15 @@ const Sidebar = ({openSidebar}) => {
                     <span className="ml-3">Search</span>
                     </Link>
                 </li>
-
+ 
                 <li className="my-px">
                     <Link
                     to="/app/market"
-                    className="flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300 hover:bg-gradient-to-r from-green-400 via-green-500 to-green-600 "
+                    className={
+                        `
+                        ${(active === 'market')? "bg-gradient-to-tr from-gray-900 to-gray-700" : ""}
+                        flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300  hover:bg-gradient-to-tr from-gray-900 to-gray-700 `
+                    }
                     >
                     <span className="flex items-center justify-center text-lg text-gray-400">
                         <AiOutlineBarChart className='text-white w-6 h-6 '/>
@@ -60,7 +72,11 @@ const Sidebar = ({openSidebar}) => {
                 <li className="my-px">
                     <Link
                     to="/app/watchlist"
-                    className="flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300 hover:bg-gradient-to-r from-green-400 via-green-500 to-green-600 "
+                    className={
+                        `
+                        ${(active === 'watchlist')? "bg-gradient-to-tr from-gray-900 to-gray-700" : ""}
+                        flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300  hover:bg-gradient-to-tr from-gray-900 to-gray-700 `
+                    }
                     >
                     <span className="flex items-center justify-center text-lg text-gray-400">
                         <MdOutlineWatchLater className='text-white w-6 h-6 '/>  
@@ -73,7 +89,11 @@ const Sidebar = ({openSidebar}) => {
                 <li className="my-px">
                     <Link
                     to="/app/portfolio"
-                    className="flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300 hover:bg-gradient-to-r from-green-400 via-green-500 to-green-600 "
+                    className={
+                        `
+                        ${(active === 'portfolio')? "bg-gradient-to-tr from-gray-900 to-gray-700" : ""}
+                        flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300  hover:bg-gradient-to-tr from-gray-900 to-gray-700 `
+                    }
                     >
                     <span className="flex items-center justify-center text-lg text-gray-400">
                         <MdOutlineBusinessCenter className='text-gray-300 w-6 h-6 '/>    
@@ -85,7 +105,11 @@ const Sidebar = ({openSidebar}) => {
                 <li className="my-px">
                     <Link
                     to="/app/ai"
-                    className="flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300 hover:bg-gradient-to-r from-green-400 via-green-500 to-green-600 "
+                    className={
+                        `
+                        ${(active === 'aiPredection')? "bg-gradient-to-tr from-gray-900 to-gray-700" : ""}
+                        flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300  hover:bg-gradient-to-tr from-gray-900 to-gray-700 `
+                    }
                     >
                     <span className="flex items-center justify-center text-lg text-gray-400 ">
                         <AiOutlineRobot className='text-white w-6 h-6 '/>  
@@ -98,7 +122,11 @@ const Sidebar = ({openSidebar}) => {
                 <li className="my-px">
                     <Link
                     to="/app/leaderboard"
-                    className="flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300 hover:bg-gradient-to-r from-green-400 via-green-500 to-green-600 "
+                    className={
+                        `
+                        ${(active === 'leaderboard')? "bg-gradient-to-tr from-gray-900 to-gray-700" : ""}
+                        flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300  hover:bg-gradient-to-tr from-gray-900 to-gray-700 `
+                    }
                     >
                     <span className="flex items-center justify-center text-lg text-gray-400 ">
                         <BsFillBarChartFill className='text-white w-6 h-6 '/>  
@@ -111,7 +139,11 @@ const Sidebar = ({openSidebar}) => {
                 <li className="my-px">
                     <Link
                     to="/app/news"
-                    className="flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300 hover:bg-gradient-to-r from-green-400 via-green-500 to-green-600 "
+                    className={
+                        `
+                        ${(active === 'news')? "bg-gradient-to-tr from-gray-900 to-gray-700" : ""}
+                        flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300  hover:bg-gradient-to-tr from-gray-900 to-gray-700 `
+                    }
                     >
                     <span className="flex items-center justify-center text-lg text-red-400">
                         <MdTravelExplore className='text-gray-300 w-6 h-6 '/>    
