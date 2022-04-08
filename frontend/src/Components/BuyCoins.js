@@ -102,7 +102,7 @@ const BuyCoins = ({data,modal,setModal}) => {
                 <div className="flex justify-between items-center px-5 py-3 md:p-5 rounded-t border-b border-gray-600">
                     
                     <h3 className="text-md md:text-xl font-medium  text-white">
-                        Buy {data.name} | {data.symbol.toUpperCase()} 
+                        Buy {data.name} | <span className='uppercase'>{data.symbol}</span> 
                     </h3>
                     <button type="button" className="text-gray-400 bg-transparent  rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-600 hover:text-white" data-modal-toggle="large-modal" onClick={()=> setModal(false)}>
                         <AiOutlineClose  className='w-5 h-5' />
@@ -112,7 +112,7 @@ const BuyCoins = ({data,modal,setModal}) => {
                 <div className="px-6 py-3 md:p-6"> 
 
                     <p class="text-base leading-relaxed font-semibold text-gray-200">
-                        1 {data.symbol.toUpperCase()} = {data.market_data.current_price.usd} USD 
+                        1 <span className='uppercase'>{data.symbol}</span>  = {data.market_data.current_price.usd} USD 
                     </p>
 
                     <p class="text-base leading-relaxed font-semibold text-gray-200">

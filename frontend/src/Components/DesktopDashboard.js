@@ -152,7 +152,8 @@ const DesktopDashboard = () => {
                                 <img src={coin.data.image.large} alt={`${coin.data.name}`} className="w-10 h-10" />
                                 <div className=''>
                                     <p className='text-white text-xl font-bold '>{coin.data.name}</p>
-                                    <p className='text-white text-sm'>{coin.data.symbol.toUpperCase()}</p>
+                                    <p className='text-white uppercase text-sm'>{coin.data.symbol}
+                                    </p>
                                 </div>
                             </div>
                             <div className="">

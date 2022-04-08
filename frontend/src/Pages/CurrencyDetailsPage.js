@@ -219,7 +219,7 @@ const CurrencyDetailsPage = () => {
           </div>
           {
             isSuccess &&
-            <p className='text-white font-bold text-2xl font-title my-4 ml-4'>{data.name} Price Chart ({data.symbol.toUpperCase()})</p>
+            <p className='text-white font-bold text-2xl font-title my-4 ml-4'>{data.name} Price Chart <span className='uppercase'>{data.symbol}</span> </p>
           }
           <CoinChart id={id}  />
 
