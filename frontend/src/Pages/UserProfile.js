@@ -137,7 +137,7 @@ const UserProfile = () => {
                                   <img src={coin.data.image.large} alt={`${coin.data.name}`} className="w-10 h-10" />
                                   <div className=''>
                                       <p className='text-white text-xl font-bold '>{coin.data.name}</p>
-                                      <p className='text-white text-sm'>{coin.data.symbol.toUpperCase()}</p>
+                                      <p className='text-white text-sm uppercase'>{coin.data.symbol}</p>
                                   </div>
                               </div>
                               <div className="">
@@ -179,7 +179,7 @@ const UserProfile = () => {
                                   <img src={coin.image} alt={`${coin.coinName}`} className="w-10 h-10" />
                                   <div className=''>
                                       <p className='text-white text-xl font-bold '>{coin.coinName}</p>
-                                      <p className='text-white text-sm'>{coin.coinSymbol.toUpperCase()}</p>
+                                      <p className='text-white text-sm uppercase'>{coin.coinSymbol}</p>
                                   </div>
                               </div>
                               <div className="">
