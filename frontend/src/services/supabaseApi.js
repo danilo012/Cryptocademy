@@ -20,6 +20,8 @@ export const supabaseApi = createApi({
                         coinAmount
                     `)
                     .eq('userId',`${id}`)
+                    .not('coinId', 'eq', 'USD')
+                    
                     if(error) {
                         throw new Error(error)
                     }
@@ -60,6 +62,36 @@ export const supabaseApi = createApi({
             }
         }),
 
+        getPortfolioCoinData: builder.query({
+            queryFn: async (id) => {
+                try {
+                    let { data: portfolioData } = await supabase
+                    .from('portfolio')
+                    .select('coinId')
+                    .eq('userId',`${id}`)
+                    .not('coinId', 'eq', 'USD')
+
+                    if(portfolioData.length !== 0){
+                        const portfolioId =  portfolioData.map(item => item.coinId)
+
+                        let portfolioPromise = []
+                        portfolioId.map(coinId => {
+                            // create a promise for each api call
+                            const request = axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}`)
+                            portfolioPromise.push(request)
+                        })
+                        const res = await Promise.all(portfolioPromise)   
+                        return {data: res}
+                    }
+                    else {
+                        throw new Error('Your portfolio is empty.')
+                    }
+                } catch (error) {
+                    return {error: error}
+                }
+            }
+        }),
+
         getUserNetworth: builder.query({
             queryFn: async(id) => {
                 try {
@@ -72,6 +104,8 @@ export const supabaseApi = createApi({
                         amount
                     `)
                     .eq('userId',`${id}`)
+                    
+
                     if(error) {
                         throw new Error(error)
                     } 
@@ -146,4 +180,4 @@ export const supabaseApi = createApi({
 })
 
 
-export const {useGetPortfolioDataQuery,useGetWatchlistDataQuery,useGetUserNetworthQuery,useGetLeaderboardQuery,useFetchAvailableCoinsQuery} = supabaseApi
+export const {useGetPortfolioDataQuery,useGetWatchlistDataQuery,useGetUserNetworthQuery,useGetLeaderboardQuery,useFetchAvailableCoinsQuery,useGetPortfolioCoinDataQuery} = supabaseApi
