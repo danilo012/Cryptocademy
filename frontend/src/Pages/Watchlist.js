@@ -55,8 +55,17 @@ const Watchlist = () => {
   const toastRef = useRef(null)
 
   // fetch watchlist coin data
-  const { data:watchlistData,error, isLoading,isFetching,isSuccess,refetch } = useGetWatchlistDataQuery(currentUser.uid,{pollingInterval: 4000,})
+  const { data:watchlistData,error, isLoading,isFetching,isSuccess,refetch } = useGetWatchlistDataQuery(currentUser.uid)
 
+  useEffect(() => {
+    const interval = setInterval(() => refetch(), 10000)
+
+    return () => {
+      clearInterval(interval);
+    }
+
+  }, [])
+  
   
   const normalizeMarketCap = (marketCap) => {
     if(marketCap > 1_000_000_000_000) {

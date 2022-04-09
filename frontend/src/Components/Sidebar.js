@@ -4,6 +4,7 @@ import { MdOutlineBusinessCenter, MdOutlineWatchLater, MdTravelExplore } from "r
 import { AiOutlineHome,AiOutlineRobot,AiOutlineBarChart, AiOutlineSearch} from "react-icons/ai";
 import { useAuth } from '../Context/AuthContext';
 import { BsFillBarChartFill } from 'react-icons/bs';
+import logo from '../Assets/svg/cryptocademy-logo-sideways-light.svg'
 
 const Sidebar = ({openSidebar,active}) => {
     const {currentUser} =useAuth()
@@ -12,9 +13,9 @@ const Sidebar = ({openSidebar,active}) => {
         <aside
             className={`sidebar w-64 md:shadow transform ${openSidebar ? "translate-x-0" : "-translate-x-full "}   lg:translate-x-0 transition-transform duration-150 ease-in bg-black fixed top-0 left-0 h-[100vh] border-r-2 border-white`}
             >
-            <div className="sidebar-header flex items-center pl-6 py-4">
+            <div className="sidebar-header flex items-center ">
                 <Link to="/app" className="inline-flex flex-row items-center">
-                    <span className="leading-10 text-gray-100 text-4xl font-bold font-redressed">Cryptocademy</span>
+                    <img src={logo}  alt="cryptocademy logo"  />
                 </Link>
             </div>
             <div className="sidebar-content px-4 ">
