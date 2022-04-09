@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import { AiOutlineRight } from 'react-icons/ai'
 import { BsBank, BsFillBarChartFill, BsGlobe2 } from 'react-icons/bs'
 import { MdOutlineWatchLater } from 'react-icons/md'

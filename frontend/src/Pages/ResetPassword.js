@@ -7,6 +7,7 @@ import FloatingInput from "../Components/Buttons/FloatingInput";
 import FloatingPasswordInput from "../Components/Buttons/FloatingPasswordInput";
 import TwitterLoginBtn from '../Components/Buttons/TwitterLoginBtn';
 import GithubLoginBtn from '../Components/Buttons/GithubLoginBtn';
+import { Helmet } from 'react-helmet';
 
 const initialValues = {
     email: '',

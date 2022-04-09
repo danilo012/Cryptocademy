@@ -16,6 +16,7 @@ import {
 } from 'react-swipeable-list';
 import 'react-swipeable-list/dist/styles.css';
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 
 const trailingActions = (coinId,userId,refetch) => {

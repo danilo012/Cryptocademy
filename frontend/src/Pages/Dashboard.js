@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Sidebar from '../Components/Sidebar'
 import TabNavigation from '../Components/TabNavigation'
 import DesktopDashboard from '../Components/DesktopDashboard'
+import { Helmet } from 'react-helmet'
 
 const Dashboard = () => {
 

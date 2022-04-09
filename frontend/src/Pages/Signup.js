@@ -11,6 +11,7 @@ import FormAppInfo from '../Components/FormAppInfo';
 import { useSelector } from 'react-redux';
 import { supabase } from '../Utils/init-supabase';
 import { getAdditionalUserInfo } from 'firebase/auth';
+import { Helmet } from 'react-helmet';
 
 const initialValues = {
     username:'',

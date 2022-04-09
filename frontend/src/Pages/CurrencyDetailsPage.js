@@ -13,6 +13,7 @@ import { useAuth } from '../Context/AuthContext'
 import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../Utils/init-supabase'
 import SellCoins from '../Components/SellCoins'
+import { Helmet } from 'react-helmet'
 
 const CurrencyDetailsPage = () => {
   const {id} = useParams()

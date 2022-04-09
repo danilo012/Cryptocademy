@@ -11,6 +11,7 @@ import { useAuth } from '../Context/AuthContext';
 import ErrorToast from '../Components/ErrorToast';
 import SuccessToast from '../Components/SuccessToast';
 import FormAppInfo from '../Components/FormAppInfo';
+import { Helmet } from 'react-helmet';
 
 const initialValues = {
     email: '',
