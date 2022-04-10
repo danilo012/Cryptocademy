@@ -134,4 +134,4 @@ const CoinChart = ({id}) => {
   )
 }
 
-export default CoinChart
+export const HistoricalChart = React.memo(CoinChart)

@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState,useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import Sidebar from '../Components/Sidebar'
 import TabNavigation from '../Components/TabNavigation'
 import { useGetCoinDataQuery, useGetHistoricalDataQuery } from '../services/coinsDataApi'
-import CoinChart from '../Components/CoinChart'
+import {HistoricalChart} from '../Components/CoinChart'
 import BuyCoins from '../Components/BuyCoins'
 import CoinStats from '../Components/CoinStats'
 import ErrorToast from '../Components/ErrorToast'
@@ -13,7 +13,6 @@ import { useAuth } from '../Context/AuthContext'
 import { useDispatch, useSelector } from 'react-redux'
 import { supabase } from '../Utils/init-supabase'
 import SellCoins from '../Components/SellCoins'
-import { Helmet } from 'react-helmet'
 
 const CurrencyDetailsPage = () => {
   const {id} = useParams()
@@ -222,7 +221,7 @@ const CurrencyDetailsPage = () => {
             isSuccess &&
             <p className='text-white font-bold text-2xl font-title my-4 ml-4'>{data.name} Price Chart <span className='uppercase'>{data.symbol}</span> </p>
           }
-          <CoinChart id={id}  />
+          <HistoricalChart id={id}  />
 
           {
             isSuccess &&

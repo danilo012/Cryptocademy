@@ -34,11 +34,12 @@ function App() {
           <Route path = "/app/market" element={<CoinMarket/>} />
           <Route path = "/app/search" element={<Search/>} />
           <Route path = "/app/ai" element={<AiPredections/>} />
-          <Route path = "/app/coin/:id" element={<CurrencyDetailsPage/>} />
+          <Route path = "/app/coins/:id" element={<CurrencyDetailsPage/>} />
           <Route path = "/app/news" element={<News/>} />
           <Route path = "/app/watchlist" element={<Watchlist/>} />
           <Route path = "/app/portfolio" element={<Portfolio/>} />
           <Route path = "/app/profile" element={<UserProfile/>} /> */}
+          <Route path = "/app/coins/:id" element={<CurrencyDetailsPage/>} />
           <Route path = "/app" 
             element={
               <ProtectedRoute>
