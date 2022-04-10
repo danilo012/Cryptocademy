@@ -44,7 +44,7 @@ const VirtualUsdPage = React.lazy(() => import('./Pages/VirtualUsdPage'))
 
 function App() {
   return (
-    <div className="App">
+    <div className="App scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100">
       <BrowserRouter>
         <ScrollToTop/>
         <React.Suspense fallback={
