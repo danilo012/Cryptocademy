@@ -32,6 +32,8 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-swipeable-list": "^1.5.1",
+    "react-virtualized-auto-sizer": "^1.0.6",
+    "react-window": "^1.8.6",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
