@@ -23,24 +23,6 @@ const MoreMobileNavPage = React.lazy(() => import('./Pages/MoreMobileNavPage'))
 const GlobalStats = React.lazy(() => import('./Pages/GlobalStats'))
 const VirtualUsdPage = React.lazy(() => import('./Pages/VirtualUsdPage'))
 
-// import Login from './Pages/Login';
-// import Signup from './Pages/Signup';
-// import ResetPassword from './Pages/ResetPassword';
-// import CoinMarket from './Pages/CoinMarket';
-// import News from './Pages/News';
-// import ForgotPassword from './Pages/ForgotPassword';
-// import CurrencyDetailsPage from './Pages/CurrencyDetailsPage';
-// import Watchlist from './Pages/Watchlist';
-// import Portfolio from './Pages/Portfolio';
-// import Dashboard from './Pages/Dashboard';
-// import UserProfile from './Pages/UserProfile';
-// import Search from './Pages/Search';
-// import AiPredections from './Pages/AiPredections';
-// import Leaderboard from './Pages/Leaderboard';
-// import MoreMobileNavPage from './Pages/MoreMobileNavPage';
-// import GlobalStats from './Pages/GlobalStats';
-// import VirtualUsdPage from './Pages/VirtualUsdPage';
-
 
 function App() {
   return (
