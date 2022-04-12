@@ -1,76 +1,66 @@
-// Incrementing OFFLINE_VERSION will kick off the install event and force
-// previously cached resources to be updated from the network.
-// This variable is intentionally declared and unused.
-// Add a comment for your linter if you want:
-// eslint-disable-next-line no-unused-vars
-const OFFLINE_VERSION = 1;
-const CACHE_NAME = "offline";
-// Customize this with a different URL if needed.
-const OFFLINE_URL = "offline.html";
+const CACHE_NAME = "cryptocademy-v1";
+const urlsToCache = 'offline.html';
 
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    (async () => {
-      const cache = await caches.open(CACHE_NAME);
-      // Setting {cache: 'reload'} in the new request will ensure that the
-      // response isn't fulfilled from the HTTP cache; i.e., it will be from
-      // the network.
-      await cache.add(new Request(OFFLINE_URL, { cache: "reload" }));
-    })()
-  );
-  // Force the waiting service worker to become the active service worker.
-  self.skipWaiting();
-});
+const self = this;
 
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    (async () => {
-      // Enable navigation preload if it's supported.
-      // See https://developers.google.com/web/updates/2017/02/navigation-preload
-      if ("navigationPreload" in self.registration) {
-        await self.registration.navigationPreload.enable();
-      }
-    })()
-  );
+// install sw
+self.addEventListener('install', (e) => {
+    e.waitUntil(
+        caches.open(CACHE_NAME)
+        .then((cache) => {
+            console.log('opened cache')
 
-  // Tell the active service worker to take control of the page immediately.
-  self.clients.claim();
-});
+            // return cache.addAll(urlsToCache);
+            return cache.add(new Request(urlsToCache, { cache: "reload" }))
+        })
+    )
+})
 
-self.addEventListener("fetch", (event) => {
-  // We only want to call event.respondWith() if this is a navigation request
-  // for an HTML page.
-  if (event.request.mode === "navigate") {
-    event.respondWith(
-      (async () => {
-        try {
-          // First, try to use the navigation preload response if it's supported.
-          const preloadResponse = await event.preloadResponse;
-          if (preloadResponse) {
-            return preloadResponse;
-          }
+// self.addEventListener("install", event => {
+//     this.skipWaiting();
+//     event.waitUntil(
+//         caches.open(CACHE_NAME)
+//         .then(cache => {
+//             return fetch('/offline')
+//             .then(response => cache.put('/offline', new Response(response.body)));
+//         })
+//     )
+// });
 
-          // Always try the network first.
-          const networkResponse = await fetch(event.request);
-          return networkResponse;
-        } catch (error) {
-          // catch is only triggered if an exception is thrown, which is likely
-          // due to a network error.
-          // If fetch() returns a valid HTTP response with a response code in
-          // the 4xx or 5xx range, the catch() will NOT be called.
-          console.log("Fetch failed; returning offline page instead.", error);
+// listen  for requests
+self.addEventListener('fetch', (e) => {
+    e.respondWith(
+        caches.match(e.request)
+        .then(() => {
+            return fetch(e.request)
+            .catch(() => caches.match('offline.html'))
+        })
 
-          const cache = await caches.open(CACHE_NAME);
-          const cachedResponse = await cache.match(OFFLINE_URL);
-          return cachedResponse;
-        }
-      })()
-    );
-  }
+    )
+})
+// activate the sw
+self.addEventListener('activate', (e) => {
+    
+    if ("navigationPreload" in self.registration) {
+        self.registration.navigationPreload.enable()
+        .then(() => {
+            console.log("navigationPreload is enabled")
+        });
+    }  
+    // Tell the active service worker to take control of the page immediately.
+    self.clients.claim();
+    
+    const cacheWhiteList = [];
+    cacheWhiteList.push(CACHE_NAME);
 
-  // If our if() condition is false, then this fetch handler won't intercept the
-  // request. If there are any other fetch handlers registered, they will get a
-  // chance to call event.respondWith(). If no fetch handlers call
-  // event.respondWith(), the request will be handled by the browser as if there
-  // were no service worker involvement.
-});
+    e.waitUntil(
+        caches.keys()
+        .then((cacheNames) => Promise.all(
+            cacheNames.map((cacheName) => {
+                if(!cacheWhiteList.includes(cacheName)) {
+                    return caches.delete(cacheName)
+                }
+            })
+        ))
+    )
+})
