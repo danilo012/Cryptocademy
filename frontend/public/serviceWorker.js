@@ -1,54 +1,3 @@
-// const CACHE_NAME = "cryptocademy-v1";
-// const urlsToCache = ['offline.html'];
-
-// addEventListener('install', (event) => {
-//     event.waitUntil(async function() {
-//         const cache = await caches.open(CACHE_NAME);
-//         await cache.addAll(urlsToCache);
-//     }());
-// });
-  
-// // See https://developers.google.com/web/updates/2017/02/navigation-preload#activating_navigation_preload
-// addEventListener('activate', event => {
-//     event.waitUntil(async function() {
-//         // Feature-detect
-//         if (self.registration.navigationPreload) {
-//             // Enable navigation preloads!
-//             await self.registration.navigationPreload.enable();
-//             console.log("navigationPreload Enabled")
-//         }
-//     }());
-// });
-  
-// addEventListener('fetch', (event) => {
-//     const { request } = event;
-
-//     // Always bypass for range requests, due to browser bugs
-//     if (request.headers.has('range')) return;
-//     event.respondWith(async function() {
-//         // Try to get from the cache:
-//         const cachedResponse = await caches.match(request);
-//         if (cachedResponse) return cachedResponse;
-
-//         try {
-//             // See https://developers.google.com/web/updates/2017/02/navigation-preload#using_the_preloaded_response
-//             const response = await event.preloadResponse;
-//             if (response) return response;
-
-//             // Otherwise, get from the network
-//             return await fetch(request);
-            
-//         } catch (err) {
-//             // If this was a navigation, show the offline page:
-//             if (request.mode === 'navigate') {
-//                 return caches.match('offline.html');
-//             }
-//             // Otherwise throw
-//             throw err;
-//         }
-//     }());
-// });
-
 /*
 Copyright 2015, 2019 Google Inc. All Rights Reserved.
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -68,6 +17,8 @@ const OFFLINE_VERSION = 1.1;
 const CACHE_NAME = 'cryptocademy-offline';
 // Customize this with a different URL if needed.
 const OFFLINE_URL = 'offline.html';
+
+
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
@@ -91,37 +42,60 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-self.addEventListener('fetch', (event) => {
-  // We only want to call event.respondWith() if this is a navigation request
-  // for an HTML page.
-  if (event.request.mode === 'navigate') {
-    event.respondWith((async () => {
-      try {
-        // First, try to use the navigation preload response if it's supported.
-        const preloadResponse = await event.preloadResponse;
-        if (preloadResponse) {
-          return preloadResponse;
-        }
+// self.addEventListener('fetch', (event) => {
+//   // We only want to call event.respondWith() if this is a navigation request
+//   // for an HTML page.
+//   if (event.request.mode === 'navigate') {
+//     event.respondWith((async () => {
+//       try {
+//         // First, try to use the navigation preload response if it's supported.
+//         const preloadResponse = await event.preloadResponse;
+//         if (preloadResponse) {
+//           return preloadResponse;
+//         }
 
-        const networkResponse = await fetch(event.request);
-        return networkResponse;
-      } catch (error) {
-        // catch is only triggered if an exception is thrown, which is likely
-        // due to a network error.
-        // If fetch() returns a valid HTTP response with a response code in
-        // the 4xx or 5xx range, the catch() will NOT be called.
-        console.log('Fetch failed; returning offline page instead.', error);
+//         const networkResponse = await fetch(event.request);
+//         return networkResponse;
+//       } 
+//       catch (error) {
+//         // catch is only triggered if an exception is thrown, which is likely
+//         // due to a network error.
+//         // If fetch() returns a valid HTTP response with a response code in
+//         // the 4xx or 5xx range, the catch() will NOT be called.
+//         console.log('Fetch failed; returning offline page instead.', error);
 
-        const cache = await caches.open(CACHE_NAME);
-        const cachedResponse = await cache.match(OFFLINE_URL);
-        return cachedResponse;
-      }
-    })());
+//         const cache = await caches.open(CACHE_NAME);
+//         const cachedResponse = await cache.match(OFFLINE_URL);
+        
+//         return cachedResponse;
+//       }
+//     })());
+//   }
+
+//   // If our if() condition is false, then this fetch handler won't intercept the
+//   // request. If there are any other fetch handlers registered, they will get a
+//   // chance to call event.respondWith(). If no fetch handlers call
+//   // event.respondWith(), the request will be handled by the browser as if there
+//   // were no service worker involvement.
+// });
+
+self.addEventListener('fetch', event => {
+  // request.mode = navigate isn't supported in all browsers
+  // so include a check for Accept: text/html header.
+  if (event.request.mode === 'navigate' || (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html'))) {
+        event.respondWith(
+          fetch(event.request.url).catch(error => {
+              // Return the offline page
+              return caches.match(OFFLINE_URL);
+          })
+    );
   }
-
-  // If our if() condition is false, then this fetch handler won't intercept the
-  // request. If there are any other fetch handlers registered, they will get a
-  // chance to call event.respondWith(). If no fetch handlers call
-  // event.respondWith(), the request will be handled by the browser as if there
-  // were no service worker involvement.
+  else{
+        // Respond with everything else if we can
+        event.respondWith(caches.match(event.request)
+                        .then(function (response) {
+                        return response || fetch(event.request);
+                    })
+            );
+      }
 });
