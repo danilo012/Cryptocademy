@@ -34,7 +34,7 @@
             padding-top: 2rem;
             padding-bottom: 2rem;
         }
-        body a {
+        body button {
             margin-top: 2rem;
             padding-top: 1rem;
             padding-bottom: 1rem;
@@ -44,6 +44,7 @@
             color: white;
             border-radius: 0.5rem;
             text-decoration: none;
+            border: none;
         }
     </style>
 </head>
@@ -51,6 +52,12 @@
     <!-- <img src="./cryptocademy-logo-sideways-light.png" alt="Device is offline"> -->
     <h1>Seems like you are offline!</h1>
     <p>Please check your internet connection & try again.</p>
-    <a href="/app">Retry</a>
+    <button>Retry</button>
 </body>
+<script>
+    // Manual reload feature.
+    document.querySelector("button").addEventListener("click", () => {
+        window.location.reload();
+    });
+</script>
 </html>
