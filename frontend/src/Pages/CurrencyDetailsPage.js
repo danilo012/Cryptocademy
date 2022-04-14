@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState,useMemo } from 'react'
+import {motion} from 'framer-motion'
 import { useNavigate, useParams } from 'react-router'
 import Sidebar from '../Components/Sidebar'
 import TabNavigation from '../Components/TabNavigation'
@@ -116,7 +117,11 @@ const CurrencyDetailsPage = () => {
       {/* desktop dasboard */}
       <div className="flex flex-row min-h-screen bg-black  md:overflow-x-hidden">
         <Sidebar/>
-        <main className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
+        <motion.div 
+          intial = {{opacity:0}}
+          animate = {{opacity:1}}
+          exit = {{opacity:0, transition:{duration: 0.2}}} 
+          className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
           {isLoading && <Loader/>}
           
           {error && <ErrorToast message="Something Went Wrong!" ref={toastRef}/>}
@@ -228,7 +233,7 @@ const CurrencyDetailsPage = () => {
             <CoinStats data={data}/>
           }
 
-        </main>
+        </motion.div>
       </div>
       <TabNavigation/>
     </div>

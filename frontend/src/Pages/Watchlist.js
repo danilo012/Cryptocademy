@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import {motion} from 'framer-motion'   
 import { useNavigate } from 'react-router'
 import Loader from '../Components/Loader'
 import Sidebar from '../Components/Sidebar'
@@ -89,7 +90,11 @@ const Watchlist = () => {
       {/* desktop dasboard */}
       <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
         <Sidebar active={`watchlist`}/>
-        <main className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
+        <motion.div 
+            intial = {{opacity:0}}
+            animate = {{opacity:1}}
+            exit = {{opacity:0, transition:{duration: 0.2}}}
+          className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
           <p className='text-white font-bold text-2xl md:text-3xl font-title my-4 ml-3'>WatchList</p>
           <p className='text-white font-semibold text-md font-title  ml-3'>Swipe left to delete or view the coins.</p>
           {(isLoading) && <Loader/>}
@@ -163,7 +168,7 @@ const Watchlist = () => {
             }
           </SwipeableList>
         }
-        </main>
+        </motion.div>
       </div>
       <TabNavigation/>
     </div>

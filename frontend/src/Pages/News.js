@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
+import {motion} from 'framer-motion'   
 import Loader from '../Components/Loader'
 import Sidebar from '../Components/Sidebar'
 import TabNavigation from '../Components/TabNavigation'
@@ -25,7 +26,11 @@ const News = () => {
       {fetchNewsError && <p className='text-red-400 text-xl'>Something went Wrong</p>}
       <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
         <Sidebar active={`news`}/>
-        <main className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
+        <motion.div 
+        intial = {{opacity:0}}
+        animate = {{opacity:1}}
+        exit = {{opacity:0, transition:{duration: 0.2}}}
+        className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
           <section className="px-4 py-12 mx-auto max-w-[90rem]">
             <h2 className="mb-8 text-3xl font-extrabold leading-tight text-white font-title">Latest Cryptocurrency News</h2>
             
@@ -77,7 +82,7 @@ const News = () => {
             </section>
 
 
-        </main>
+        </motion.div>
       </div>
       <TabNavigation/>
     </div>

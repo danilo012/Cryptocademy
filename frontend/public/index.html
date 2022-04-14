@@ -33,6 +33,10 @@
             .then((reg) => console.log('Success: ', reg.scope)).catch(err => console.log('failure:', err))
         })
       }
+
+      window.addEventListener('offline', () => {
+        window.location.reload();
+      });
     </script>
   </body>
 </html>

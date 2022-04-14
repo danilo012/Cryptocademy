@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import {motion} from 'framer-motion'   
 import Sidebar from '../Components/Sidebar'
 import TabNavigation from '../Components/TabNavigation'
 import { debounce } from 'lodash';
@@ -45,7 +46,10 @@ const Search = () => {
       {/* desktop dasboard */}
       <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
         <Sidebar active={`search`}/>
-        <main className="main flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
+        <motion.div 
+        intial = {{opacity:0}}
+        animate = {{opacity:1}}
+        exit = {{opacity:0, transition:{duration: 0.2}}} className="main flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
           {/* search Bar */}
         <div className="p-4">
             <label for="table-search" className="sr-only">Search</label>
@@ -83,7 +87,7 @@ const Search = () => {
             }
           </ul>
         }
-        </main>
+        </motion.div>
       </div>
       <TabNavigation/>
     </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import {motion} from 'framer-motion'   
 import { Helmet } from 'react-helmet'
 import Sidebar from '../Components/Sidebar'
 import TabNavigation from '../Components/TabNavigation'
@@ -16,7 +17,11 @@ const VirtualUsdPage = () => {
       {/* desktop dasboard */}
       <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
         <Sidebar/>
-        <main className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
+        <motion.div 
+            intial = {{opacity:0}}
+            animate = {{opacity:1}}
+            exit = {{opacity:0, transition:{duration: 0.2}}}
+          className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
 
           <p className='text-white font-bold text-2xl md:text-3xl font-title my-6 ml-3 px-2 md:px-2'>Virtual USD</p>
             {
@@ -45,7 +50,7 @@ const VirtualUsdPage = () => {
                 So go out there and enter the world of trading through Cryptocademy.
             </p>
 
-        </main>
+        </motion.div>
       </div>
       <TabNavigation/>
     </div>

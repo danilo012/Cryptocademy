@@ -1,4 +1,5 @@
 import React from 'react'
+import {motion} from 'framer-motion'
 import { useAuth } from '../Context/AuthContext'
 import Logout from '../Components/Buttons/Logout'
 import Sidebar from '../Components/Sidebar'
@@ -26,10 +27,14 @@ const CoinMarket = () => {
       {/* desktop dasboard */}
       <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
         <Sidebar active={`market`}/>
-        <main className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
+        <motion.div 
+          intial = {{opacity:0}}
+          animate = {{opacity:1}}
+          exit = {{opacity:0, transition:{duration: 0.2}}} 
+          className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
           <p className='text-white font-bold text-2xl md:text-3xl font-title mt-4 ml-3'>Cryptocurrency Prices</p>
           <CoinsTable/>
-        </main>
+        </motion.div>
       </div>
       <TabNavigation/>
     </div>

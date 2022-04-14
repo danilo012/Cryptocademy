@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
+import {motion} from 'framer-motion'   
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import Loader from '../Components/Loader'
@@ -49,7 +50,11 @@ const Portfolio = () => {
       {/* desktop dasboard */}
       <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
         <Sidebar active={`portfolio`}/>
-        <main className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
+        <motion.div 
+        intial = {{opacity:0}}
+        animate = {{opacity:1}}
+        exit = {{opacity:0, transition:{duration: 0.2}}}
+        className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
           <p className='text-white font-bold text-2xl md:text-3xl font-title mt-4  ml-3'>Portfolio</p>
           {(isLoading || fetchPortfolioCoinDataLoading|| fetchAvailableUsdCoinsLoading) && <Loader/>}
           {error && <p className='text-red-400 text-xl'>Something went wrong!</p>}
@@ -156,7 +161,7 @@ const Portfolio = () => {
           }
         </ul>
         
-        </main>
+        </motion.div>
       </div>
       <TabNavigation/>
     </div>

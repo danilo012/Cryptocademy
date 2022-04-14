@@ -1,4 +1,5 @@
 import React,{useRef, useEffect, useState} from 'react'
+import {motion} from 'framer-motion'   
 import { Link, useNavigate } from 'react-router-dom'
 import GoogleLoginBtn from "../Components/Buttons/GoogleLoginBtn";
 import { Formik,Form } from "formik";
@@ -53,7 +54,11 @@ function Login() {
     },[currentUser])
 
     return (
-        <section className='bg-black'>
+        <motion.div 
+            intial = {{opacity:0}}
+            animate = {{opacity:1}}
+            exit = {{opacity:0, transition:{duration: 0.2}}} 
+            className='bg-black'>
             <ErrorToast message={errorMessage} ref={toastRef} />
             <div className="grid grid-cols-1 lg:grid-cols-2 bg-black text-white">
                 <div className="w-full h-screen px-4 py-20 mx-auto  xl:py-32 md:w-3/5 lg:w-4/5 xl:w-3/5">
@@ -110,7 +115,7 @@ function Login() {
                 <FormAppInfo/>
                 </div>
 
-        </section>
+        </motion.div>
     )
 }
 

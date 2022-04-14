@@ -1,4 +1,5 @@
 import React,{useRef, useEffect} from 'react'
+import {motion} from 'framer-motion'   
 import { Link, useNavigate } from 'react-router-dom'
 import GoogleLoginBtn from "../Components/Buttons/GoogleLoginBtn";
 import { Formik,Form } from "formik";
@@ -30,7 +31,11 @@ const validationSchema = Yup.object().shape({
 function ResetPassword() {
    
     return (
-        <section>
+        <motion.div
+        intial = {{opacity:0}}
+        animate = {{opacity:1}}
+        exit = {{opacity:0, transition:{duration: 0.2}}}
+        >
         <div className="flex min-h-screen overflow-hidden">
         <div className="flex flex-col justify-center flex-1 px-4 py-12  sm:px-6 lg:flex-none lg:px-20 xl:px-24">
             <div className="w-full max-w-xl mx-auto lg:w-96">
@@ -71,7 +76,7 @@ function ResetPassword() {
             <img className="absolute inset-0 object-cover w-full h-full" src="https://source.unsplash.com/P9LTNN1GJqk" alt="cover-image" />
         </div>
         </div>
-        </section>
+        </motion.div>
     )
 }
 

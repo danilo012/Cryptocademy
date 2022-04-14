@@ -1,4 +1,6 @@
 import React from 'react'
+import {motion} from 'framer-motion'   
+
 import { Helmet } from 'react-helmet'
 import { AiOutlineRight } from 'react-icons/ai'
 import { BsBank, BsFillBarChartFill, BsGlobe2 } from 'react-icons/bs'
@@ -16,7 +18,11 @@ const MoreMobileNavPage = () => {
       {/* desktop dasboard */}
       <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
         <Sidebar/>
-        <main className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
+        <motion.div
+            intial = {{opacity:0}}
+            animate = {{opacity:1}}
+            exit = {{opacity:0, transition:{duration: 0.2}}} 
+            className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black ">
 
         <Link to="/app/profile" className='px-4 mt-3 flex justify-between items-center '>        
             <div className="flex items-center p-2  space-x-4 justify-self-end cursor-pointer">
@@ -117,7 +123,7 @@ const MoreMobileNavPage = () => {
             </Link>
         </div>
 
-        </main>
+        </motion.div>
       </div>
       <TabNavigation/>
     </div>

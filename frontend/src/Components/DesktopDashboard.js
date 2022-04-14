@@ -43,52 +43,52 @@ const DesktopDashboard = () => {
             (isLoading  || fetchWatchlistLoading || fetchNewsLoading || fetchAvailableUsdCoinsLoading || leaderboardIsLoading) && <Loader/>
         }
         {/* credit card */}
-        <div class="w-80 m-auto md:m-0 md:w-96 h-56 lg:ml-8 bg-gradient-to-tr from-gray-900 to-gray-700  rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
+        <div className="w-80 m-auto md:m-0 md:w-96 h-56 lg:ml-8 bg-gradient-to-tr from-gray-900 to-gray-700  rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
             
-            <div class="w-full px-8 absolute top-8">
-                <div class="flex justify-between">
-                    <div class="">
-                        <h1 class="">
+            <div className="w-full px-8 absolute top-8">
+                <div className="flex justify-between">
+                    <div className="">
+                        <h1 className="">
                             Name
                         </h1>
-                        <p class="font-medium tracking-wide">
+                        <p className="font-medium tracking-wide">
                             {currentUser.displayName}
                         </p>
                     </div>
-                    <img class="w-14 h-14" src="https://img.icons8.com/offices/80/000000/sim-card-chip.png"/>
+                    <img className="w-14 h-14" src="https://img.icons8.com/offices/80/000000/sim-card-chip.png"/>
                 </div>
-                <div class="pt-1">
-                    <h1 class="">
+                <div className="pt-1">
+                    <h1 className="">
                         Account Balance
                     </h1>
-                    <p class="font-medium tracking-more-wider">
+                    <p className="font-medium tracking-more-wider">
                         ${fetchAvailableUsdCoinsSuccess && availableUsdCoins[0]?.amount}
                     </p>
                 </div>
-                <div class="pt-6 pr-6">
-                    <div class="flex justify-between">
-                        <div class="">
-                            <h1 class="font-light text-xs">
+                <div className="pt-6 pr-6">
+                    <div className="flex justify-between">
+                        <div className="">
+                            <h1 className="font-light text-xs">
                                 Networth
                             </h1>
-                            <p class="font-medium tracking-wider text-sm">
+                            <p className="font-medium tracking-wider text-sm">
                                 {userNetworthSuccess && <span>${userNetworth}</span>}
                             </p>
                         </div>
-                        {/* <div class="">
-                            <p class="font-light text-xs ">
+                        {/* <div className="">
+                            <p className="font-light text-xs ">
                                 Expiry
                             </p>
-                            <p class="font-medium tracking-wider text-sm">
+                            <p className="font-medium tracking-wider text-sm">
                                 03/25
                             </p>
                         </div> */}
 
-                        <div class="">
-                            <p class="font-light text-xs">
+                        <div className="">
+                            <p className="font-light text-xs">
                                 CVV
                             </p>
-                            <p class="font-bold tracking-more-wider text-sm">
+                            <p className="font-bold tracking-more-wider text-sm">
                                 ···
                             </p>
                         </div>
@@ -98,8 +98,8 @@ const DesktopDashboard = () => {
             </div>
         </div>
 
-        <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
-            <div class=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
+            <div className=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
                 <p className='text-white font-bold text-2xl md:text-3xl font-title my-4'>Trending Coins</p>
                 
                 {
@@ -108,8 +108,8 @@ const DesktopDashboard = () => {
                         <ul>
                             {
                                 trendingCoins.coins.map((coin,index) => (
-                                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                                        <div class="flex items-center justify-start text-sm space-x-3">
+                                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                                        <div className="flex items-center justify-start text-sm space-x-3">
                                             <img src={coin.item.large} alt={`${coin.item.name}`} className="w-10 h-10" />
                                             <div className=''>
                                                 <p className='text-white text-xl font-bold '>{coin.item.name}</p>

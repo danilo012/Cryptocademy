@@ -1,12 +1,9 @@
 import React,{useRef, useEffect, useState} from 'react'
+import {motion} from 'framer-motion'   
 import { Link, useNavigate } from 'react-router-dom'
-import GoogleLoginBtn from "../Components/Buttons/GoogleLoginBtn";
 import { Formik,Form } from "formik";
 import * as Yup from 'yup';
 import FloatingInput from "../Components/Buttons/FloatingInput";
-import FloatingPasswordInput from "../Components/Buttons/FloatingPasswordInput";
-import TwitterLoginBtn from '../Components/Buttons/TwitterLoginBtn';
-import GithubLoginBtn from '../Components/Buttons/GithubLoginBtn';
 import { useAuth } from '../Context/AuthContext';
 import ErrorToast from '../Components/ErrorToast';
 import SuccessToast from '../Components/SuccessToast';
@@ -47,7 +44,11 @@ function ForgotPassword() {
     }
 
     return (
-        <section>
+        <motion.div 
+            intial = {{opacity:0}}
+            animate = {{opacity:1}}
+            exit = {{opacity:0, transition:{duration: 0.2}}} 
+        >
             <ErrorToast message={errorMessage} ref={errorToastRef} />
             <SuccessToast message={successMessage} ref={successToastRef} />
             <div className="grid grid-cols-1 lg:grid-cols-2 bg-black text-white">
@@ -89,7 +90,7 @@ function ForgotPassword() {
                 </div>
                 <FormAppInfo/>
             </div>
-        </section>
+        </motion.div>
     )
 }
 
