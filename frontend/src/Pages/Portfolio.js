@@ -125,7 +125,7 @@ const Portfolio = () => {
                       <p className='pl-1'>{index+1}</p>
                       <img className="h-8 w-8 md:h-10 md:w-10 object-contain" src={coin.image} alt="cryptocurrency image " loading='lazy' />
                       <div>
-                          <p className=" w-64 truncate text-white break-words">{coin.coinName}</p>
+                          <p className=" w-24 md:w-64 text-white break-words">{coin.coinName}</p>
                           <div className='flex space-x-1'>
                               <p>{coin.coinSymbol}</p>
                           </div>

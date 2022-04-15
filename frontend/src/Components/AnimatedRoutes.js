@@ -18,8 +18,10 @@ const Dashboard = React.lazy(() => import('../Pages/Dashboard'))
 const UserProfile = React.lazy(() => import('../Pages/UserProfile'))
 const Search = React.lazy(() => import('../Pages/Search'))
 const AiPredections = React.lazy(() => import('../Pages/AiPredections'))
+const Learn = React.lazy(() => import('../Pages/Learn'))
 const Leaderboard = React.lazy(() => import('../Pages/Leaderboard'))
 const MoreMobileNavPage = React.lazy(() => import('../Pages/MoreMobileNavPage'))
+const FAQ = React.lazy(() => import('../Pages/FAQ'))
 const GlobalStats = React.lazy(() => import('../Pages/GlobalStats'))
 const VirtualUsdPage = React.lazy(() => import('../Pages/VirtualUsdPage'))
 
@@ -100,6 +102,13 @@ const AnimatedRoutes = () => {
                 </ProtectedRoute>
             } 
             />
+            <Route path = "/app/learn" 
+            element={
+                <ProtectedRoute>
+                <Learn/>
+                </ProtectedRoute>
+            } 
+            />
             <Route path = "/app/profile" 
             element={
                 <ProtectedRoute>
@@ -111,6 +120,13 @@ const AnimatedRoutes = () => {
             element={
                 <ProtectedRoute>
                 <MoreMobileNavPage/>
+                </ProtectedRoute>
+            } 
+            />
+            <Route path = "/app/faq" 
+            element={
+                <ProtectedRoute>
+                <FAQ/>
                 </ProtectedRoute>
             } 
             />

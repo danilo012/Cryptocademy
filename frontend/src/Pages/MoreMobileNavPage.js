@@ -1,6 +1,6 @@
 import React from 'react'
 import {motion} from 'framer-motion'   
-
+import { RWebShare } from "react-web-share";
 import { Helmet } from 'react-helmet'
 import { AiOutlineRight } from 'react-icons/ai'
 import { BsBank, BsFillBarChartFill, BsGlobe2 } from 'react-icons/bs'
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import Sidebar from '../Components/Sidebar'
 import TabNavigation from '../Components/TabNavigation'
 import { useAuth } from '../Context/AuthContext'
+import { HiAcademicCap } from 'react-icons/hi'
 
 const MoreMobileNavPage = () => {
     const {currentUser} =useAuth()
@@ -70,6 +71,14 @@ const MoreMobileNavPage = () => {
                 </div>
                 <AiOutlineRight className='inline-block text-gray-200 w-5 h-5 mb-1'/>
             </Link>
+            
+            <Link to="/app/learn" className='px-4  flex justify-between items-center'>        
+                <div className="flex justify-center space-x-2 items-center cursor-pointer">
+                    <HiAcademicCap className='inline-block text-gray-200 w-6 h-6 '/>
+                    <h2 className="text-xl font-semibold text-gray-200">Learn & Earn</h2>
+                </div>
+                <AiOutlineRight className='inline-block text-gray-200 w-5 h-5 mb-1'/>
+            </Link>
         </div>
 
         <p className='text-white font-bold text-lg  font-title mt-4 ml-3 px-2 md:px-4'>About</p>
@@ -97,11 +106,19 @@ const MoreMobileNavPage = () => {
                 <AiOutlineRight className='inline-block text-gray-200 w-5 h-5 mb-1'/>
             </Link>
             
-            <Link to="/app/leaderboard" className='px-4  flex justify-between items-center'>        
-                <div className="flex justify-center space-x-2 items-center cursor-pointer">
-                    <h2 className="text-md font-semibold text-green-400">Share the cryptocademy app.</h2>
+            <RWebShare 
+                data={{
+                    text: "Cryptocademy is an app that teaches people how to trade cryptocurrencies and invest in coins like bitcoin,ethereum etc. User can analyze market data by viewing charts, top daily cryptocurrency news. Through our curated blogs and courses,users can also learn more about cryptocurrency and blockchain concepts.",
+                    url: "https://cryptocademy.netlify.app/",
+                    title: "Cryptocademy",
+                }}
+                onClick={() => console.log("shared successfully!")}
+                className='px-4  flex justify-between items-center'
+            >        
+                <div className="flex px-4 space-x-2 items-center cursor-pointer">
+                    <h2 className="text-md font-semibold text-green-400">Share cryptocademy app to your friends.</h2>
                 </div>
-            </Link>
+            </RWebShare>
         </div>
 
         <p className='text-white font-bold text-lg  font-title mt-4 ml-3 px-2 md:px-4'>Support</p>
@@ -115,7 +132,7 @@ const MoreMobileNavPage = () => {
                 <AiOutlineRight className='inline-block text-gray-200 w-5 h-5 mb-1'/>
             </Link>
             
-            <Link to="/app/watchlist" className='px-4  flex justify-between items-center'>        
+            <Link to="/app/faq" className='px-4  flex justify-between items-center'>        
                 <div className="flex justify-center space-x-2 items-center cursor-pointer">
                     <h2 className="text-xl font-semibold text-gray-200">FAQ</h2>
                 </div>

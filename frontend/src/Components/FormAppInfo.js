@@ -13,8 +13,10 @@ const FormAppInfo = () => {
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
             <div >
-                <h2 className="text-xl font-medium text-green-400">Free account</h2>
-                <p className="mt-1 text-gray-300">Create apps, connect databases and add-on services, and collaborate on your apps, for free.</p>
+                <h2 className="text-xl font-medium text-green-400">Discover the future of digital finance.</h2>
+                <p className="mt-1 text-gray-300">
+                    Cryptocademy provides a real-time, risk-free trading simulator that allows you to msater crypto trading and investing at zero cost. Hone your skills and feel confident with crypto trading and investing.
+                </p>
             </div>
             </div>
             <div className="flex space-x-3 mb-8">
@@ -22,8 +24,10 @@ const FormAppInfo = () => {
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
             <div>
-                <h2 className="text-xl font-medium text-green-400">Your app platform</h2>
-                <p className="mt-1 text-gray-300">A platform for apps, with app management & instant scaling, for development and production.</p>
+                <h2 className="text-xl font-medium text-green-400">Keep track of your virtual portfolios.</h2>
+                <p className="mt-1 text-gray-300">
+                    You decide how to utilize mock $100000 virutal USD! Buy, sell, trade, and profit. Learn how to become a savvy investor with cryptocademy.
+                </p>
             </div>
             </div>
             <div className="flex space-x-3 mb-8">
@@ -31,19 +35,14 @@ const FormAppInfo = () => {
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
             <div>
-                <h2 className="text-xl font-medium text-green-400">Deploy now</h2>
-                <p className="mt-1 text-gray-300">Go from code to running app in minutes. Deploy, scale, and deliver your app to the world.</p>
+                <h2 className="text-xl font-medium text-green-400">
+                Compete Globally.</h2>
+                <p className="mt-1 text-gray-300">
+                    Do you have what it takes to be a better investor, compete globally with other users and become a better investor.
+                </p>
             </div>
             </div>
-            <div className="flex space-x-3 mb-8">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="flex-none w-6 h-6 mt-1 text-green-400">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <div>
-                <h2 className="text-xl font-medium text-green-400">Free account</h2>
-                <p className="mt-1 text-gray-300">Create apps, connect databases and add-on services, and collaborate on your apps, for free.</p>
-            </div>
-            </div>
+            
         </div>
     </>
   )

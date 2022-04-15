@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { HiAcademicCap } from "react-icons/hi";
 import { MdOutlineBusinessCenter, MdOutlineWatchLater, MdTravelExplore } from "react-icons/md";
-import { AiOutlineHome,AiOutlineRobot,AiOutlineBarChart, AiOutlineSearch} from "react-icons/ai";
+import { AiOutlineHome,AiOutlineRobot,AiOutlineBarChart, AiOutlineSearch, AiFillQuestionCircle} from "react-icons/ai";
 import { useAuth } from '../Context/AuthContext';
 import { BsFillBarChartFill } from 'react-icons/bs';
 import logo from '../Assets/svg/cryptocademy-logo-sideways-light.svg'
@@ -102,7 +103,7 @@ const Sidebar = ({openSidebar,active}) => {
                     <span className="ml-3">Portfolio</span>
                     </Link>
                 </li>
-                                
+{/*                                 
                 <li className="my-px">
                     <Link
                     to="/app/ai"
@@ -117,6 +118,23 @@ const Sidebar = ({openSidebar,active}) => {
                     </span>
                     
                     <span className="ml-3">AI Predictions</span>
+                    </Link>
+                </li> */}
+                                
+                <li className="my-px">
+                    <Link
+                    to="/app/learn"
+                    className={
+                        `
+                        ${(active === 'learn')? "bg-gradient-to-tr from-gray-900 to-gray-700" : ""}
+                        flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300  hover:bg-gradient-to-tr from-gray-900 to-gray-700 `
+                    }
+                    >
+                    <span className="flex items-center justify-center text-lg text-gray-400 ">
+                        <HiAcademicCap className='text-white w-6 h-6 '/>  
+                    </span>
+                    
+                    <span className="ml-3">Learn & Earn</span>
                     </Link>
                 </li>
                                 
@@ -152,6 +170,23 @@ const Sidebar = ({openSidebar,active}) => {
                     <span className="ml-3">News</span>
                     </Link>
                 </li>
+
+                <li className="my-px">
+                    <Link
+                    to="/app/faq"
+                    className={
+                        `
+                        ${(active === 'faq')? "bg-gradient-to-tr from-gray-900 to-gray-700" : ""}
+                        flex flex-row items-center h-10 px-3 rounded-lg group text-gray-300  hover:bg-gradient-to-tr from-gray-900 to-gray-700 `
+                    }
+                    >
+                    <span className="flex items-center justify-center text-lg text-red-400">
+                        <AiFillQuestionCircle className='text-gray-300 w-6 h-6 '/>    
+                    </span>
+                    <span className="ml-3">F.A.Q</span>
+                    </Link>
+                </li>
+
                 <li>        
                     <Link to="/app/profile" className="flex items-center p-2 mt-5 space-x-4 justify-self-end cursor-pointer">
                         <img src={`https://avatars.dicebear.com/api/initials/${currentUser.displayName}.svg`} alt="" className="w-12 h-12 rounded-lg dark:bg-gray-500" />
