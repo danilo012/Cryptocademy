@@ -60,8 +60,8 @@ function Login() {
             exit = {{opacity:0, transition:{duration: 0.2}}} 
             className='bg-black'>
             <ErrorToast message={errorMessage} ref={toastRef} />
-            <div className="grid grid-cols-1 lg:grid-cols-2 bg-black text-white">
-                <div className="w-full h-screen px-4 py-20 mx-auto  xl:py-32 md:w-3/5 lg:w-4/5 xl:w-3/5">
+            <div className="grid grid-cols-1 lg:grid-cols-2 bg-black text-white ">
+                <div className="w-full h-screen py-20 lg:py-32  px-4  mx-auto  xl:py-32 md:w-3/5 lg:w-4/5 xl:w-3/5">
                     <h1 className="mb-8 -mt-3 text-2xl font-extrabold leading-snug  text-left text-green-400 md:text-4xl font-title tracking-wide">Log In </h1>
                     {/* email password signin */}
                     <Formik 
@@ -99,7 +99,8 @@ function Login() {
                         <p className="font-medium text-[#1ed760] hover:text-[#1db954]"> Don't have an account? Signup</p>
                     </Link>
                     {/* Social Provider signup */}
-                    <div className="relative my-4">
+                    {/* Turned off due to native android platform error for google sign in */}
+                    {/* <div className="relative my-4">
                         <div className="absolute inset-0 flex items-center">
                         <div className="w-full border-t border-gray-300"></div>
                         </div>
@@ -109,7 +110,7 @@ function Login() {
                     </div>
                     <div className="mt-8  space-y-4">
                         <GoogleLoginBtn/>
-                    </div>
+                    </div> */}
                     
                 </div>
                 <FormAppInfo/>

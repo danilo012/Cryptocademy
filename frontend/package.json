@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@capacitor/android": "^3.4.3",
+    "@capacitor/cli": "^3.4.3",
+    "@capacitor/core": "^3.4.3",
     "@reduxjs/toolkit": "^1.7.2",
     "@supabase/supabase-js": "^1.33.2",
     "@tailwindcss/line-clamp": "^0.3.1",
@@ -41,7 +44,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && echo '/* /index.html  200' | cat >build/_redirects ",
+    "build": "react-scripts build && echo /* /index.html  200 | cat >build/_redirects ",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
