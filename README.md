@@ -54,3 +54,25 @@ We curated the best resources we could find on the Internet to learn about crypt
 
 If you have any feedback, please reach out to us at webdripdev@gmail.com
 
+
+
+## FAQ
+
+#### Does it involve real money?
+
+No, cryptocademy offers it's users virtual usd to buy and sell crypto currency.
+
+#### How to deposit money into cryptocademy?
+
+Cryptocademy is NOT a wallet, exchange or escrow service of any form. Please do not accept any offers from anyone claiming to provide you with a way to deposit anything onto the Cryptocademy website or Mobile App. The only deposit we will accept and wholeheartedly appreciate would be a kind donation from you to buy us a cup of coffee! You can find our donation addresses at the footer of our website.
+
+
+#### How can i contact support?
+
+You can email us at webdripdev@gmail.com or fill out the contact form on our website.
+
+#### What source does cryptocademy use for its data?
+
+Cryptocademy fetches cryptocurrencies prices using coingecko API.
+
+
