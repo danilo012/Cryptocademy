@@ -20,24 +20,24 @@ const FAQ = () => {
 
             <p className='text-white font-bold text-2xl md:text-3xl font-title my-4 ml-3 px-2 md:px-4'>F.A.Q</p>
 
-            <div tabindex="0" class="collapse collapse-arrow  border-white border-b-2 mx-4">
-                <input type="checkbox" class="peer"/> 
-                <div class="collapse-title text-md font-medium text-white">
+            <div tabindex="0" className="collapse collapse-arrow  border-white border-b-2 mx-4">
+                <input type="checkbox" className="peer"/> 
+                <div className="collapse-title text-md font-medium text-white">
                     Does it involve real money?
                 </div>
-                <div class="collapse-content text-gray-300"> 
+                <div className="collapse-content text-gray-300"> 
                     <p>
                         No, cryptocademy offers it's users virtual usd to buy and sell crypto currency.
                     </p>
                 </div>
             </div>
 
-            <div tabindex="0" class="collapse collapse-arrow  border-white border-b-2 mx-4">
-                <input type="checkbox" class="peer"/> 
-                <div class="collapse-title text-md font-medium text-white">
+            <div tabindex="0" className="collapse collapse-arrow  border-white border-b-2 mx-4">
+                <input type="checkbox" className="peer"/> 
+                <div className="collapse-title text-md font-medium text-white">
                     How to deposit money into Cryptocademy?
                 </div>
-                <div class="collapse-content text-gray-300"> 
+                <div className="collapse-content text-gray-300"> 
                     <p>
                         Cryptocademy is NOT a wallet, exchange or escrow service of any form. Please do not accept any offers from anyone claiming to provide you with a way to deposit anything onto the Cryptocademy website or Mobile App.
 
@@ -46,48 +46,48 @@ const FAQ = () => {
                 </div>
             </div>
 
-            <div tabindex="0" class="collapse collapse-arrow  border-white border-b-2 mx-4">
-                <input type="checkbox" class="peer"/> 
-                <div class="collapse-title text-md font-medium text-white">
+            <div tabindex="0" className="collapse collapse-arrow  border-white border-b-2 mx-4">
+                <input type="checkbox" className="peer"/> 
+                <div className="collapse-title text-md font-medium text-white">
                     Can cryptocademy be trusted? 
                 </div>
-                <div class="collapse-content text-gray-300"> 
+                <div className="collapse-content text-gray-300"> 
                     <p>
                         Cryptocademy provides a real-time, risk-free trading simulator that allows you to msater crypto trading and investing at zero cost. Hone your skills and feel confident with crypto trading and investing.
                     </p>
                 </div>
             </div>
 
-            <div tabindex="0" class="collapse collapse-arrow  border-white border-b-2 mx-4">
-                <input type="checkbox" class="peer"/> 
-                <div class="collapse-title text-md font-medium text-white">
+            <div tabindex="0" className="collapse collapse-arrow  border-white border-b-2 mx-4">
+                <input type="checkbox" className="peer"/> 
+                <div className="collapse-title text-md font-medium text-white">
                     How can I contact support? 
                 </div>
-                <div class="collapse-content text-gray-300"> 
+                <div className="collapse-content text-gray-300"> 
                     <p>
                         You can email us at webdripdev@gmail.com or fill out the contact form on our website. 
                     </p>
                 </div>
             </div>
 
-            <div tabindex="0" class="collapse collapse-arrow  border-white border-b-2 mx-4">
-                <input type="checkbox" class="peer"/> 
-                <div class="collapse-title text-md font-medium text-white">
+            <div tabindex="0" className="collapse collapse-arrow  border-white border-b-2 mx-4">
+                <input type="checkbox" className="peer"/> 
+                <div className="collapse-title text-md font-medium text-white">
                     What sources does Cryptocademy use for its data?
                 </div>
-                <div class="collapse-content text-gray-300"> 
+                <div className="collapse-content text-gray-300"> 
                     <p>
                         Cryptocademy gets its cryptocurrency data from the Coingecko API.
                     </p>
                 </div>
             </div>
 
-            <div tabindex="0" class="collapse collapse-arrow  border-white border-b-2 mx-4">
-                <input type="checkbox" class="peer"/> 
-                <div class="collapse-title text-md font-medium text-white">
+            <div tabindex="0" className="collapse collapse-arrow  border-white border-b-2 mx-4">
+                <input type="checkbox" className="peer"/> 
+                <div className="collapse-title text-md font-medium text-white">
                     What are the future plans of Cryptocademy?
                 </div>
-                <div class="collapse-content text-gray-300"> 
+                <div className="collapse-content text-gray-300"> 
                     <p>
                         We have plans to help users to learn more about cryptocurrency & trading. Currently we only have a global leaderboard with the top 100 users. We're planning to add a feature where users can create custom rooms and compete with their friends.
                         <br />

@@ -1,6 +1,5 @@
 import React from 'react'
 import {motion} from 'framer-motion'   
-import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import Logout from '../Components/Buttons/Logout'
 import Sidebar from '../Components/Sidebar'
@@ -39,7 +38,7 @@ const UserProfile = () => {
           <p className='text-white font-bold text-2xl md:text-3xl font-title my-4 ml-3'>Your Profile</p>
 
             
-            <div class="flex flex-wrap md:space-x-4  justify-center md:justify-start">
+            <div className="flex flex-wrap md:space-x-4  justify-center md:justify-start">
 
               <div className="  bg-gradient-to-tr from-gray-900 to-gray-700  overflow-hidden shadow rounded-lg w-[100%] md:w-72 xl:w-80 relative mx-4">
                   <img src="https://img.icons8.com/officel/80/000000/anime-emoji.png" alt="btc logo" className="h-24 w-24 rounded-full absolute opacity-50 -top-6 -right-6 md:-right-4"/>
@@ -49,7 +48,7 @@ const UserProfile = () => {
                       <div>
                             <h2 className="text-lg font-semibold text-white">{currentUser.displayName}</h2>
                             <span className="flex items-center space-x-1">
-                                <a rel="noopener noreferrer" href="#" className="text-xs hover:underline dark:text-gray-400">{currentUser.email}</a>
+                                <p className="text-xs hover:underline dark:text-gray-400">{currentUser.email}</p>
                             </span>
                         </div>
                     </div>
@@ -62,52 +61,52 @@ const UserProfile = () => {
                   </div>
               </div>
               {/* account balance information */}
-              <div class="mt-8 md:mt-0 w-80 m-auto md:m-0 md:w-96 h-56 lg:ml-8 bg-gradient-to-tr from-gray-900 to-gray-700  rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
+              <div className="mt-8 md:mt-0 w-80 m-auto md:m-0 md:w-96 h-56 lg:ml-8 bg-gradient-to-tr from-gray-900 to-gray-700  rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
             
-                  <div class="w-full px-8 absolute top-8">
-                      <div class="flex justify-between">
-                          <div class="">
-                              <h1 class="">
+                  <div className="w-full px-8 absolute top-8">
+                      <div className="flex justify-between">
+                          <div className="">
+                              <h1 className="">
                                   Name
                               </h1>
-                              <p class="font-medium tracking-wide">
+                              <p className="font-medium tracking-wide">
                                   {currentUser.displayName}
                               </p>
                           </div>
-                          <img class="w-14 h-14" src="https://img.icons8.com/offices/80/000000/sim-card-chip.png"/>
+                          <img alt='user card chip' className="w-14 h-14" src="https://img.icons8.com/offices/80/000000/sim-card-chip.png"/>
                       </div>
-                      <div class="pt-1">
-                          <h1 class="">
+                      <div className="pt-1">
+                          <h1 className="">
                               Account Balance
                           </h1>
-                          <p class="font-medium tracking-more-wider">
+                          <p className="font-medium tracking-more-wider">
                               ${fetchAvailableUsdCoinsSuccess && availableUsdCoins[0]?.amount}
                           </p>
                       </div>
-                      <div class="pt-6 pr-6">
-                          <div class="flex justify-between">
-                              <div class="">
-                                  <h1 class="font-light text-xs">
+                      <div className="pt-6 pr-6">
+                          <div className="flex justify-between">
+                              <div className="">
+                                  <h1 className="font-light text-xs">
                                       Networth
                                   </h1>
-                                  <p class="font-medium tracking-wider text-sm">
+                                  <p className="font-medium tracking-wider text-sm">
                                       {userNetworthSuccess && <span>${userNetworth}</span>}
                                   </p>
                               </div>
-                              {/* <div class="">
-                                  <p class="font-light text-xs ">
+                              {/* <div className="">
+                                  <p className="font-light text-xs ">
                                       Expiry
                                   </p>
-                                  <p class="font-medium tracking-wider text-sm">
+                                  <p className="font-medium tracking-wider text-sm">
                                       03/25
                                   </p>
                               </div> */}
 
-                              <div class="">
-                                  <p class="font-light text-xs">
+                              <div className="">
+                                  <p className="font-light text-xs">
                                       CVV
                                   </p>
-                                  <p class="font-bold tracking-more-wider text-sm">
+                                  <p className="font-bold tracking-more-wider text-sm">
                                       ···
                                   </p>
                               </div>
@@ -119,7 +118,7 @@ const UserProfile = () => {
 
             </div>
             {/* user watchlist & portfolio */}
-            <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
+            <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
                 
               {/* watchlist data */}
               <div className=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">

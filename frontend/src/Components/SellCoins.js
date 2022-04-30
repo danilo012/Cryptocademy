@@ -32,7 +32,7 @@ const SellCoins = ({data,modal,setModal}) => {
             }
         }   
         coinAmount()
-    }, [])
+    }, [currentUser.uid,data.id,dispatch])
     
 
     const changeCoinValue = (e) => {
@@ -128,15 +128,15 @@ const SellCoins = ({data,modal,setModal}) => {
                  {/* Modal body  */}
                 <div className="px-6 py-3 md:p-6"> 
 
-                    <p class="text-base leading-relaxed font-semibold text-gray-200">
+                    <p className="text-base leading-relaxed font-semibold text-gray-200">
                         1 <span className='uppercase'>{data.symbol}</span>  = {data.market_data.current_price.usd} USD 
                     </p>
 
-                    <p class="text-base leading-relaxed font-semibold text-gray-200">
+                    <p className="text-base leading-relaxed font-semibold text-gray-200">
                         Available Balance = {(availableUsdCoins.status ==="success") ? availableUsdCoins.data.amount : 0 } USD
                     </p>
 
-                    <p class="text-base leading-relaxed font-semibold text-gray-200">
+                    <p className="text-base leading-relaxed font-semibold text-gray-200">
                         Available Coin amount = {availabeCoinAmt}
                     </p>
 

@@ -55,7 +55,7 @@ const CoinStats = ({data}) => {
         </div>
         {/* coin Description */}
         
-        <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
             <div className='mx-8'>
                 <h2 className='text-2xl md:text-3xl text-white font-title font-semibold mt-3 mb-2'>
                     <span className="uppercase">{data.symbol}</span> Price Live Data
@@ -72,14 +72,14 @@ const CoinStats = ({data}) => {
             </div>
 
                         
-            <div class=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
-                <p class="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
+            <div className=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
+                <p className="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
                     {data.name} Statistics
                 </p>
                 <ul>
                     
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 Price To USD
                             </span>
@@ -89,8 +89,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
 
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 Rank
                             </span>
@@ -102,8 +102,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
 
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 Total Volume
                             </span>
@@ -115,8 +115,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
 
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 Market Cap
                             </span>
@@ -128,8 +128,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
 
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 All Time High
                             </span>
@@ -141,8 +141,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
 
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 Circulating Supply
                             </span>
@@ -158,16 +158,16 @@ const CoinStats = ({data}) => {
             </div>
 
         </div>
-        <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
 
-            <div class=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
-                <p class="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
+            <div className=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
+                <p className="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
                     {data.name} Social Media Stats
                 </p>
                 <ul>
                     
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 Twitter Followers
                             </span>
@@ -179,8 +179,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
 
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 Reddit Avg Posts In 48H
                             </span>
@@ -192,8 +192,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
 
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 Reddit Avg Comments In 48H
                             </span>
@@ -205,8 +205,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
 
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 Reddit Subscribers
                             </span>
@@ -221,14 +221,14 @@ const CoinStats = ({data}) => {
                 </ul>
             </div>
 
-            <div class=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
-                <p class="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
+            <div className=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
+                <p className="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
                     {data.name} Social Media Links
                 </p>
                 <ul>
                     
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl '>
                                 {data.name} Official Website
                             </span>
@@ -237,7 +237,7 @@ const CoinStats = ({data}) => {
                             <p className='text-xl text-right'>
                                 {data.links.homepage[0]
                                     ? 
-                                    <a href={data.links.homepage[0]} target="_blank" className='text-emerald-400 underline'>
+                                    <a href={data.links.homepage[0]} target="_blank" rel="noreferrer" className='text-emerald-400 underline'>
                                         {data.name} Website
                                     </a>
                                     : "-"}
@@ -245,8 +245,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
 
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 Blockchain Website 
                             </span>
@@ -255,7 +255,7 @@ const CoinStats = ({data}) => {
                             <p className='text-xl text-right'>
                             {data.links.homepage[0]
                                     ? 
-                                    <a href={data.links.blockchain_site[0]} target="_blank" className='text-emerald-400 underline'>
+                                    <a href={data.links.blockchain_site[0]} target="_blank" rel="noreferrer" className='text-emerald-400 underline'>
                                         {data.name} Transactions
                                     </a>
                                     : "-"}
@@ -263,8 +263,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
 
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 Official Forum
                             </span>
@@ -273,7 +273,7 @@ const CoinStats = ({data}) => {
                             <p className='text-xl'>
                                 {data.links.official_forum_url[0]
                                     ? 
-                                    <a href={data.links.official_forum_url[0]} target="_blank" className='text-emerald-400 underline'>
+                                    <a href={data.links.official_forum_url[0]} target="_blank"  rel="noreferrer" className='text-emerald-400 underline'>
                                         {data.name} Forum 
                                     </a>
                                     : "-"
@@ -282,8 +282,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
 
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 Chat URL
                             </span>
@@ -292,7 +292,7 @@ const CoinStats = ({data}) => {
                             <p className='text-xl'>
                                 {data.links.chat_url[0]
                                     ? 
-                                    <a href={data.links.chat_url[0]} target="_blank" className='text-emerald-400 underline'>
+                                    <a href={data.links.chat_url[0]} target="_blank" rel="noreferrer" className='text-emerald-400 underline'>
                                         {data.name} Chat
                                     </a>
                                     : "-"
@@ -301,8 +301,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
 
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 Reddit Url
                             </span>
@@ -311,7 +311,7 @@ const CoinStats = ({data}) => {
                             <p className='text-xl'>
                                 {data.links.subreddit_url
                                     ? 
-                                    <a href={data.links.subreddit_url} target="_blank" className='text-emerald-400 underline'>
+                                    <a href={data.links.subreddit_url} target="_blank" rel="noreferrer" className='text-emerald-400 underline'>
                                         Reddit url
                                     </a>
                                     : "-"
@@ -320,8 +320,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
 
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 GitHub Repo
                             </span>
@@ -330,7 +330,7 @@ const CoinStats = ({data}) => {
                             <p className='text-xl'>
                                 {data.links.repos_url.github[0]
                                     ? 
-                                    <a href={data.links.repos_url.github[0]} target="_blank" className='text-emerald-400 underline'>
+                                    <a href={data.links.repos_url.github[0]} target="_blank" rel="noreferrer" className='text-emerald-400 underline'>
                                         GitHub URL
                                     </a>
                                     : "-"
@@ -344,15 +344,15 @@ const CoinStats = ({data}) => {
                 
         </div>
 
-        <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
-            <div class=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
-                <p class="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
+            <div className=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
+                <p className="font-bold text-2xl md:text-3xl py-4  text-black dark:text-white">
                     {data.name} Percentage Change
                 </p>
                 <ul>
                     
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 1H 
                             </span>
@@ -366,8 +366,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
                     
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 24 Hour 
                             </span>
@@ -381,8 +381,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
                     
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 7 Days 
                             </span>
@@ -396,8 +396,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
                     
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 14 Days
                             </span>
@@ -411,8 +411,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
                     
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 30 Days
                             </span>
@@ -426,8 +426,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
                     
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 60 Days
                             </span>
@@ -441,8 +441,8 @@ const CoinStats = ({data}) => {
                         </div>
                     </li>
                     
-                    <li class="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
-                        <div class="flex items-center justify-start text-sm">
+                    <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                        <div className="flex items-center justify-start text-sm">
                             <span className='text-xl'>
                                 1 Year
                             </span>

@@ -18,7 +18,7 @@ const BuyCoins = ({data,modal,setModal}) => {
 
     useEffect(() => {
         dispatch(fetchAvailableCoins(currentUser.uid)) 
-    }, [])
+    }, [currentUser.uid,dispatch])
     
 
     const changeCoinValue = (e) => {
@@ -36,7 +36,7 @@ const BuyCoins = ({data,modal,setModal}) => {
         try {
             setOrderLoading(true)
             // get available coins and check if it is lesser than what we want to purchase
-            let { data: availableUsdCoin, error } = await supabase
+            let { data: availableUsdCoin} = await supabase
             .from('portfolio')
             .select('coinId,coinName,amount')
             .eq('userId',`${currentUser.uid}`)
@@ -143,11 +143,11 @@ const BuyCoins = ({data,modal,setModal}) => {
                  {/* Modal body  */}
                 <div className="px-6 py-3 md:p-6"> 
 
-                    <p class="text-base leading-relaxed font-semibold text-gray-200">
+                    <p className="text-base leading-relaxed font-semibold text-gray-200">
                         1 <span className='uppercase'>{data.symbol}</span>  = {data.market_data.current_price.usd} USD 
                     </p>
 
-                    <p class="text-base leading-relaxed font-semibold text-gray-200">
+                    <p className="text-base leading-relaxed font-semibold text-gray-200">
                         Available Balance = {(availableUsdCoins.status ==="success") ? availableUsdCoins.data.amount : 0 } USD
                     </p>
 
