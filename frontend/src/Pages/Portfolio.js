@@ -8,13 +8,16 @@ import Sidebar from '../Components/Sidebar'
 import TabNavigation from '../Components/TabNavigation'
 import { useAuth } from '../Context/AuthContext'
 import { useFetchAvailableCoinsQuery, useGetPortfolioCoinDataQuery, useGetPortfolioDataQuery, useGetUserNetworthQuery } from '../services/supabaseApi'
-
+import emptyWatchlistLogo from '../Assets/svg/emptyWatchlist.svg'
+import { Link } from 'react-router-dom'
 const Portfolio = () => {
   const {currentUser} = useAuth() 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const { data:portfolioData, error, isLoading,isFetching,isSuccess,refetch:refetchPortfolioData } = useGetPortfolioDataQuery(currentUser.uid)
+
+  console.log(portfolioData)
 
   const { data:portfolioCoinData, error:fetchPortfolioCoinDataError, isLoading:fetchPortfolioCoinDataLoading,isSuccess:fetchPortfolioCoinDataSuccess,refetch:refetchPortfolioCoinData } = useGetPortfolioCoinDataQuery(currentUser.uid,{pollingInterval: 5000,})
 
@@ -158,6 +161,18 @@ const Portfolio = () => {
               </li>
               )
             })
+          }
+          {
+            (portfolioData && portfolioData.length === 0) &&
+            <div  className=" shadow-lg rounded-2xl  px-4 py-4 md:px-4 flex flex-col lg:justify-center align-center text-center max-w-xl m-auto" >
+                <img src={emptyWatchlistLogo} alt="empty watchlist" />
+                <p className='text-white text-xl font-bold my-2 lg:text-center'>Your portfolio is empty</p>
+                <p className='text-gray-300 lg:text-center mb-5'>Press the button to browse all the coins</p>
+                <Link to='/app/market' className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                    View Coins
+                </Link>
+            </div>
+
           }
         </ul>
         

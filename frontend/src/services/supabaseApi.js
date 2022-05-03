@@ -54,7 +54,7 @@ export const supabaseApi = createApi({
                         return {data: res}
                     }
                     else {
-                        throw new Error('Your watchlist is empty.')
+                        return {data: []}
                     }
                 } catch (error) {
                     return {error: error}
@@ -84,7 +84,7 @@ export const supabaseApi = createApi({
                         return {data: res}
                     }
                     else {
-                        throw new Error('Your portfolio is empty.')
+                        return {data: []}
                     }
                 } catch (error) {
                     return {error: error}

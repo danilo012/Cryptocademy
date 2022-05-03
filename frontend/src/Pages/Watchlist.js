@@ -17,8 +17,7 @@ import {
 } from 'react-swipeable-list';
 import 'react-swipeable-list/dist/styles.css';
 import { Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet'
-
+import emptyWatchlistLogo from '../Assets/svg/emptyWatchlist.svg'
 
 const trailingActions = (coinId,userId,refetch) => {
   async function handleDelete() {
@@ -60,7 +59,8 @@ const Watchlist = () => {
   const { data:watchlistData,error, isLoading,isFetching,isSuccess,refetch } = useGetWatchlistDataQuery(currentUser.uid)
 
   useEffect(() => {
-    const interval = setInterval(() => refetch(), 10000)
+
+    const interval = setInterval(() => refetch(), 2000)
 
     return () => {
       clearInterval(interval);
@@ -98,8 +98,20 @@ const Watchlist = () => {
           <p className='text-white font-bold text-2xl md:text-3xl font-title my-4 ml-3'>WatchList</p>
           <p className='text-white font-semibold text-md font-title  ml-3'>Swipe left to delete or view the coins.</p>
           {(isLoading) && <Loader/>}
-          {(error) && <p className='text-2xl text-red-400 px-4'>Something went wrong</p>}
+          {(error && (watchlistData.length !== 0)) && <p className='text-2xl text-red-400 px-4'>Something went wrong</p>}
         {/* coin table */}
+        {
+          (watchlistData.length === 0) &&
+          <div  className=" shadow-lg rounded-2xl  px-4 py-4 md:px-4 flex flex-col lg:justify-center align-center text-center max-w-xl m-auto" >
+              <img src={emptyWatchlistLogo} alt="empty watchlist" />
+              <p className='text-white text-xl font-bold my-2 lg:text-center'>Your watchlist is empty</p>
+              <p className='text-gray-300 lg:text-center mb-5'>Press the button to browse all the coins</p>
+              <Link to='/app/market' className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                  View Coins
+              </Link>
+          </div>
+
+        }
         {
           (isSuccess && (watchlistData.length !== 0)) &&
 
@@ -120,7 +132,7 @@ const Watchlist = () => {
                 </div>
             </li>
             {
-              (isSuccess) &&
+              (isSuccess && (watchlistData.length !== 0)) &&
               watchlistData.map((coin,index) => (
                 <SwipeableListItem
                 trailingActions={trailingActions(coin.data.id,currentUser.uid,refetch)}
