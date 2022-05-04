@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail, updateProfile } from 'firebase/auth'
 import {createContext, useContext, useEffect, useState} from 'react'
+import { useNavigate } from 'react-router'
 import {auth} from '../Utils/init-firebase'
 
 
@@ -13,7 +14,7 @@ export const useAuth = () => useContext(AuthContext)
 // Provider that wraps our app.js
 export default function AuthContextProvider({children}) {
     const [currentUser,setCurrentUser] = useState(null)
-
+    
     function signUp(email, password) {
         return createUserWithEmailAndPassword(auth, email, password);
     }   
