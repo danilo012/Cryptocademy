@@ -108,7 +108,7 @@ const MoreMobileNavPage = () => {
             
             <RWebShare 
                 data={{
-                    text: "Cryptocademy is an app that teaches people how to trade cryptocurrencies and invest in coins like bitcoin,ethereum etc. User can analyze market data by viewing charts, top daily cryptocurrency news. Through our curated blogs and courses,users can also learn more about cryptocurrency and blockchain concepts.",
+                    text: "The Cryptocademy app is the perfect way to learn about cryptocurrency and blockchain without any risk. With the cryptocademy simulator, you can trade and invest in crypto without spending any money. Plus, detailed candlestick charts and USD converter will help track prices and trends. And if you want to compete with others, global leaderboard will let you see how you stack up. Plus, cryptocademy has curated resources to help you learn about cryptocurrency and blockchain from scratch. And to keep you up to date, cryptocademy sends daily cryptocurrency news right to the app. So download now and start your journey to becoming a crypto expert!",
                     url: "https://cryptocademy.netlify.app/",
                     title: "Cryptocademy",
                 }}

@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.cryptocademy.android',
-  appName: 'cryptocademy',
+  appName: 'Cryptocademy',
   webDir: 'build',
   bundledWebRuntime: false,
   plugins: {
