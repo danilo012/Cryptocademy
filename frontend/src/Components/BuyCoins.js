@@ -6,7 +6,7 @@ import usd from '../Assets/svg/USD.svg'
 import { useAuth } from '../Context/AuthContext'
 import { fetchAvailableCoins } from '../Features/availableCoins'
 import { supabase } from '../Utils/init-supabase'
-
+ 
 const BuyCoins = ({data,modal,setModal}) => {
     const {currentUser} = useAuth() 
     const [coinValue,setCoinValue] = useState(1)

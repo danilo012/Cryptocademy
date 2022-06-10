@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {motion} from 'framer-motion'   
 import { Link } from 'react-router-dom'
 import Logout from '../Components/Buttons/Logout'
@@ -6,9 +6,12 @@ import Sidebar from '../Components/Sidebar'
 import TabNavigation from '../Components/TabNavigation'
 import { useAuth } from '../Context/AuthContext'
 import { useFetchAvailableCoinsQuery, useGetLeaderboardQuery, useGetPortfolioDataQuery, useGetUserNetworthQuery, useGetWatchlistDataQuery } from '../services/supabaseApi'
+import ResetVirtualBalance from '../Components/ResetVirtualBalance'
 
 const UserProfile = () => {
   const {currentUser} =useAuth()
+
+  const [resetModal,setResetModal] = useState(false)
 
   // fetch watchlist coin data
   const { data:watchlistData, error:fetchWatchlistErr, isLoading:fetchWatchlistLoading,isSuccess:fetchWatchlistSuccess } = useGetWatchlistDataQuery(currentUser.uid)
@@ -58,6 +61,12 @@ const UserProfile = () => {
                       </Link>
                     </div>
                   <Logout/>
+                    <div className='my-4' >
+                      <button onClick={()=> setResetModal(!resetModal)} className=" text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                        Reset Virtual USD Balance
+                      </button>
+                    </div>
+                    <ResetVirtualBalance modal={resetModal} setModal={setResetModal} />
                   </div>
               </div>
               {/* account balance information */}
