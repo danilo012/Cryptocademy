@@ -17,7 +17,7 @@ const MoreMobileNavPage = () => {
   return (
     <div className='bg-black'>
       {/* desktop dasboard */}
-      <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
+      <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden pt-6 md:pt-0">
         <Sidebar/>
         <motion.div
             intial = {{opacity:0}}
@@ -125,12 +125,14 @@ const MoreMobileNavPage = () => {
         
         <div className='shadow-lg rounded-2xl bg-gray-900 py-6 mx-4 mt-2 space-y-4'>
 
-            <Link to="/app/news" className='px-4  flex justify-between items-center'>        
+            <a href="mailto:webdripdev@gmail.com" className='px-4  flex justify-between items-center'>        
                 <div className="flex justify-center space-x-2 items-center cursor-pointer">
-                    <h2 className="text-xl font-semibold text-gray-200">Contact Support</h2>
+                    <h2 className="text-xl font-semibold text-gray-200">
+                        Contact Support
+                    </h2>
                 </div>
                 <AiOutlineRight className='inline-block text-gray-200 w-5 h-5 mb-1'/>
-            </Link>
+            </a>
             
             <Link to="/app/faq" className='px-4  flex justify-between items-center'>        
                 <div className="flex justify-center space-x-2 items-center cursor-pointer">

@@ -19,7 +19,7 @@ const Dashboard = () => {
           className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black"
         >
 
-          <p className='text-white font-bold text-2xl md:text-3xl font-title my-4 ml-3 px-2 md:px-4'>Welcome to Dashboard</p>
+          <p className='pt-6 md:pt-0 text-white font-bold text-2xl md:text-3xl font-title my-4 ml-3 px-2 md:px-4'>Welcome to Dashboard</p>
 
             <DesktopDashboard />
 

@@ -17,8 +17,6 @@ const Portfolio = () => {
 
   const { data:portfolioData, error, isLoading,isFetching,isSuccess,refetch:refetchPortfolioData } = useGetPortfolioDataQuery(currentUser.uid)
 
-  console.log(portfolioData)
-
   const { data:portfolioCoinData, error:fetchPortfolioCoinDataError, isLoading:fetchPortfolioCoinDataLoading,isSuccess:fetchPortfolioCoinDataSuccess,refetch:refetchPortfolioCoinData } = useGetPortfolioCoinDataQuery(currentUser.uid,{pollingInterval: 5000,})
 
   // get available coins
@@ -33,7 +31,7 @@ const Portfolio = () => {
       const currentCoinPrice = coinData[0].data?.market_data.current_price.usd
       const oneCoinAmount = amount/coinAmount
       const coinPercentageChange = ((currentCoinPrice - oneCoinAmount)/currentCoinPrice) * 100
-      console.log(coinPercentageChange)
+  
       return coinPercentageChange
     }
     return
@@ -51,7 +49,7 @@ const Portfolio = () => {
   return (
     <div className='bg-black'>
       {/* desktop dasboard */}
-      <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
+      <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden pt-6 md:pt-0">
         <Sidebar active={`portfolio`}/>
         <motion.div 
         intial = {{opacity:0}}

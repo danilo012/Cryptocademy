@@ -53,11 +53,6 @@ const BuyCoins = ({data,modal,setModal}) => {
             .eq('userId',`${currentUser.uid}`)
             .eq('coinId',`${data.id}`)
 
-            if(existingCoin) {
-                console.log(existingCoin)
-                console.log(existingCoin.length)
-            }
-
             if(existingCoin.length !== 0) {
                 let { data: updateExistingCoin, error: updateExistingCoinErr } = await supabase
                 .from('portfolio') 
@@ -70,7 +65,6 @@ const BuyCoins = ({data,modal,setModal}) => {
 
 
                 if(updateExistingCoin) {
-                    console.log("updated existing coin now exiting from loop")
                     setOrderLoading(false)
                     alert('Coin purchased successfully')
                     return

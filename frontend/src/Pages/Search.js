@@ -32,19 +32,15 @@ const Search = () => {
     []
   )
 
-  if(searchData) {
-    console.log(searchData)
-  }
-
   useEffect(()=> {
     debouncedSearchResult(search)
   },[search])
 
 
   return (
-    <div className='bg-black'>
+    <div className='bg-black '>
       {/* desktop dasboard */}
-      <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
+      <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden pt-6 md:pt-0">
         <Sidebar active={`search`}/>
         <motion.div 
         intial = {{opacity:0}}
