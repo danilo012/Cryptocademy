@@ -81,30 +81,38 @@ const MoreMobileNavPage = () => {
             </Link>
         </div>
 
+        <p className='text-white font-bold text-lg  font-title mt-4 ml-3 px-2 md:px-4'>Support Cryptocademy</p>
+        <div className='shadow-lg rounded-2xl bg-gray-900 py-6  mx-4 mt-2 space-y-4 flex justify-center items-center '>
+            <a href="https://www.buymeacoffee.com/narottam" target="_blank" rel="noreferrer" className=''>
+                <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=narottam&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" />
+            </a>
+        </div>
+
+
         <p className='text-white font-bold text-lg  font-title mt-4 ml-3 px-2 md:px-4'>About</p>
         
         <div className='shadow-lg rounded-2xl bg-gray-900 py-6 mx-4 mt-2 space-y-4'>
 
-            <Link to="/app/news" className='px-4  flex justify-between items-center'>        
+            {/* <Link to="/app/news" className='px-4  flex justify-between items-center'>        
                 <div className="flex justify-center space-x-2 items-center cursor-pointer">
                     <h2 className="text-xl font-semibold text-gray-200">Newsletter</h2>
                 </div>
                 <AiOutlineRight className='inline-block text-gray-200 w-5 h-5 mb-1'/>
-            </Link>
+            </Link> */}
             
-            <Link to="/app/watchlist" className='px-4  flex justify-between items-center'>        
+            <a href="https://cryptocademy.webdrip.in/privacy" className='px-4  flex justify-between items-center' target="_blank" rel="noreferrer">        
                 <div className="flex justify-center space-x-2 items-center cursor-pointer">
                     <h2 className="text-xl font-semibold text-gray-200">Terms & Privacy</h2>
                 </div>
                 <AiOutlineRight className='inline-block text-gray-200 w-5 h-5 mb-1'/>
-            </Link>
+            </a>
             
-            <Link to="/app/leaderboard" className='px-4  flex justify-between items-center'>        
+            {/* <Link to="/app/leaderboard" className='px-4  flex justify-between items-center'>        
                 <div className="flex justify-center space-x-2 items-center cursor-pointer">
                     <h2 className="text-xl font-semibold text-gray-200">Community Rules</h2>
                 </div>
                 <AiOutlineRight className='inline-block text-gray-200 w-5 h-5 mb-1'/>
-            </Link>
+            </Link> */}
             
             <RWebShare 
                 data={{
