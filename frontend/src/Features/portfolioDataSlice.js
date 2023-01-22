@@ -1,17 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = []
+const initialState = [];
 
 const portfolioDataSlice = createSlice({
   name: "portfolio",
   initialState,
   reducers: {
-    updatePortfolio:(state,action) => {
-        return action.payload
+    updatePortfolio: (state, action) => {
+      return action.payload;
     }
   }
 });
 
-export const {updatePortfolio} = portfolioDataSlice.actions
+export const { updatePortfolio } = portfolioDataSlice.actions;
 
-export default portfolioDataSlice.reducer
+export default portfolioDataSlice.reducer;
