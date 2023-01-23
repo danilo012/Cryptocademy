@@ -1,17 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-import GoogleLoginBtn from "../Components/Buttons/GoogleLoginBtn";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FloatingInput from "../Components/Buttons/FloatingInput";
 import FloatingPasswordInput from "../Components/Buttons/FloatingPasswordInput";
-import TwitterLoginBtn from "../Components/Buttons/TwitterLoginBtn";
-import GithubLoginBtn from "../Components/Buttons/GithubLoginBtn";
 import { useAuth } from "../Context/AuthContext";
 import ErrorToast from "../Components/ErrorToast";
 import FormAppInfo from "../Components/FormAppInfo";
-import { Helmet } from "react-helmet";
 
 const initialValues = {
   email: "",
@@ -28,7 +24,7 @@ const validationSchema = Yup.object().shape({
 });
 
 function Login() {
-  const { login, currentUser, gun } = useAuth();
+  const { login, currentUser } = useAuth();
   let navigate = useNavigate();
 
   const toastRef = useRef(null);

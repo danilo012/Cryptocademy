@@ -6,7 +6,6 @@ import { debounce } from "lodash";
 import Loader from "../Components/Loader";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import { Helmet } from "react-helmet";
 
 const Search = () => {
   const [search, setSearch] = useState("");

@@ -23,30 +23,30 @@ const UserProfile = () => {
   const {
     data: watchlistData,
     error: fetchWatchlistErr,
-    isLoading: fetchWatchlistLoading,
+    // isLoading: fetchWatchlistLoading,
     isSuccess: fetchWatchlistSuccess
   } = useGetWatchlistDataQuery(currentUser.uid);
 
   // Get user networth
   const {
     data: userNetworth,
-    isSuccess: userNetworthSuccess,
-    error: networthError
+    isSuccess: userNetworthSuccess
+    // error: networthError
   } = useGetUserNetworthQuery(currentUser.uid);
 
   // get available coins
   const {
     data: availableUsdCoins,
-    isSuccess: fetchAvailableUsdCoinsSuccess,
-    error: fetchAvailableUsdCoinsError,
-    isLoading: fetchAvailableUsdCoinsLoading,
-    refetch: refetchAvailableCoins
+    isSuccess: fetchAvailableUsdCoinsSuccess
+    // error: fetchAvailableUsdCoinsError,
+    // isLoading: fetchAvailableUsdCoinsLoading,
+    // refetch: refetchAvailableCoins
   } = useFetchAvailableCoinsQuery(currentUser.uid);
 
   // get Leaderboard data
   const {
     data: leaderboard,
-    isLoading: leaderboardIsLoading,
+    // isLoading: leaderboardIsLoading,
     isSuccess: fetchLeaderboardSuccess,
     error: fetchLeaderboardError
   } = useGetLeaderboardQuery();
@@ -54,10 +54,10 @@ const UserProfile = () => {
   const {
     data: portfolioData,
     error,
-    isLoading,
-    isFetching,
-    isSuccess,
-    refetch: refetchPortfolioData
+    // isLoading,
+    // isFetching,
+    isSuccess
+    // refetch: refetchPortfolioData
   } = useGetPortfolioDataQuery(currentUser.uid);
 
   return (

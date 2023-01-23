@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsArrowDownUp } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,7 +45,10 @@ const BuyCoins = ({ data, modal, setModal }) => {
       }
 
       // check if the coin is already purchased i.e. add the coin amount coin to our existing coin in portfolio db
-      let { data: existingCoin, error: existingCoinErr } = await supabase
+      let {
+        data: existingCoin
+        // error: existingCoinErr
+      } = await supabase
         .from("portfolio")
         .select("coinId,coinName,amount,coinAmount")
         .eq("userId", `${currentUser.uid}`)
@@ -72,19 +75,20 @@ const BuyCoins = ({ data, modal, setModal }) => {
       }
 
       // if not already present add the purchased coin to database
-      const { data: addToPortfolio, error: addToPortfolioError } = await supabase
-        .from("portfolio")
-        .insert([
-          {
-            userId: `${currentUser.uid}`,
-            coinId: `${data.id}`,
-            coinSymbol: `${data.symbol}`,
-            coinName: `${data.name}`,
-            image: `${data.image.large}`,
-            amount: `${coinUsdPrice}`,
-            coinAmount: `${coinValue}`
-          }
-        ]);
+      const {
+        // data: addToPortfolio,
+        error: addToPortfolioError
+      } = await supabase.from("portfolio").insert([
+        {
+          userId: `${currentUser.uid}`,
+          coinId: `${data.id}`,
+          coinSymbol: `${data.symbol}`,
+          coinName: `${data.name}`,
+          image: `${data.image.large}`,
+          amount: `${coinUsdPrice}`,
+          coinAmount: `${coinValue}`
+        }
+      ]);
 
       if (addToPortfolioError) {
         throw new Error("Something went wrong, Please try again!");
@@ -93,7 +97,10 @@ const BuyCoins = ({ data, modal, setModal }) => {
       // deduct the value from virtual usd
       let updatedUsdValue = availableUsdCoin[0].amount - coinUsdPrice;
 
-      let { data: updateUsdCoin, error: updateUsdCoinError } = await supabase
+      let {
+        // data: updateUsdCoin,
+        error: updateUsdCoinError
+      } = await supabase
         .from("portfolio")
         .update({ amount: updatedUsdValue })
         .eq("userId", `${currentUser.uid}`)

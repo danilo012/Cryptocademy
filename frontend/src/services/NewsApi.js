@@ -1,4 +1,4 @@
-import { createApi, fakeBaseQuery, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 import { db } from "../Utils/init-firebase";
 import { collection, getDocs } from "firebase/firestore";
 

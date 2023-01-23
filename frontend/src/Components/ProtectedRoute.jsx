@@ -1,10 +1,10 @@
 import React from "react";
-import { Navigate, Route, useLocation } from "react-router";
+import { Navigate } from "react-router";
 import { useAuth } from "../Context/AuthContext";
 
 function ProtectedRoute({ children }) {
   const { currentUser } = useAuth();
-  const location = useLocation();
+  // const location = useLocation();
 
   if (!currentUser) {
     return <Navigate to="/" />;

@@ -10,10 +10,11 @@ export const fetchWatchlistData = createAsyncThunk(
   async (watchlistId, thunkAPI) => {
     let watchlistPromise = [];
 
-    watchlistId.map((id) => {
+    watchlistId.forEach((id) => {
       // create a promise for each api call
       const request = axios.get(`https://api.coingecko.com/api/v3/coins/${id}`);
       watchlistPromise.push(request);
+      return 1;
     });
     const res = await Promise.all(watchlistPromise);
     return res;

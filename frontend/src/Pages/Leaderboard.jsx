@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import React from "react";
 import { motion } from "framer-motion";
 import Loader from "../Components/Loader";
 import Sidebar from "../Components/Sidebar";
 import TabNavigation from "../Components/TabNavigation";
-import { useAuth } from "../Context/AuthContext";
+// import { useAuth } from "../Context/AuthContext";
 import { useGetLeaderboardQuery } from "../services/supabaseApi";
-import { supabase } from "../Utils/init-supabase";
 
 const Leaderboard = () => {
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
 
-  const { data, error, isLoading, isFetching, isSuccess, refetch } = useGetLeaderboardQuery();
+  const {
+    data,
+    error,
+    isLoading,
+    // isFetching,
+    isSuccess
+    // refetch
+  } = useGetLeaderboardQuery();
 
   // useEffect(() => {
   //   async function leaderboard() {

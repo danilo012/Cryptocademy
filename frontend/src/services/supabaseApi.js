@@ -1,4 +1,4 @@
-import { createApi, fakeBaseQuery, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 import axios from "axios";
 import { supabase } from "../Utils/init-supabase";
 
@@ -13,13 +13,13 @@ export const supabaseApi = createApi({
             .from("portfolio")
             .select(
               `
-                        coinId,
-                        coinSymbol,
-                        coinName,
-                        image,
-                        amount,
-                        coinAmount
-                    `
+                coinId,
+                coinSymbol,
+                coinName,
+                image,
+                amount,
+                coinAmount
+              `
             )
             .eq("userId", `${id}`)
             .not("coinId", "eq", "USD");
@@ -46,7 +46,7 @@ export const supabaseApi = createApi({
             const watchlistId = watchlistData.map((item) => item.coinId);
 
             let watchlistPromise = [];
-            watchlistId.map((coinId) => {
+            watchlistId.forEach((coinId) => {
               // create a promise for each api call
               const request = axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}`);
               watchlistPromise.push(request);
@@ -75,7 +75,7 @@ export const supabaseApi = createApi({
             const portfolioId = portfolioData.map((item) => item.coinId);
 
             let portfolioPromise = [];
-            portfolioId.map((coinId) => {
+            portfolioId.forEach((coinId) => {
               // create a promise for each api call
               const request = axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}`);
               portfolioPromise.push(request);
@@ -98,14 +98,13 @@ export const supabaseApi = createApi({
             .from("portfolio")
             .select(
               `
-                        coinId,
-                        coinName,
-                        image,
-                        amount
-                    `
+                coinId,
+                coinName,
+                image,
+                amount
+              `
             )
             .eq("userId", `${id}`);
-
           if (error) {
             throw new Error(error);
           }

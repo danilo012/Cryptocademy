@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGetCoinsDataQuery, useGetGlobalCryptoDataQuery } from "../services/coinsDataApi";
 import ReactPaginate from "react-paginate";
 import { useNavigate } from "react-router";
@@ -14,15 +14,15 @@ const CoinsTable = () => {
 
   const [page, setPage] = useState(1);
 
-  const { data, error, isLoading, isFetching, isSuccess, refetch } = useGetCoinsDataQuery(
+  const { data, error, isLoading, isSuccess } = useGetCoinsDataQuery(
     { currency, page },
     { pollingInterval: 2000 }
   );
 
   const {
     data: globalCryptoData,
-    error: fetchGlobalCryptoError,
-    isLoading: fetchGlobalCryptoLoading,
+    // error: fetchGlobalCryptoError,
+    // isLoading: fetchGlobalCryptoLoading,
     isSuccess: fetchGlobalCryptoSuccess
   } = useGetGlobalCryptoDataQuery();
 
@@ -169,7 +169,7 @@ const CoinsTable = () => {
                 <img
                   className="h-8 w-8 md:h-10 md:w-10 object-contain"
                   src={coins.image}
-                  alt="cryptocurrency image "
+                  alt="cryptocurrency"
                   loading="lazy"
                 />
                 <div>

@@ -1,16 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import Chart from "react-apexcharts";
 import dayjs from "dayjs";
 import { useGetHistoricalDataQuery } from "../services/coinsDataApi";
 import ErrorToast from "./ErrorToast";
-import { BsFillBarChartLineFill } from "react-icons/bs";
 
 const CoinChart = ({ id }) => {
   const [chartDays, setChartDays] = useState("365");
   const [candleStickChart, setCandleStickChart] = useState(true);
   const toastRef = useRef(null);
 
-  const { data, error, isLoading, isFetching, isSuccess, refetch } = useGetHistoricalDataQuery({
+  const { data, error, isLoading, isSuccess } = useGetHistoricalDataQuery({
     id,
     chartDays
   });
@@ -125,11 +124,13 @@ const CoinChart = ({ id }) => {
             <img
               src="https://img.icons8.com/color-glass/96/000000/area-chart.png"
               className="inline-block w-5 h-5 "
+              alt="line chart button"
             />
           ) : (
             <img
               src="https://img.icons8.com/color/48/000000/candle-sticks.png"
               className="inline-block w-5 h-5 "
+              alt="candlestick chart button"
             />
           )}
         </button>
@@ -151,4 +152,4 @@ const CoinChart = ({ id }) => {
   );
 };
 
-export const HistoricalChart = React.memo(CoinChart);
+export const HistoricalChart = memo(CoinChart);

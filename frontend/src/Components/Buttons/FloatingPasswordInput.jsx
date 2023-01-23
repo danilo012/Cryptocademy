@@ -31,6 +31,7 @@ const FloatingPasswordInput = ({ type, id, name, placeholder }) => {
           className="border-b-2 border-gray-300 "
           width={24}
           height={24}
+          alt="Show Password"
         />
       </div>
       <ErrorMessage name={name}>

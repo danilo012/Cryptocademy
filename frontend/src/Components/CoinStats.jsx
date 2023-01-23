@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import usd from "../Assets/svg/USD.svg";
 
 const CoinStats = ({ data }) => {

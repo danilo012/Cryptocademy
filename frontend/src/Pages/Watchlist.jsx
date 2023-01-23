@@ -8,7 +8,7 @@ import { useAuth } from "../Context/AuthContext";
 import { useGetWatchlistDataQuery } from "../services/supabaseApi";
 import { supabase } from "../Utils/init-supabase";
 import {
-  LeadingActions,
+  // LeadingActions,
   SwipeableList,
   SwipeableListItem,
   SwipeAction,
@@ -22,7 +22,10 @@ import emptyWatchlistLogo from "../Assets/svg/emptyWatchlist.svg";
 const trailingActions = (coinId, userId, refetch) => {
   async function handleDelete() {
     try {
-      const { data, error } = await supabase
+      const {
+        // data,
+        error
+      } = await supabase
         .from("watchlist")
         .delete()
         .eq("coinId", `${coinId}`)
