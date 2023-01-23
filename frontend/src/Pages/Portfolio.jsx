@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import Loader from "../Components/Loader";
 import Sidebar from "../Components/Sidebar";
@@ -18,20 +16,19 @@ import { Link } from "react-router-dom";
 const Portfolio = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const {
     data: portfolioData,
     error,
     isLoading,
-    isFetching,
+    // isFetching,
     isSuccess,
     refetch: refetchPortfolioData
   } = useGetPortfolioDataQuery(currentUser.uid);
 
   const {
     data: portfolioCoinData,
-    error: fetchPortfolioCoinDataError,
+    // error: fetchPortfolioCoinDataError,
     isLoading: fetchPortfolioCoinDataLoading,
     isSuccess: fetchPortfolioCoinDataSuccess,
     refetch: refetchPortfolioCoinData
@@ -41,9 +38,9 @@ const Portfolio = () => {
   const {
     data: availableUsdCoins,
     isSuccess: fetchAvailableUsdCoinsSuccess,
-    error: fetchAvailableUsdCoinsError,
-    isLoading: fetchAvailableUsdCoinsLoading,
-    refetch: refetchAvailableCoins
+    // error: fetchAvailableUsdCoinsError,
+    isLoading: fetchAvailableUsdCoinsLoading
+    // refetch: refetchAvailableCoins
   } = useFetchAvailableCoinsQuery(currentUser.uid);
 
   // get coin percentage change
@@ -64,7 +61,7 @@ const Portfolio = () => {
   const {
     data: userNetworth,
     isSuccess: userNetworthSuccess,
-    error: networthError,
+    // error: networthError,
     refetch: refetchNetworth
   } = useGetUserNetworthQuery(currentUser.uid);
 
@@ -170,7 +167,7 @@ const Portfolio = () => {
                       <img
                         className="h-8 w-8 md:h-10 md:w-10 object-contain"
                         src={coin.image}
-                        alt="cryptocurrency image "
+                        alt="cryptocurrency"
                         loading="lazy"
                       />
                       <div>

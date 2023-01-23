@@ -11,16 +11,19 @@ const ResetVirtualBalance = ({ modal, setModal }) => {
     try {
       setResetLoading(true);
       // first delete all the purchased coin in the user account
-      const { data, error: deletePortfolio } = await supabase
-        .from("portfolio")
-        .delete()
-        .eq("userId", `${currentUser.uid}`);
+      const {
+        // data,
+        error: deletePortfolio
+      } = await supabase.from("portfolio").delete().eq("userId", `${currentUser.uid}`);
 
       if (deletePortfolio) {
         throw new Error("Something went wrong!!");
       }
 
-      const { data: addedData, error: addVirtualUsdErr } = await supabase.from("portfolio").insert([
+      const {
+        // data: addedData,
+        error: addVirtualUsdErr
+      } = await supabase.from("portfolio").insert([
         {
           userId: currentUser.uid,
           coinId: "USD",
@@ -80,7 +83,7 @@ const ResetVirtualBalance = ({ modal, setModal }) => {
                 onClick={resetVirtualBalanceHandler}
                 disabled={resetLoading}
                 type="button"
-                className="text-white bg-blue-700  focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
+                className="text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
               >
                 {resetLoading ? `Resetting Account...` : `Reset Account`}
               </button>

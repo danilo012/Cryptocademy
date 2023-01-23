@@ -9,7 +9,6 @@ import {
   updateProfile
 } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
 import { auth } from "../Utils/init-firebase";
 
 // create a context with a placeholder value initially

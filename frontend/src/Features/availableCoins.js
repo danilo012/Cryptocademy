@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import { supabase } from "../Utils/init-supabase";
 const initialState = {
   data: {

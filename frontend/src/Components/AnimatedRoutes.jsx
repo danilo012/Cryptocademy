@@ -1,28 +1,28 @@
-import React from "react";
+import { lazy } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import NotFound404 from "../Pages/NotFound404";
 import ProtectedRoute from "./ProtectedRoute";
-const Login = React.lazy(() => import("../Pages/Login"));
-const Signup = React.lazy(() => import("../Pages/Signup"));
-const ResetPassword = React.lazy(() => import("../Pages/ResetPassword"));
-const CoinMarket = React.lazy(() => import("../Pages/CoinMarket"));
-const News = React.lazy(() => import("../Pages/News"));
-const ForgotPassword = React.lazy(() => import("../Pages/ForgotPassword"));
-const CurrencyDetailsPage = React.lazy(() => import("../Pages/CurrencyDetailsPage"));
-const Watchlist = React.lazy(() => import("../Pages/Watchlist"));
-const Portfolio = React.lazy(() => import("../Pages/Portfolio"));
-const Dashboard = React.lazy(() => import("../Pages/Dashboard"));
-const UserProfile = React.lazy(() => import("../Pages/UserProfile"));
-const Search = React.lazy(() => import("../Pages/Search"));
-const AiPredections = React.lazy(() => import("../Pages/AiPredections"));
-const Learn = React.lazy(() => import("../Pages/Learn"));
-const Leaderboard = React.lazy(() => import("../Pages/Leaderboard"));
-const MoreMobileNavPage = React.lazy(() => import("../Pages/MoreMobileNavPage"));
-const FAQ = React.lazy(() => import("../Pages/FAQ"));
-const GlobalStats = React.lazy(() => import("../Pages/GlobalStats"));
-const VirtualUsdPage = React.lazy(() => import("../Pages/VirtualUsdPage"));
+const Login = lazy(() => import("../Pages/Login"));
+const Signup = lazy(() => import("../Pages/Signup"));
+const ResetPassword = lazy(() => import("../Pages/ResetPassword"));
+const CoinMarket = lazy(() => import("../Pages/CoinMarket"));
+const News = lazy(() => import("../Pages/News"));
+const ForgotPassword = lazy(() => import("../Pages/ForgotPassword"));
+const CurrencyDetailsPage = lazy(() => import("../Pages/CurrencyDetailsPage"));
+const Watchlist = lazy(() => import("../Pages/Watchlist"));
+const Portfolio = lazy(() => import("../Pages/Portfolio"));
+const Dashboard = lazy(() => import("../Pages/Dashboard"));
+const UserProfile = lazy(() => import("../Pages/UserProfile"));
+const Search = lazy(() => import("../Pages/Search"));
+const AiPredections = lazy(() => import("../Pages/AiPredections"));
+const Learn = lazy(() => import("../Pages/Learn"));
+const Leaderboard = lazy(() => import("../Pages/Leaderboard"));
+const MoreMobileNavPage = lazy(() => import("../Pages/MoreMobileNavPage"));
+const FAQ = lazy(() => import("../Pages/FAQ"));
+const GlobalStats = lazy(() => import("../Pages/GlobalStats"));
+const VirtualUsdPage = lazy(() => import("../Pages/VirtualUsdPage"));
 
 const AnimatedRoutes = () => {
   const location = useLocation();

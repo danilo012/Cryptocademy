@@ -1,11 +1,6 @@
 import React from "react";
 import { AiOutlineBarChart, AiOutlineSearch } from "react-icons/ai";
-import {
-  MdOutlineDashboard,
-  MdOutlineMoreHoriz,
-  MdOutlineStarBorder,
-  MdTravelExplore
-} from "react-icons/md";
+import { MdOutlineDashboard, MdOutlineMoreHoriz, MdOutlineStarBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const TabNavigation = () => {

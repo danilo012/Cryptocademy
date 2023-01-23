@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import AnimatedRoutes from "./Components/AnimatedRoutes";
@@ -29,7 +29,7 @@ function App() {
     <div className="App scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 bg-black">
       <BrowserRouter>
         <ScrollToTop />
-        <React.Suspense
+        <Suspense
           fallback={
             <div className="w-screen h-screen bg-black">
               <Loader />
@@ -37,7 +37,7 @@ function App() {
           }
         >
           <AnimatedRoutes />
-        </React.Suspense>
+        </Suspense>
       </BrowserRouter>
     </div>
   );

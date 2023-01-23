@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { useGetTrendingCoinDataQuery } from "../services/coinsDataApi";
@@ -18,11 +17,11 @@ const DesktopDashboard = () => {
   // fetch trending coin data
   const {
     data: trendingCoins,
-    error,
+    // error,
     isLoading,
-    isFetching,
-    isSuccess,
-    refetch
+    // isFetching,
+    isSuccess
+    // refetch
   } = useGetTrendingCoinDataQuery();
 
   // fetch watchlist coin data
@@ -36,15 +35,15 @@ const DesktopDashboard = () => {
   // Get user networth
   const {
     data: userNetworth,
-    isSuccess: userNetworthSuccess,
-    error: networthError
+    isSuccess: userNetworthSuccess
+    // error: networthError
   } = useGetUserNetworthQuery(currentUser.uid);
 
   // get news
   const {
     data: news,
     isSuccess: fetchNewsSuccess,
-    error: fetchNewsError,
+    // error: fetchNewsError,
     isLoading: fetchNewsLoading
   } = useGetNewsQuery();
 
@@ -52,7 +51,7 @@ const DesktopDashboard = () => {
   const {
     data: availableUsdCoins,
     isSuccess: fetchAvailableUsdCoinsSuccess,
-    error: fetchAvailableUsdCoinsError,
+    // error: fetchAvailableUsdCoinsError,
     isLoading: fetchAvailableUsdCoinsLoading,
     refetch: refetchAvailableCoins
   } = useFetchAvailableCoinsQuery(currentUser.uid);
@@ -90,6 +89,7 @@ const DesktopDashboard = () => {
             <img
               className="w-14 h-14"
               src="https://img.icons8.com/offices/80/000000/sim-card-chip.png"
+              alt="card chip"
             />
           </div>
           <div className="pt-1">
@@ -134,7 +134,10 @@ const DesktopDashboard = () => {
             <div>
               <ul>
                 {trendingCoins.coins.map((coin, index) => (
-                  <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                  <li
+                    key={index}
+                    className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 "
+                  >
                     <div className="flex items-center justify-start text-sm space-x-3">
                       <img src={coin.item.large} alt={`${coin.item.name}`} className="w-10 h-10" />
                       <div className="">
@@ -305,7 +308,7 @@ const DesktopDashboard = () => {
                   <img
                     className="object-cover w-16 h-16 rounded-lg shadow-sm"
                     src={news?.image?.thumbnail?.contentUrl || demoImage}
-                    alt="News cover image"
+                    alt="News cover"
                   />
                 </div>
               </div>

@@ -5,12 +5,11 @@ import TabNavigation from "../Components/TabNavigation";
 import PieChart from "../Components/PieChart";
 import { useGetGlobalCryptoDataQuery } from "../services/coinsDataApi";
 import Loader from "../Components/Loader";
-import { Helmet } from "react-helmet";
 
 const GlobalStats = () => {
   const {
     data: globalCryptoData,
-    error: fetchGlobalCryptoError,
+    // error: fetchGlobalCryptoError,
     isLoading: fetchGlobalCryptoLoading,
     isSuccess: fetchGlobalCryptoSuccess
   } = useGetGlobalCryptoDataQuery();

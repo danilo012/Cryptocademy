@@ -60,7 +60,6 @@ const GoogleLoginBtn = () => {
       <button
         onClick={googleSignInHandler}
         aria-label="Continue with google"
-        role="button"
         className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-400 py-3.5 px-4 border rounded-lg border-gray-400 flex items-center w-full mt-10"
       >
         <img src={google} alt="" width={19} height={20} />

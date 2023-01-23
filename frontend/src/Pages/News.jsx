@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import Loader from "../Components/Loader";
 import Sidebar from "../Components/Sidebar";
@@ -65,7 +64,7 @@ const News = () => {
                         <img
                           className="object-cover w-16 h-16 rounded-lg shadow-sm"
                           src={news?.image?.thumbnail?.contentUrl || demoImage}
-                          alt="News cover image"
+                          alt="News cover"
                         />
                       </div>
                     </div>

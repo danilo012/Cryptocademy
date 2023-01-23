@@ -22,7 +22,10 @@ const SellCoins = ({ data, modal, setModal }) => {
     dispatch(fetchAvailableCoins(currentUser.uid));
     // get amount of coin that you have purchased
     async function coinAmount() {
-      let { data: availableCoinAmount, error } = await supabase
+      let {
+        data: availableCoinAmount
+        // , error
+      } = await supabase
         .from("portfolio")
         .select("coinName,coinAmount")
         .eq("userId", `${currentUser.uid}`)
@@ -59,7 +62,10 @@ const SellCoins = ({ data, modal, setModal }) => {
       const portfolioUsdAmount = data.market_data.current_price.usd * (availabeCoinAmt - coinValue);
       const updatedCoinAmount = availabeCoinAmt - coinValue;
 
-      const { data: removefromPortfolio, error: removefromPortfolioError } = await supabase
+      const {
+        // data: removefromPortfolio,
+        error: removefromPortfolioError
+      } = await supabase
         .from("portfolio")
         .update([
           {
@@ -77,7 +83,10 @@ const SellCoins = ({ data, modal, setModal }) => {
       // add the value to virtual usd
       let updatedUsdValue = availableUsdCoins.data.amount + coinUsdPrice;
 
-      let { data: updateUsdCoin, error: updateUsdCoinError } = await supabase
+      let {
+        // data: updateUsdCoin,
+        error: updateUsdCoinError
+      } = await supabase
         .from("portfolio")
         .update({ amount: updatedUsdValue })
         .eq("userId", `${currentUser.uid}`)
@@ -89,7 +98,8 @@ const SellCoins = ({ data, modal, setModal }) => {
 
       // delete the portfolio from db if the coinValue is 0
       if (updatedCoinAmount === 0) {
-        const { data: deleteRow, error: errorRow } = await supabase
+        // const {data: deleteRow, error: errorRow } =
+        await supabase
           .from("portfolio")
           .delete()
           .eq("userId", `${currentUser.uid}`)
