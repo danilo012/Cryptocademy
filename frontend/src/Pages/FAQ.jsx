@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import Sidebar from "../Components/Sidebar";
 import TabNavigation from "../Components/TabNavigation";

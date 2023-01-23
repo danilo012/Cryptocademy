@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
+
 import { coinsDataApi } from "../services/coinsDataApi";
+import { NewsApi } from "../services/NewsApi";
+import { supabaseApi } from "../services/supabaseApi";
+
 import watchlistDataReducer from "../Features/watchlistDataSlice";
 import portfolioDataReducer from "../Features/portfolioDataSlice";
 import availableCoinsReducer from "../Features/availableCoins";
 import userReducer from "../Features/UserSlice";
-import { supabaseApi } from "../services/supabaseApi";
-import { NewsApi } from "../services/NewsApi";
 
 export const store = configureStore({
   reducer: {

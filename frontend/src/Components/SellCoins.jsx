@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { AiOutlineClose } from "react-icons/ai";
 import { BsArrowDownUp } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
+
 import usd from "../Assets/svg/USD.svg";
 import { useAuth } from "../Context/AuthContext";
 import { fetchAvailableCoins } from "../Features/availableCoins";

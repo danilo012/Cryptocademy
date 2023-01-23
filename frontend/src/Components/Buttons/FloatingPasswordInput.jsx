@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { ErrorMessage, Field } from "formik";
+
 import showPassword from "../../Assets/svg/showPassword.svg";
-import React, { useState } from "react";
 
 const FloatingPasswordInput = ({ type, id, name, placeholder }) => {
   const [showPasswordText, setShowPasswordText] = useState(false);

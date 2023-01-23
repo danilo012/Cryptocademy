@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useImperativeHandle } from "react";
+import { useState, forwardRef, useImperativeHandle } from "react";
 
 const SuccessToast = forwardRef(({ message }, ref) => {
   const [showToast, setShowToast] = useState(false);

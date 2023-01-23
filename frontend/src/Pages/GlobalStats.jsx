@@ -1,9 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
+
+import { useGetGlobalCryptoDataQuery } from "../services/coinsDataApi";
+
 import Sidebar from "../Components/Sidebar";
 import TabNavigation from "../Components/TabNavigation";
 import PieChart from "../Components/PieChart";
-import { useGetGlobalCryptoDataQuery } from "../services/coinsDataApi";
 import Loader from "../Components/Loader";
 
 const GlobalStats = () => {

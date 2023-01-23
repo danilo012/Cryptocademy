@@ -1,5 +1,6 @@
-import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 import axios from "axios";
+import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
+
 import { supabase } from "../Utils/init-supabase";
 
 export const supabaseApi = createApi({

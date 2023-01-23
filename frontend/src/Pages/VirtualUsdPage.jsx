@@ -1,10 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet";
-import Sidebar from "../Components/Sidebar";
-import TabNavigation from "../Components/TabNavigation";
+
 import { useAuth } from "../Context/AuthContext";
 import { useFetchAvailableCoinsQuery } from "../services/supabaseApi";
+
+import Sidebar from "../Components/Sidebar";
+import TabNavigation from "../Components/TabNavigation";
 
 const VirtualUsdPage = () => {
   const { currentUser } = useAuth();
@@ -12,10 +13,10 @@ const VirtualUsdPage = () => {
   // get available coins
   const {
     data: availableUsdCoins,
-    isSuccess: fetchAvailableUsdCoinsSuccess,
-    error: fetchAvailableUsdCoinsError,
-    isLoading: fetchAvailableUsdCoinsLoading,
-    refetch: refetchAvailableCoins
+    isSuccess: fetchAvailableUsdCoinsSuccess
+    // error: fetchAvailableUsdCoinsError,
+    // isLoading: fetchAvailableUsdCoinsLoading,
+    // refetch: refetchAvailableCoins
   } = useFetchAvailableCoinsQuery(currentUser.uid);
 
   return (

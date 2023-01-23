@@ -1,14 +1,15 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import FloatingInput from "../Components/Buttons/FloatingInput";
+
 import { useAuth } from "../Context/AuthContext";
+
+import FloatingInput from "../Components/Buttons/FloatingInput";
 import ErrorToast from "../Components/ErrorToast";
 import SuccessToast from "../Components/SuccessToast";
 import FormAppInfo from "../Components/FormAppInfo";
-import { Helmet } from "react-helmet";
 
 const initialValues = {
   email: ""
@@ -20,7 +21,7 @@ const validationSchema = Yup.object().shape({
 
 function ForgotPassword() {
   const { forgotPassword } = useAuth();
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
 
   const errorToastRef = useRef(null);
   const successToastRef = useRef(null);

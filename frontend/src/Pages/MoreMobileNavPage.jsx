@@ -1,15 +1,16 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { RWebShare } from "react-web-share";
-import { Helmet } from "react-helmet";
-import { AiOutlineRight } from "react-icons/ai";
-import { BsBank, BsFillBarChartFill, BsGlobe2 } from "react-icons/bs";
-import { MdOutlineWatchLater } from "react-icons/md";
 import { Link } from "react-router-dom";
+
+import { BsBank, BsFillBarChartFill, BsGlobe2 } from "react-icons/bs";
+import { AiOutlineRight } from "react-icons/ai";
+import { MdOutlineWatchLater } from "react-icons/md";
+import { HiAcademicCap } from "react-icons/hi";
+
+import { useAuth } from "../Context/AuthContext";
+
 import Sidebar from "../Components/Sidebar";
 import TabNavigation from "../Components/TabNavigation";
-import { useAuth } from "../Context/AuthContext";
-import { HiAcademicCap } from "react-icons/hi";
 
 const MoreMobileNavPage = () => {
   const { currentUser } = useAuth();

@@ -1,6 +1,7 @@
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
-import { db } from "../Utils/init-firebase";
 import { collection, getDocs } from "firebase/firestore";
+
+import { db } from "../Utils/init-firebase";
 
 export const NewsApi = createApi({
   reducerPath: "NewsApi",

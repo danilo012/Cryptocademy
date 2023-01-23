@@ -1,3 +1,4 @@
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -8,7 +9,7 @@ import {
   sendPasswordResetEmail,
   updateProfile
 } from "firebase/auth";
-import { createContext, useContext, useEffect, useState } from "react";
+
 import { auth } from "../Utils/init-firebase";
 
 // create a context with a placeholder value initially

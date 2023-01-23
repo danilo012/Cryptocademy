@@ -1,4 +1,3 @@
-import React from "react";
 import twitter from "../../Assets/svg/twitter.svg";
 
 const TwitterLoginBtn = () => {

@@ -1,12 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
-import Loader from "../Components/Loader";
-import Sidebar from "../Components/Sidebar";
-import TabNavigation from "../Components/TabNavigation";
-import { useAuth } from "../Context/AuthContext";
-import { useGetWatchlistDataQuery } from "../services/supabaseApi";
-import { supabase } from "../Utils/init-supabase";
 import {
   // LeadingActions,
   SwipeableList,
@@ -17,7 +11,16 @@ import {
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
 import { Link } from "react-router-dom";
+
+import { useAuth } from "../Context/AuthContext";
+import { supabase } from "../Utils/init-supabase";
+import { useGetWatchlistDataQuery } from "../services/supabaseApi";
+
 import emptyWatchlistLogo from "../Assets/svg/emptyWatchlist.svg";
+
+import Loader from "../Components/Loader";
+import Sidebar from "../Components/Sidebar";
+import TabNavigation from "../Components/TabNavigation";
 
 const trailingActions = (coinId, userId, refetch) => {
   async function handleDelete() {

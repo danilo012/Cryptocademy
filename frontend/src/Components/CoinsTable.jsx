@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { useGetCoinsDataQuery, useGetGlobalCryptoDataQuery } from "../services/coinsDataApi";
 import ReactPaginate from "react-paginate";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+
+import { useGetCoinsDataQuery, useGetGlobalCryptoDataQuery } from "../services/coinsDataApi";
 import ErrorToast from "./ErrorToast";
 import Loader from "./Loader";
-import { Link } from "react-router-dom";
 
 const CoinsTable = () => {
   const navigate = useNavigate();

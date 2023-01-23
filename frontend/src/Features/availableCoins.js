@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { supabase } from "../Utils/init-supabase";
+
 const initialState = {
   data: {
     coinId: "USD",

@@ -1,18 +1,18 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-import GoogleLoginBtn from "../Components/Buttons/GoogleLoginBtn";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { getAdditionalUserInfo } from "firebase/auth";
+
+import { useAuth } from "../Context/AuthContext";
+import { supabase } from "../Utils/init-supabase";
+
 import FloatingInput from "../Components/Buttons/FloatingInput";
 import FloatingPasswordInput from "../Components/Buttons/FloatingPasswordInput";
-import { useAuth } from "../Context/AuthContext";
 import ErrorToast from "../Components/ErrorToast";
 import FormAppInfo from "../Components/FormAppInfo";
-import { useSelector } from "react-redux";
-import { supabase } from "../Utils/init-supabase";
-import { getAdditionalUserInfo } from "firebase/auth";
-import { Helmet } from "react-helmet";
+// import GoogleLoginBtn from "../Components/Buttons/GoogleLoginBtn";
 
 const initialValues = {
   username: "",

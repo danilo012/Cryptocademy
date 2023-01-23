@@ -8,9 +8,10 @@ import {
   AiOutlineSearch,
   AiFillQuestionCircle
 } from "react-icons/ai";
-import { useAuth } from "../Context/AuthContext";
 import { BsFillBarChartFill } from "react-icons/bs";
+
 import logo from "../Assets/svg/cryptocademy-logo-sideways-light.svg";
+import { useAuth } from "../Context/AuthContext";
 
 const Sidebar = ({ openSidebar, active }) => {
   const { currentUser } = useAuth();

@@ -1,4 +1,3 @@
-import React from "react";
 import github from "../../Assets/svg/github.svg";
 
 const GithubLoginBtn = () => {
