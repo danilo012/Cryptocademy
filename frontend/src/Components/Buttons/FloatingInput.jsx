@@ -1,5 +1,4 @@
 import { ErrorMessage, Field } from "formik";
-import React from "react";
 
 const FloatingInput = ({ type, id, name, placeholder }) => {
   return (

@@ -1,10 +1,12 @@
-import React, { useRef, useState } from "react";
-import google from "../../Assets/svg/google.svg";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../Context/AuthContext";
-import ErrorToast from "../ErrorToast";
-import { supabase } from "../../Utils/init-supabase";
 import { getAdditionalUserInfo } from "firebase/auth";
+
+import google from "../../Assets/svg/google.svg";
+import { useAuth } from "../../Context/AuthContext";
+import { supabase } from "../../Utils/init-supabase";
+
+import ErrorToast from "../ErrorToast";
 
 const GoogleLoginBtn = () => {
   const { signInWithGoogle } = useAuth();

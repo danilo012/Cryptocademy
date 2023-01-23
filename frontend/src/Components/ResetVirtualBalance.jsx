@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import { supabase } from "../Utils/init-supabase";
+
 import { useAuth } from "../Context/AuthContext";
+import { supabase } from "../Utils/init-supabase";
 
 const ResetVirtualBalance = ({ modal, setModal }) => {
   const { currentUser } = useAuth();

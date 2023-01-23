@@ -1,6 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate, useParams } from "react-router";
+import { Link } from "react-router-dom";
+
+import { useAuth } from "../Context/AuthContext";
+import { supabase } from "../Utils/init-supabase";
+
 import Sidebar from "../Components/Sidebar";
 import TabNavigation from "../Components/TabNavigation";
 import { useGetCoinDataQuery } from "../services/coinsDataApi";
@@ -9,9 +14,6 @@ import BuyCoins from "../Components/BuyCoins";
 import CoinStats from "../Components/CoinStats";
 import ErrorToast from "../Components/ErrorToast";
 import Loader from "../Components/Loader";
-import { Link } from "react-router-dom";
-import { useAuth } from "../Context/AuthContext";
-import { supabase } from "../Utils/init-supabase";
 import SellCoins from "../Components/SellCoins";
 
 const CurrencyDetailsPage = () => {

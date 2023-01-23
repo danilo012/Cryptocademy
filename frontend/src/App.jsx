@@ -1,10 +1,12 @@
 import { Suspense, useEffect } from "react";
-import "./App.css";
 import { BrowserRouter } from "react-router-dom";
+import { PushNotifications } from "@capacitor/push-notifications";
+
+import "./App.css";
+
+import Loader from "./Components/Loader";
 import AnimatedRoutes from "./Components/AnimatedRoutes";
 import ScrollToTop from "./Components/ScrollToTop";
-import Loader from "./Components/Loader";
-import { PushNotifications } from "@capacitor/push-notifications";
 
 function App() {
   useEffect(() => {

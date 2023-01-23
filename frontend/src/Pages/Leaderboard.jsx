@@ -1,10 +1,11 @@
-import React from "react";
 import { motion } from "framer-motion";
+
+// import { useAuth } from "../Context/AuthContext";
+import { useGetLeaderboardQuery } from "../services/supabaseApi";
+
 import Loader from "../Components/Loader";
 import Sidebar from "../Components/Sidebar";
 import TabNavigation from "../Components/TabNavigation";
-// import { useAuth } from "../Context/AuthContext";
-import { useGetLeaderboardQuery } from "../services/supabaseApi";
 
 const Leaderboard = () => {
   // const { currentUser } = useAuth();

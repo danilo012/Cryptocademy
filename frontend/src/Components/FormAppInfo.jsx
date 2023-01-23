@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "../Assets/svg/cryptocademy-logo-sideways-light.svg";
 
 const FormAppInfo = () => {

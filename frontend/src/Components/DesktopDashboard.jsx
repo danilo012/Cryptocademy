@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+
 import { useAuth } from "../Context/AuthContext";
 import { useGetTrendingCoinDataQuery } from "../services/coinsDataApi";
 import { useGetNewsQuery } from "../services/NewsApi";
@@ -9,6 +10,7 @@ import {
   useGetUserNetworthQuery,
   useGetWatchlistDataQuery
 } from "../services/supabaseApi";
+
 import Loader from "./Loader";
 
 const DesktopDashboard = () => {

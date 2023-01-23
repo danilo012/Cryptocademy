@@ -1,13 +1,14 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { useAuth } from "../Context/AuthContext";
-import Logout from "../Components/Buttons/Logout";
+import { Helmet } from "react-helmet";
+
+// import { useAuth } from "../Context/AuthContext";
+
 import Sidebar from "../Components/Sidebar";
 import TabNavigation from "../Components/TabNavigation";
 import CoinsTable from "../Components/CoinsTable";
-import { Helmet } from "react-helmet";
+
 const CoinMarket = () => {
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
   return (
     <div className="bg-black">
       <Helmet>

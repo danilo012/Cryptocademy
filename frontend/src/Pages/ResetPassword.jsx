@@ -1,14 +1,13 @@
-import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
-import GoogleLoginBtn from "../Components/Buttons/GoogleLoginBtn";
+import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+
 import FloatingInput from "../Components/Buttons/FloatingInput";
 import FloatingPasswordInput from "../Components/Buttons/FloatingPasswordInput";
-import TwitterLoginBtn from "../Components/Buttons/TwitterLoginBtn";
-import GithubLoginBtn from "../Components/Buttons/GithubLoginBtn";
-import { Helmet } from "react-helmet";
+// import GoogleLoginBtn from "../Components/Buttons/GoogleLoginBtn";
+// import TwitterLoginBtn from "../Components/Buttons/TwitterLoginBtn";
+// import GithubLoginBtn from "../Components/Buttons/GithubLoginBtn";
 
 const initialValues = {
   email: "",

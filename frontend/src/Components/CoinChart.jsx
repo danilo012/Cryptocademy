@@ -1,6 +1,7 @@
 import { memo, useEffect, useRef, useState } from "react";
 import Chart from "react-apexcharts";
 import dayjs from "dayjs";
+
 import { useGetHistoricalDataQuery } from "../services/coinsDataApi";
 import ErrorToast from "./ErrorToast";
 
