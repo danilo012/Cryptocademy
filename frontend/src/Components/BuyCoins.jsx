@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsArrowDownUp } from "react-icons/bs";
 
-import { supabase } from "../Utils/init-supabase";
 import usd from "../Assets/svg/USD.svg";
 import { useAuth } from "../Context/AuthContext";
+import { supabase } from "../Utils/init-supabase";
 import { fetchAvailableCoins } from "../Features/availableCoins";
 
 const BuyCoins = ({ data, modal, setModal }) => {

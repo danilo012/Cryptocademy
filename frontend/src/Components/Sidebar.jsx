@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import { HiAcademicCap } from "react-icons/hi";
 import { MdOutlineBusinessCenter, MdOutlineWatchLater, MdTravelExplore } from "react-icons/md";
 import {
@@ -11,6 +12,7 @@ import {
 import { BsFillBarChartFill } from "react-icons/bs";
 
 import logo from "../Assets/svg/cryptocademy-logo-sideways-light.svg";
+
 import { useAuth } from "../Context/AuthContext";
 
 const Sidebar = ({ openSidebar, active }) => {

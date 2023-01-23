@@ -12,11 +12,11 @@ import {
 import "react-swipeable-list/dist/styles.css";
 import { Link } from "react-router-dom";
 
+import emptyWatchlistLogo from "../Assets/svg/emptyWatchlist.svg";
+
 import { useAuth } from "../Context/AuthContext";
 import { supabase } from "../Utils/init-supabase";
 import { useGetWatchlistDataQuery } from "../services/supabaseApi";
-
-import emptyWatchlistLogo from "../Assets/svg/emptyWatchlist.svg";
 
 import Loader from "../Components/Loader";
 import Sidebar from "../Components/Sidebar";

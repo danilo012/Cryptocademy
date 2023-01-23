@@ -5,9 +5,10 @@ import { AiOutlineClose } from "react-icons/ai";
 import { BsArrowDownUp } from "react-icons/bs";
 
 import usd from "../Assets/svg/USD.svg";
+
 import { useAuth } from "../Context/AuthContext";
-import { fetchAvailableCoins } from "../Features/availableCoins";
 import { supabase } from "../Utils/init-supabase";
+import { fetchAvailableCoins } from "../Features/availableCoins";
 
 const SellCoins = ({ data, modal, setModal }) => {
   const { currentUser } = useAuth();
