@@ -7,8 +7,12 @@ import "./App.css";
 import Loader from "./Components/Loader";
 import AnimatedRoutes from "./Components/AnimatedRoutes";
 import ScrollToTop from "./Components/ScrollToTop";
+import Sidebar from "./Components/Sidebar";
+import TabNavigation from "./Components/TabNavigation";
 
 function App() {
+  console.log(window.location.pathname.includes("/app", 0));
+
   useEffect(() => {
     const registerNotifications = async () => {
       let permStatus = await PushNotifications.checkPermissions();
@@ -33,9 +37,28 @@ function App() {
         <ScrollToTop />
         <Suspense
           fallback={
-            <div className="w-screen h-screen bg-black">
-              <Loader />
-            </div>
+            <>
+              {/* {window?.location?.pathname?.includes("/app", 0) ? (
+                <div className="bg-black ">
+                  <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
+                    <Sidebar active={`home`} />
+                    <div className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black text-white text-4xl">
+                      <div className="z-10">
+                        <Loader />
+                      </div>
+                    </div>
+                  </div>
+                  <TabNavigation />
+                </div>
+              ) : (
+                <div className="w-screen h-screen bg-black">
+                  <Loader />
+                </div>
+              )} */}
+              <div className="w-screen h-screen bg-black">
+                <Loader />
+              </div>
+            </>
           }
         >
           <AnimatedRoutes />

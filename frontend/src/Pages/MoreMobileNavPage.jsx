@@ -36,13 +36,7 @@ const MoreMobileNavPage = () => {
               <div>
                 <h2 className="text-lg font-semibold text-white">{currentUser.displayName}</h2>
                 <span className="flex items-center space-x-1">
-                  <a
-                    rel="noopener noreferrer"
-                    href="#"
-                    className="text-xs hover:underline dark:text-gray-400"
-                  >
-                    View profile
-                  </a>
+                  <p className="text-xs hover:underline dark:text-gray-400">View profile</p>
                 </span>
               </div>
             </div>
@@ -101,7 +95,10 @@ const MoreMobileNavPage = () => {
               rel="noreferrer"
               className=""
             >
-              <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=narottam&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" />
+              <img
+                src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=narottam&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff"
+                alt="Support Cryptocademy"
+              />
             </a>
           </div>
 

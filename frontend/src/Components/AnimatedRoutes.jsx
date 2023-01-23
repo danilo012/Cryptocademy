@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 
 import NotFound404 from "../Pages/NotFound404";
 import ProtectedRoute from "./ProtectedRoute";
+import SidebarLayout from "../Pages/SidebarLayout";
 const Login = lazy(() => import("../Pages/Login"));
 const Signup = lazy(() => import("../Pages/Signup"));
 const ResetPassword = lazy(() => import("../Pages/ResetPassword"));
@@ -31,6 +32,29 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Login />} />
         <Route
+          element={
+            <ProtectedRoute>
+              <SidebarLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="/app" element={<Dashboard />} />
+          <Route path="/app/market" element={<CoinMarket />} />
+          <Route path="/app/search" element={<Search />} />
+          <Route path="/app/leaderboard" element={<Leaderboard />} />
+          <Route path="/app/ai" element={<AiPredections />} />
+          <Route path="/app/coin/USD" element={<VirtualUsdPage />} />
+          <Route path="/app/coin/:id" element={<CurrencyDetailsPage />} />
+          <Route path="/app/news" element={<News />} />
+          <Route path="/app/watchlist" element={<Watchlist />} />
+          <Route path="/app/portfolio" element={<Portfolio />} />
+          <Route path="/app/learn" element={<Learn />} />
+          <Route path="/app/profile" element={<UserProfile />} />
+          <Route path="/app/more" element={<MoreMobileNavPage />} />
+          <Route path="/app/faq" element={<FAQ />} />
+          <Route path="/app/market/globalStats" element={<GlobalStats />} />
+        </Route>
+        {/* <Route
           path="/app"
           element={
             <ProtectedRoute>
@@ -149,7 +173,7 @@ const AnimatedRoutes = () => {
               <GlobalStats />
             </ProtectedRoute>
           }
-        />
+        /> */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
