@@ -1,20 +1,22 @@
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { lazy, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../Context/AuthContext";
 import { supabase } from "../Utils/init-supabase";
 
-import Sidebar from "../Components/Sidebar";
-import TabNavigation from "../Components/TabNavigation";
 import { useGetCoinDataQuery } from "../services/coinsDataApi";
+
 import { HistoricalChart } from "../Components/CoinChart";
-import BuyCoins from "../Components/BuyCoins";
-import CoinStats from "../Components/CoinStats";
 import ErrorToast from "../Components/ErrorToast";
 import Loader from "../Components/Loader";
-import SellCoins from "../Components/SellCoins";
+
+// import BuyCoins from "../Components/BuyCoins";
+// import SellCoins from "../Components/SellCoins";
+// import CoinStats from "../Components/CoinStats";
+const BuyCoins = lazy(() => import("../Components/BuyCoins"));
+const SellCoins = lazy(() => import("../Components/SellCoins"));
+const CoinStats = lazy(() => import("../Components/CoinStats"));
 
 const CurrencyDetailsPage = () => {
   const { id } = useParams();

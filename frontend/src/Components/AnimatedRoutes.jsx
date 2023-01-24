@@ -1,4 +1,3 @@
-import { lazy } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Route, Routes, useLocation } from "react-router-dom";
 

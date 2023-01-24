@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { lazy, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../Context/AuthContext";
@@ -10,8 +10,10 @@ import {
   useGetWatchlistDataQuery
 } from "../services/supabaseApi";
 
-import Logout from "../Components/Buttons/Logout";
-import ResetVirtualBalance from "../Components/ResetVirtualBalance";
+// import Logout from "../Components/Buttons/Logout";
+// import ResetVirtualBalance from "../Components/ResetVirtualBalance";
+const Logout = lazy(() => import("../Components/Buttons/Logout"));
+const ResetVirtualBalance = lazy(() => import("../Components/ResetVirtualBalance"));
 
 const UserProfile = () => {
   const { currentUser } = useAuth();
