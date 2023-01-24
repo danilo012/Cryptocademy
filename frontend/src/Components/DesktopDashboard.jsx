@@ -183,32 +183,31 @@ const DesktopDashboard = () => {
             ) : (
               fetchWatchlistSuccess &&
               watchlistData.slice(0, 7).map((coin, index) => (
-                <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                <li
+                  key={index}
+                  className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 "
+                >
                   <div className="flex items-center justify-start text-sm space-x-3">
-                    <img
-                      src={coin.data.image.large}
-                      alt={`${coin.data.name}`}
-                      className="w-10 h-10"
-                    />
+                    <img src={coin.image.large} alt={`${coin.name}`} className="w-10 h-10" />
                     <div className="">
-                      <p className="text-white text-xl font-bold ">{coin.data.name}</p>
-                      <p className="text-white uppercase text-sm">{coin.data.symbol}</p>
+                      <p className="text-white text-xl font-bold ">{coin.name}</p>
+                      <p className="text-white uppercase text-sm">{coin.symbol}</p>
                     </div>
                   </div>
                   <div className="">
                     <p className="text-white font-medium">
-                      ${coin.data.market_data.current_price.usd}
+                      ${coin.market_data.current_price.usd}
                       <br />
                     </p>
                     <p
                       className={`text-right ${
-                        coin.data?.market_data.price_change_percentage_24h >= 0
+                        coin?.market_data.price_change_percentage_24h >= 0
                           ? "text-green-400"
                           : "text-red-400"
                       } font-semibold`}
                     >
-                      {coin.data?.market_data.price_change_percentage_24h >= 0 && "+"}
-                      {coin.data?.market_data.price_change_percentage_24h?.toFixed(2)}%
+                      {coin?.market_data.price_change_percentage_24h >= 0 && "+"}
+                      {coin?.market_data.price_change_percentage_24h?.toFixed(2)}%
                     </p>
                   </div>
                 </li>

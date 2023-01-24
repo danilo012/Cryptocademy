@@ -62,8 +62,8 @@ const CoinsTable = () => {
       {isLoading && <Loader />}
       {error && <ErrorToast message="Something Went Wrong!" ref={toastRef} />}
       {fetchGlobalCryptoSuccess && (
-        <div className="carousel carousel-center p-4 space-x-4 rounded-box w-screen max-w-md md:max-w-full lg:flex-wrap  ">
-          <div className="carousel-item">
+        <div className="no-scrollbar flex  p-4 space-x-4 rounded-box w-screen overflow-scroll max-w-md md:max-w-full lg:flex-wrap">
+          <div className="">
             <div className="  bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative">
               <img
                 src="https://img.icons8.com/clouds/200/000000/bitcoin.png"
@@ -83,7 +83,7 @@ const CoinsTable = () => {
             </div>
           </div>
 
-          <div className="carousel-item">
+          <div className="">
             <div className="  bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative">
               <img
                 src="https://img.clankapp.com/symbol/btc.svg"
@@ -103,7 +103,7 @@ const CoinsTable = () => {
             </div>
           </div>
 
-          <div className="carousel-item">
+          <div className="">
             <div className=" bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative">
               <img
                 src="https://img.icons8.com/fluency/96/000000/bullish.png"

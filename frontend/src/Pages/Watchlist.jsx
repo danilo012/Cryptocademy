@@ -143,7 +143,7 @@ const Watchlist = () => {
             watchlistData.length !== 0 &&
             watchlistData.map((coin, index) => (
               <SwipeableListItem
-                trailingActions={trailingActions(coin.data.id, currentUser.uid, refetch)}
+                trailingActions={trailingActions(coin.id, currentUser.uid, refetch)}
                 key={index}
               >
                 <div className="grid grid-cols-2 md:grid-cols-4 text-gray-500 py-2 px-1md:px-5 hover:bg-gray-900 rounded-lg cursor-pointer border-b-2 border-gray-800 xl:w-full">
@@ -151,50 +151,50 @@ const Watchlist = () => {
                     <p className="pl-1">{index + 1}</p>
                     <img
                       className="h-8 w-8 md:h-10 md:w-10 object-contain"
-                      src={coin.data.image.small}
+                      src={coin.image.small}
                       alt="cryptocurrency"
                       loading="lazy"
                     />
                     <div>
-                      <p className=" w-64 truncate text-white break-words">{coin.data.name}</p>
+                      <p className=" w-64 truncate text-white break-words">{coin.name}</p>
                       <div className="flex space-x-1">
-                        <p>{coin.data.symbol}</p>
+                        <p>{coin.symbol}</p>
                         <p
                           className={`md:hidden w-24 md:w-40 ${
-                            coin.data?.market_data.price_change_percentage_24h >= 0
+                            coin?.market_data.price_change_percentage_24h >= 0
                               ? "text-green-400"
                               : "text-red-400"
                           } font-semibold`}
                         >
-                          {coin.data?.market_data.price_change_percentage_24h >= 0 && "+"}
-                          {coin.data?.market_data.price_change_percentage_24h?.toFixed(2)}%
+                          {coin?.market_data.price_change_percentage_24h >= 0 && "+"}
+                          {coin?.market_data.price_change_percentage_24h?.toFixed(2)}%
                         </p>
                       </div>
                     </div>
                   </div>
                   <div className="flex items-center justify-end ml-auto md:ml-0 ">
                     <p className="w-28 md:w-40 text-white font-medium">
-                      ${coin.data?.market_data.current_price.usd}
+                      ${coin?.market_data.current_price.usd}
                       <br />
                       <span className="md:hidden w-28 md:w-40 text-gray-500">
-                        MCap: {normalizeMarketCap(coin.data?.market_data.market_cap.usd)}
+                        MCap: {normalizeMarketCap(coin?.market_data.market_cap.usd)}
                       </span>
                     </p>
                   </div>
                   <div className="hidden md:flex items-center justify-end ml-auto md:ml-0 ">
                     <p
                       className={`w-24 md:w-40 ${
-                        coin.data?.market_data.price_change_percentage_24h >= 0
+                        coin?.market_data.price_change_percentage_24h >= 0
                           ? "text-green-400"
                           : "text-red-400"
                       } font-semibold`}
                     >
-                      {coin.data?.market_data.price_change_percentage_24h >= 0 && "+"}
-                      {coin.data?.market_data.price_change_percentage_24h?.toFixed(2)}%
+                      {coin?.market_data.price_change_percentage_24h >= 0 && "+"}
+                      {coin?.market_data.price_change_percentage_24h?.toFixed(2)}%
                     </p>
                   </div>
                   <div className="hidden md:flex items-center justify-end ml-auto md:ml-0 ">
-                    <p className="w-24 md:w-40  ">${coin.data?.market_data.market_cap.usd}</p>
+                    <p className="w-24 md:w-40  ">${coin?.market_data.market_cap.usd}</p>
                   </div>
                 </div>
               </SwipeableListItem>

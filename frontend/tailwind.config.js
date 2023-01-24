@@ -1,14 +1,7 @@
 module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {}
   },
-  plugins: [
-    require('@tailwindcss/line-clamp'),
-    require("daisyui"),
-    require('tailwind-scrollbar'),
-  ],
-}
+  plugins: [require("@tailwindcss/line-clamp"), require("tailwind-scrollbar")]
+};

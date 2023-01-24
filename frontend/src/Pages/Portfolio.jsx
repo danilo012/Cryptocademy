@@ -46,10 +46,10 @@ const Portfolio = () => {
 
   // get coin percentage change
   function percentageChange(coinId, coinAmount, amount) {
-    const coinData = portfolioCoinData.filter((coin) => coin.data.id === coinId);
+    const coinData = portfolioCoinData.filter((coin) => coin.id === coinId);
 
     if (coinData.length !== 0) {
-      const currentCoinPrice = coinData[0].data?.market_data.current_price.usd;
+      const currentCoinPrice = coinData[0]?.market_data.current_price.usd;
       const oneCoinAmount = amount / coinAmount;
       const coinPercentageChange = ((currentCoinPrice - oneCoinAmount) / currentCoinPrice) * 100;
 
@@ -78,8 +78,8 @@ const Portfolio = () => {
       {(isLoading || fetchPortfolioCoinDataLoading || fetchAvailableUsdCoinsLoading) && <Loader />}
       {error && <p className="text-red-400 text-xl">Something went wrong!</p>}
       {/* available coin and networth */}
-      <div className="carousel carousel-center p-4 space-x-4 rounded-box w-screen max-w-md md:max-w-full lg:flex-wrap  ">
-        <div className="carousel-item">
+      <div className="no-scrollbar flex  p-4 space-x-4 rounded-box w-screen max-w-md md:max-w-full lg:flex-wrap  ">
+        <div className="">
           <div className="  bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative mx-3 mt-1 ">
             <img
               src="https://img.icons8.com/clouds/200/000000/bitcoin.png"
@@ -91,15 +91,15 @@ const Portfolio = () => {
                 <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
                   Virtual USD
                 </dt>
-                <dd className="mt-1 text-xl leading-9 font-semibold text-gray-200">
+                <div className="mt-1 text-xl leading-9 font-semibold text-gray-200">
                   ${fetchAvailableUsdCoinsSuccess && availableUsdCoins[0]?.amount}
-                </dd>
+                </div>
               </dl>
             </div>
           </div>
         </div>
 
-        <div className="carousel-item">
+        <div className="">
           <div className="  bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative mx-3 mt-1 ">
             <img
               src="https://img.icons8.com/fluency/96/000000/bullish.png"
