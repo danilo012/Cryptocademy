@@ -78,7 +78,7 @@ const Portfolio = () => {
       {(isLoading || fetchPortfolioCoinDataLoading || fetchAvailableUsdCoinsLoading) && <Loader />}
       {error && <p className="text-red-400 text-xl">Something went wrong!</p>}
       {/* available coin and networth */}
-      <div className="no-scrollbar flex  p-4 space-x-4 rounded-box w-screen max-w-md md:max-w-full lg:flex-wrap  ">
+      <div className="no-scrollbar flex overflow-scroll  p-4  rounded-box w-screen max-w-md md:max-w-full lg:flex-wrap  ">
         <div className="">
           <div className="  bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative mx-3 mt-1 ">
             <img
