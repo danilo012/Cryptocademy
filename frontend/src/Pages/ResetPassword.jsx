@@ -47,6 +47,7 @@ function ResetPassword() {
                 <img
                   src="https://img.icons8.com/ios-filled/50/000000/circled-left-2.png"
                   className="mb-6"
+                  alt="go back"
                 />
               </Link>
               <h2 className="font-merriweather mt-6 text-3xl font-bold"> Reset Password </h2>
@@ -91,10 +92,10 @@ function ResetPassword() {
                   </Form>
                 </Formik>
                 <Link to="/signup" className="text-md my-8 flex justify-center">
-                  <a href="#" className="font-medium text-blue-400 hover:text-blue-500">
+                  <p className="font-medium text-blue-400 hover:text-blue-500">
                     {" "}
                     Create a new account? signup{" "}
-                  </a>
+                  </p>
                 </Link>
               </div>
             </div>
@@ -104,7 +105,7 @@ function ResetPassword() {
           <img
             className="absolute inset-0 object-cover w-full h-full"
             src="https://source.unsplash.com/P9LTNN1GJqk"
-            alt="cover-image"
+            alt="cover"
           />
         </div>
       </div>
