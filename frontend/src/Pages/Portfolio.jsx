@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
@@ -14,8 +13,6 @@ import {
 import emptyWatchlistLogo from "../Assets/svg/emptyWatchlist.svg";
 
 import Loader from "../Components/Loader";
-import Sidebar from "../Components/Sidebar";
-import TabNavigation from "../Components/TabNavigation";
 
 const Portfolio = () => {
   const { currentUser } = useAuth();

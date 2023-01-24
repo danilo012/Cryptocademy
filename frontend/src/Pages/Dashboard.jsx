@@ -1,4 +1,7 @@
-import DesktopDashboard from "../Components/DesktopDashboard";
+import { lazy } from "react";
+
+// import DesktopDashboard from "../Components/DesktopDashboard";
+const DesktopDashboard = lazy(() => import("../Components/DesktopDashboard"));
 
 const Dashboard = () => {
   return (

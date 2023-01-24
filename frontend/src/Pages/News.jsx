@@ -1,11 +1,8 @@
 import { useEffect } from "react";
-import { motion } from "framer-motion";
 
 import { useGetNewsQuery } from "../services/NewsApi";
 
 import Loader from "../Components/Loader";
-import Sidebar from "../Components/Sidebar";
-import TabNavigation from "../Components/TabNavigation";
 
 const News = () => {
   const demoImage = "https://source.unsplash.com/fsSGgTBoX9Y";

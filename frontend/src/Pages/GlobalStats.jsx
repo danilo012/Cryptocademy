@@ -1,12 +1,10 @@
-import React from "react";
-import { motion } from "framer-motion";
+import { lazy } from "react";
 
 import { useGetGlobalCryptoDataQuery } from "../services/coinsDataApi";
 
-import Sidebar from "../Components/Sidebar";
-import TabNavigation from "../Components/TabNavigation";
-import PieChart from "../Components/PieChart";
 import Loader from "../Components/Loader";
+// import PieChart from "../Components/PieChart";
+const PieChart = lazy(() => import("../Components/PieChart"));
 
 const GlobalStats = () => {
   const {

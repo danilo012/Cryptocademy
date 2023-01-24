@@ -1,6 +1,4 @@
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router";
+import { useEffect } from "react";
 import {
   // LeadingActions,
   SwipeableList,
@@ -19,8 +17,6 @@ import { supabase } from "../Utils/init-supabase";
 import { useGetWatchlistDataQuery } from "../services/supabaseApi";
 
 import Loader from "../Components/Loader";
-import Sidebar from "../Components/Sidebar";
-import TabNavigation from "../Components/TabNavigation";
 
 const trailingActions = (coinId, userId, refetch) => {
   async function handleDelete() {
@@ -58,16 +54,14 @@ const trailingActions = (coinId, userId, refetch) => {
 };
 
 const Watchlist = () => {
-  const navigate = useNavigate();
   const { currentUser } = useAuth();
-  const toastRef = useRef(null);
 
   // fetch watchlist coin data
   const {
     data: watchlistData,
     error,
     isLoading,
-    isFetching,
+    // isFetching,
     isSuccess,
     refetch
   } = useGetWatchlistDataQuery(currentUser.uid);

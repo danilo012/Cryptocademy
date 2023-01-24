@@ -1,18 +1,13 @@
-import { Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { PushNotifications } from "@capacitor/push-notifications";
 
 import "./App.css";
 
-import Loader from "./Components/Loader";
 import AnimatedRoutes from "./Components/AnimatedRoutes";
 import ScrollToTop from "./Components/ScrollToTop";
-import Sidebar from "./Components/Sidebar";
-import TabNavigation from "./Components/TabNavigation";
 
 function App() {
-  console.log(window.location.pathname.includes("/app", 0));
-
   useEffect(() => {
     const registerNotifications = async () => {
       let permStatus = await PushNotifications.checkPermissions();
@@ -35,10 +30,10 @@ function App() {
     <div className="App scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 bg-black">
       <BrowserRouter>
         <ScrollToTop />
-        <Suspense
+        {/* <Suspense
           fallback={
             <>
-              {/* {window?.location?.pathname?.includes("/app", 0) ? (
+              {window?.location?.pathname?.includes("/app", 0) ? (
                 <div className="bg-black ">
                   <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
                     <Sidebar active={`home`} />
@@ -54,7 +49,7 @@ function App() {
                 <div className="w-screen h-screen bg-black">
                   <Loader />
                 </div>
-              )} */}
+              )}
               <div className="w-screen h-screen bg-black">
                 <Loader />
               </div>
@@ -62,7 +57,8 @@ function App() {
           }
         >
           <AnimatedRoutes />
-        </Suspense>
+        </Suspense> */}
+        <AnimatedRoutes />
       </BrowserRouter>
     </div>
   );

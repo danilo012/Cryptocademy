@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../Context/AuthContext";
@@ -12,8 +11,6 @@ import {
 } from "../services/supabaseApi";
 
 import Logout from "../Components/Buttons/Logout";
-import Sidebar from "../Components/Sidebar";
-import TabNavigation from "../Components/TabNavigation";
 import ResetVirtualBalance from "../Components/ResetVirtualBalance";
 
 const UserProfile = () => {

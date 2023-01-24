@@ -1,15 +1,25 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 
-import Sidebar from "../Components/Sidebar";
-import TabNavigation from "../Components/TabNavigation";
+import Sidebar from "./Sidebar";
+import TabNavigation from "./TabNavigation";
+import { Suspense } from "react";
+import Loader from "./Loader";
 
 const SidebarLayout = () => {
+  const location = useLocation();
+  const [currentLocation, setCurrentLocation] = useState("");
+
+  useEffect(() => {
+    setCurrentLocation(location.pathname);
+  }, [location]);
+
   return (
     <div className="bg-black ">
       {/* desktop dasboard */}
       <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
-        <Sidebar active={`home`} />
+        <Sidebar active={currentLocation?.slice(5) === "" ? `home` : currentLocation?.slice(5)} />
         {/* page transitions */}
         <motion.div
           intial={{ opacity: 0 }}
@@ -17,7 +27,9 @@ const SidebarLayout = () => {
           exit={{ opacity: 0, transition: { duration: 0.2 } }}
           className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black"
         >
-          <Outlet />
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
         </motion.div>
       </div>
       <TabNavigation />

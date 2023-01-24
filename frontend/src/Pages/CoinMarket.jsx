@@ -1,11 +1,9 @@
-import { motion } from "framer-motion";
-import { Helmet } from "react-helmet";
+import { lazy } from "react";
 
 // import { useAuth } from "../Context/AuthContext";
 
-import Sidebar from "../Components/Sidebar";
-import TabNavigation from "../Components/TabNavigation";
-import CoinsTable from "../Components/CoinsTable";
+// import CoinsTable from "../Components/CoinsTable";
+const CoinsTable = lazy(() => import("../Components/CoinsTable"));
 
 const CoinMarket = () => {
   // const { currentUser } = useAuth();

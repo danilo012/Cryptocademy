@@ -1,11 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
-
 import { useAuth } from "../Context/AuthContext";
 import { useFetchAvailableCoinsQuery } from "../services/supabaseApi";
-
-import Sidebar from "../Components/Sidebar";
-import TabNavigation from "../Components/TabNavigation";
 
 const VirtualUsdPage = () => {
   const { currentUser } = useAuth();

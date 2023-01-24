@@ -1,12 +1,9 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { debounce } from "lodash";
 import { useNavigate } from "react-router";
 
 import Loader from "../Components/Loader";
-import Sidebar from "../Components/Sidebar";
-import TabNavigation from "../Components/TabNavigation";
 
 const Search = () => {
   const [search, setSearch] = useState("");
