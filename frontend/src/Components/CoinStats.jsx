@@ -18,7 +18,7 @@ const CoinStats = ({ data }) => {
   return (
     <>
       {/* price converter */}
-      <h2 className="text-2xl md:text-4xl mx-4 text-white font-title mb-4 font-bold ">
+      <h2 className="text-xl md:text-3xl mx-4 text-white font-title mb-4 font-bold ">
         Price Converter
       </h2>
       <div className="flex  flex-col xl:flex-row items-center">

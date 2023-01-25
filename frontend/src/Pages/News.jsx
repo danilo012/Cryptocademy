@@ -42,10 +42,10 @@ const News = () => {
               >
                 <span className="absolute inset-x-0 bottom-0 h-2  bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
 
-                <div className="justify-between sm:flex">
+                <div className="justify-between sm:flex font-title">
                   <div>
-                    <h5 className="text-xl font-bold text-white">{news.name}</h5>
-                    <p className="mt-1 text-xs font-medium text-gray-400">
+                    <h5 className="text-lg font-bold text-white">{news.name}</h5>
+                    <p className="mt-1 text-xs font-medium text-gray-300">
                       By {news.provider[0].name}
                     </p>
                   </div>
@@ -59,8 +59,8 @@ const News = () => {
                   </div>
                 </div>
 
-                <div className="mt-4 sm:pr-8">
-                  <p className="text-sm text-gray-500 line-clamp-4">{news.description}</p>
+                <div className="mt-4 sm:pr-8 font-text">
+                  <p className="text-sm text-gray-400 line-clamp-4">{news.description}</p>
                 </div>
 
                 <dl className="flex mt-6">

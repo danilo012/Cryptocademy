@@ -90,10 +90,10 @@ const Portfolio = () => {
             />
             <div className="px-4 py-5 sm:p-6">
               <dl>
-                <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
+                <dt className="font-title text-sm leading-5 font-medium text-gray-400 truncate">
                   Virtual USD
                 </dt>
-                <div className="mt-1 text-xl leading-9 font-semibold text-gray-200">
+                <div className="font-text mt-1 text-xl leading-9 font-semibold text-gray-200">
                   ${fetchAvailableUsdCoinsSuccess && availableUsdCoins[0]?.amount}
                 </div>
               </dl>
@@ -110,8 +110,10 @@ const Portfolio = () => {
             />
             <div className="px-4 py-5 sm:p-6">
               <dl>
-                <dt className="text-sm leading-5 font-medium text-gray-400 truncate">Networth</dt>
-                <dd className="mt-1 text-xl leading-9 font-semibold text-gray-200">
+                <dt className="font-title text-sm leading-5 font-medium text-gray-400 truncate">
+                  Networth
+                </dt>
+                <dd className="mt-1 font-text text-xl leading-9 font-semibold text-gray-200">
                   ${userNetworthSuccess && userNetworth}
                 </dd>
               </dl>
@@ -121,7 +123,7 @@ const Portfolio = () => {
       </div>
 
       {/* portfolio Table */}
-      <ul className="md:px-4 flex flex-col space-y-1 pb-12 text-white">
+      <ul className="md:px-4 font-text flex flex-col space-y-1 pb-12 text-white">
         {/* Table Head */}
         <li className="grid grid-cols-3 text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white">
           <div className="flex justify-start items-center space-x-4">
@@ -180,7 +182,7 @@ const Portfolio = () => {
                 </div>
 
                 <div className="flex items-center justify-start ml-auto md:ml-0 ">
-                  <p className="w-28 md:w-40 text-white font-medium text-left break-words">
+                  <p className="w-28 md:w-40 text-white font-semibold text-left break-words">
                     {coin.coinAmount ? coin.coinAmount : <span>${coin.amount}</span>}{" "}
                     {coin.coinAmount && coin.coinSymbol}
                     <br />

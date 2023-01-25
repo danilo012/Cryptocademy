@@ -40,7 +40,7 @@ const Search = () => {
   }, [search]);
 
   return (
-    <section className="lg:px-4 py-4 lg:py-8 max-w-[1600px]">
+    <section className="lg:px-4 py-4 lg:py-8 max-w-[1600px] font-text">
       {/* search Bar */}
       <div className="px-4">
         <label for="table-search" className="sr-only">

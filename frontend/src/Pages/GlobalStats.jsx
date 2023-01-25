@@ -29,7 +29,7 @@ const GlobalStats = () => {
             />
             <div className="px-4 py-5 sm:p-6">
               <dl>
-                <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
+                <dt className="font-title text-sm leading-5 font-medium text-gray-400 truncate">
                   Total Market Cap
                 </dt>
                 <dd className="mt-1 text-xl leading-9 font-semibold text-gray-200">
@@ -47,10 +47,10 @@ const GlobalStats = () => {
             />
             <div className="px-4 py-5 sm:p-6">
               <dl>
-                <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
+                <dt className="font-title text-sm leading-5 font-medium text-gray-400 truncate">
                   Active Cryptocurrencies
                 </dt>
-                <dd className="mt-1 text-xl leading-9 font-semibold text-gray-200">
+                <dd className="font-text mt-1 text-xl leading-9 font-semibold text-gray-200">
                   {globalCryptoData.data.active_cryptocurrencies}
                 </dd>
               </dl>
@@ -65,8 +65,10 @@ const GlobalStats = () => {
             />
             <div className="px-4 py-5 sm:p-6">
               <dl>
-                <dt className="text-sm leading-5 font-medium text-gray-400 truncate">Markets</dt>
-                <dd className="mt-1 text-xl leading-9 font-semibold text-gray-200">
+                <dt className="font-title text-sm leading-5 font-medium text-gray-400 truncate">
+                  Markets
+                </dt>
+                <dd className="font-text mt-1 text-xl leading-9 font-semibold text-gray-200">
                   {globalCryptoData.data.markets}
                 </dd>
               </dl>
@@ -81,10 +83,10 @@ const GlobalStats = () => {
             />
             <div className="px-4 py-5 sm:p-6">
               <dl>
-                <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
+                <dt className="font-title text-sm leading-5 font-medium text-gray-400 truncate">
                   Total Volume
                 </dt>
-                <dd className="mt-1 text-xl leading-9 font-semibold text-gray-200">
+                <dd className="font-text mt-1 text-xl leading-9 font-semibold text-gray-200">
                   ${globalCryptoData.data.total_volume.usd.toFixed(3)}
                 </dd>
               </dl>
@@ -99,7 +101,7 @@ const GlobalStats = () => {
             />
             <div className="px-4 py-5 sm:p-6">
               <dl>
-                <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
+                <dt className="font-text font-title text-sm leading-5 font-medium text-gray-400 truncate">
                   24h Market Cap Change
                 </dt>
                 <dd

@@ -46,7 +46,7 @@ const Leaderboard = () => {
         Global Leaderboard
       </p>
       {isLoading && <Loader />}
-      <ul className="px-2 md:px-4 flex flex-col space-y-1 pb-12 text-white">
+      <ul className="px-2 md:px-4 flex flex-col space-y-1 pb-12 text-white font-text">
         {/* Table Head */}
         <li className="grid grid-cols-3 text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white">
           <div className="">
@@ -93,10 +93,10 @@ const Leaderboard = () => {
                 )}
               </div>
               <div className="flex items-center justify-start ml-auto md:ml-0 ">
-                <p className="w-28 md:w-40 truncate text-white font-medium">{user.username}</p>
+                <p className="w-28 md:w-40 truncate text-white font-semibold">{user.username}</p>
               </div>
               <div className="flex items-center justify-end ml-auto md:ml-0 ">
-                <p className="w-28 md:w-40 break-all text-white font-medium text-right">
+                <p className="w-28 md:w-40 break-all text-white font-semibold text-right">
                   ${user.networth}
                 </p>
               </div>

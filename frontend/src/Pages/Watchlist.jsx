@@ -122,10 +122,10 @@ const Watchlist = () => {
         <SwipeableList
           fullSwipe={false}
           type={ListType.IOS}
-          className="md:px-4 flex flex-col space-y-1 pb-12 text-white"
+          className="md:px-4 flex flex-col space-y-1 pb-12 text-white font-text"
         >
           {/* Table Head */}
-          <li className="grid grid-cols-2 md:grid-cols-4 text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white">
+          <li className="grid grid-cols-2 md:grid-cols-4 text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white ">
             <div className="flex justify-start items-center space-x-4">
               <p className="text-white pl-4">Name</p>
             </div>
@@ -156,7 +156,9 @@ const Watchlist = () => {
                       loading="lazy"
                     />
                     <div>
-                      <p className=" w-64 truncate text-white break-words">{coin.name}</p>
+                      <p className=" w-64 truncate text-white break-words font-semibold">
+                        {coin.name}
+                      </p>
                       <div className="flex space-x-1">
                         <p>{coin.symbol}</p>
                         <p
@@ -173,7 +175,7 @@ const Watchlist = () => {
                     </div>
                   </div>
                   <div className="flex items-center justify-end ml-auto md:ml-0 ">
-                    <p className="w-28 md:w-40 text-white font-medium">
+                    <p className="w-28 md:w-40 text-white font-semibold">
                       ${coin?.market_data.current_price.usd}
                       <br />
                       <span className="md:hidden w-28 md:w-40 text-gray-500">
