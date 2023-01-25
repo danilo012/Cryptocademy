@@ -26,9 +26,9 @@ const News = () => {
     <>
       {fetchNewsError && <p className="text-red-400 text-xl">Something went Wrong</p>}
       {fetchNewsLoading && <Loader />}
-      <section className="px-4 py-12 mx-auto max-w-[90rem]">
-        <h2 className="mb-8 text-3xl font-extrabold leading-tight text-white font-title">
-          Latest Cryptocurrency News
+      <section className="px-4 lg:px-4 py-2 lg:py-8 mx-auto max-w-[1600px]">
+        <h2 className="mt-4 lg:mt-0 mb-8 text-2xl md:text-3xl font-extrabold leading-tight text-white font-title">
+          Cryptocurreny News
         </h2>
 
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">

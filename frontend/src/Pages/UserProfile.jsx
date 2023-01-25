@@ -62,8 +62,10 @@ const UserProfile = () => {
   } = useGetPortfolioDataQuery(currentUser.uid);
 
   return (
-    <>
-      <p className="text-white font-bold text-2xl md:text-3xl font-title my-4 ml-3">Your Profile</p>
+    <section className="lg:px-4 py-2 lg:py-8  max-w-[1600px]">
+      <p className="text-white font-bold text-2xl md:text-3xl font-title mt-4 mb-4 lg:mt-0 ml-3">
+        Your Profile
+      </p>
 
       <div className="flex flex-wrap md:space-x-4  justify-center md:justify-start">
         <div className="  bg-gradient-to-tr from-gray-900 to-gray-700  overflow-hidden shadow rounded-lg w-[100%] md:w-72 xl:w-80 relative mx-4">
@@ -319,7 +321,7 @@ const UserProfile = () => {
           )}
         </ul>
       </div>
-    </>
+    </section>
   );
 };
 
