@@ -16,8 +16,8 @@ const CoinsTable = () => {
   const [page, setPage] = useState(1);
 
   const { data, error, isLoading, isSuccess } = useGetCoinsDataQuery(
-    { currency, page }
-    // { pollingInterval: 2000 }
+    { currency, page },
+    { pollingInterval: 2000 }
   );
 
   const {
