@@ -62,7 +62,7 @@ function Login() {
       <ErrorToast message={errorMessage} ref={toastRef} />
       <div className="grid grid-cols-1 lg:grid-cols-2 bg-black text-white ">
         <div className="w-full h-screen py-20 lg:py-32  px-4  mx-auto  xl:py-32 md:w-3/5 lg:w-4/5 xl:w-3/5">
-          <h1 className="mb-8 -mt-3 text-2xl font-extrabold leading-snug  text-left text-green-400 md:text-4xl font-title tracking-wide">
+          <h1 className="mb-8 -mt-3 text-2xl font-title font-extrabold leading-snug  text-left text-green-400 md:text-4xl font-title tracking-wide">
             Log In{" "}
           </h1>
           {/* email password signin */}
@@ -75,7 +75,7 @@ function Login() {
             {(formik) => {
               return (
                 <Form autoComplete="off" className="divide-y divide-gray-200">
-                  <div className=" text-base leading-6 space-y-5 text-gray-700 sm:text-lg sm:leading-7">
+                  <div className="font-text text-base leading-6 space-y-5 text-gray-700 sm:text-lg sm:leading-7">
                     <FloatingInput
                       id="email"
                       name="email"
@@ -104,11 +104,11 @@ function Login() {
                       type="submit"
                       disabled={!formik.isValid || formik.isSubmitting}
                       aria-label="create my account"
-                      className={`focus:ring-2 
-                                    ${
-                                      (!formik.isValid || formik.isSubmitting) &&
-                                      "focus:ring-gray-700 bg-gray-700 border hover:bg-gray-600"
-                                    } focus:ring-offset-2 focus:ring-green-600 text-sm font-semibold leading-none text-white focus:outline-none bg-green-600 border rounded hover:bg-green-600 py-4 w-full  `}
+                      className={`focus:ring-2 font-text  
+                      ${
+                        (!formik.isValid || formik.isSubmitting) &&
+                        " focus:ring-gray-700 bg-gray-700 border hover:bg-gray-600"
+                      } focus:ring-offset-2 focus:ring-green-600 text-sm font-bold leading-none text-white focus:outline-none bg-green-600 border rounded hover:bg-green-600 py-4 w-full  `}
                     >
                       {formik.isSubmitting ? "Logging You In..." : "Login To My Account"}
                     </button>
@@ -118,7 +118,7 @@ function Login() {
             }}
           </Formik>
           <Link to="/signup" className="text-md my-8 flex justify-center">
-            <p className="font-medium text-[#1ed760] hover:text-[#1db954]">
+            <p className="font-medium text-[#1ed760] hover:text-[#1db954] font-title">
               {" "}
               Don't have an account? Signup
             </p>

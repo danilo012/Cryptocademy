@@ -21,10 +21,10 @@ const FormAppInfo = () => {
             />
           </svg>
           <div>
-            <h2 className="text-2xl font-medium text-green-400">
+            <h2 className="font-title text-2xl font-medium text-green-400">
               Discover the future of digital finance.
             </h2>
-            <p className="mt-3  text-gray-300">
+            <p className="font-text mt-3  text-gray-300">
               Cryptocademy provides a real-time, risk-free trading simulator that allows you to
               msater crypto trading and investing at zero cost. Hone your skills and feel confident
               with crypto trading and investing.
@@ -45,10 +45,10 @@ const FormAppInfo = () => {
             />
           </svg>
           <div>
-            <h2 className="text-2xl font-medium text-green-400">
+            <h2 className="font-title text-2xl font-medium text-green-400">
               Keep track of your virtual portfolios.
             </h2>
-            <p className="mt-3 text-gray-300">
+            <p className="font-text mt-3 text-gray-300">
               You decide how to utilize mock $100000 virutal USD! Buy, sell, trade, and profit.
               Learn how to become a savvy investor with cryptocademy.
             </p>
@@ -68,8 +68,8 @@ const FormAppInfo = () => {
             />
           </svg>
           <div>
-            <h2 className="text-2xl font-medium text-green-400">Compete Globally.</h2>
-            <p className="mt-3 text-gray-300">
+            <h2 className="font-title text-2xl font-medium text-green-400">Compete Globally.</h2>
+            <p className="font-text mt-3 text-gray-300">
               Do you have what it takes to be a better investor, compete globally with other users
               and become a better investor.
             </p>
