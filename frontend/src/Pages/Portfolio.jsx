@@ -46,10 +46,10 @@ const Portfolio = () => {
 
   // get coin percentage change
   function percentageChange(coinId, coinAmount, amount) {
-    const coinData = portfolioCoinData.filter((coin) => coin.data.id === coinId);
+    const coinData = portfolioCoinData.filter((coin) => coin.id === coinId);
 
     if (coinData.length !== 0) {
-      const currentCoinPrice = coinData[0].data?.market_data.current_price.usd;
+      const currentCoinPrice = coinData[0]?.market_data.current_price.usd;
       const oneCoinAmount = amount / coinAmount;
       const coinPercentageChange = ((currentCoinPrice - oneCoinAmount) / currentCoinPrice) * 100;
 
@@ -73,13 +73,15 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <>
-      <p className="text-white font-bold text-2xl md:text-3xl font-title mt-4  ml-3">Portfolio</p>
+    <section className=" py-2 lg:py-8 mx-auto max-w-[1600px]">
+      <p className="text-white font-bold text-2xl md:text-3xl font-title mt-4 lg:mt-0  ml-3">
+        Portfolio
+      </p>
       {(isLoading || fetchPortfolioCoinDataLoading || fetchAvailableUsdCoinsLoading) && <Loader />}
       {error && <p className="text-red-400 text-xl">Something went wrong!</p>}
       {/* available coin and networth */}
-      <div className="carousel carousel-center p-4 space-x-4 rounded-box w-screen max-w-md md:max-w-full lg:flex-wrap  ">
-        <div className="carousel-item">
+      <div className="no-scrollbar flex overflow-scroll  p-4  rounded-box w-screen max-w-md md:max-w-full lg:flex-wrap  ">
+        <div className="">
           <div className="  bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative mx-3 mt-1 ">
             <img
               src="https://img.icons8.com/clouds/200/000000/bitcoin.png"
@@ -88,18 +90,18 @@ const Portfolio = () => {
             />
             <div className="px-4 py-5 sm:p-6">
               <dl>
-                <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
+                <dt className="font-title text-sm leading-5 font-medium text-gray-400 truncate">
                   Virtual USD
                 </dt>
-                <dd className="mt-1 text-xl leading-9 font-semibold text-gray-200">
+                <div className="font-text mt-1 text-xl leading-9 font-semibold text-gray-200">
                   ${fetchAvailableUsdCoinsSuccess && availableUsdCoins[0]?.amount}
-                </dd>
+                </div>
               </dl>
             </div>
           </div>
         </div>
 
-        <div className="carousel-item">
+        <div className="">
           <div className="  bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative mx-3 mt-1 ">
             <img
               src="https://img.icons8.com/fluency/96/000000/bullish.png"
@@ -108,8 +110,10 @@ const Portfolio = () => {
             />
             <div className="px-4 py-5 sm:p-6">
               <dl>
-                <dt className="text-sm leading-5 font-medium text-gray-400 truncate">Networth</dt>
-                <dd className="mt-1 text-xl leading-9 font-semibold text-gray-200">
+                <dt className="font-title text-sm leading-5 font-medium text-gray-400 truncate">
+                  Networth
+                </dt>
+                <dd className="mt-1 font-text text-xl leading-9 font-semibold text-gray-200">
                   ${userNetworthSuccess && userNetworth}
                 </dd>
               </dl>
@@ -119,7 +123,7 @@ const Portfolio = () => {
       </div>
 
       {/* portfolio Table */}
-      <ul className="md:px-4 flex flex-col space-y-1 pb-12 text-white">
+      <ul className="md:px-4 font-text flex flex-col space-y-1 pb-12 text-white">
         {/* Table Head */}
         <li className="grid grid-cols-3 text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white">
           <div className="flex justify-start items-center space-x-4">
@@ -178,7 +182,7 @@ const Portfolio = () => {
                 </div>
 
                 <div className="flex items-center justify-start ml-auto md:ml-0 ">
-                  <p className="w-28 md:w-40 text-white font-medium text-left break-words">
+                  <p className="w-28 md:w-40 text-white font-semibold text-left break-words">
                     {coin.coinAmount ? coin.coinAmount : <span>${coin.amount}</span>}{" "}
                     {coin.coinAmount && coin.coinSymbol}
                     <br />
@@ -208,7 +212,7 @@ const Portfolio = () => {
           </div>
         )}
       </ul>
-    </>
+    </section>
   );
 };
 

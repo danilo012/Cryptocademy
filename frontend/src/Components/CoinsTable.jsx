@@ -16,8 +16,8 @@ const CoinsTable = () => {
   const [page, setPage] = useState(1);
 
   const { data, error, isLoading, isSuccess } = useGetCoinsDataQuery(
-    { currency, page },
-    { pollingInterval: 2000 }
+    { currency, page }
+    // { pollingInterval: 2000 }
   );
 
   const {
@@ -62,8 +62,8 @@ const CoinsTable = () => {
       {isLoading && <Loader />}
       {error && <ErrorToast message="Something Went Wrong!" ref={toastRef} />}
       {fetchGlobalCryptoSuccess && (
-        <div className="carousel carousel-center p-4 space-x-4 rounded-box w-screen max-w-md md:max-w-full lg:flex-wrap  ">
-          <div className="carousel-item">
+        <div className="no-scrollbar flex  p-4 space-x-4 rounded-box w-screen overflow-scroll max-w-md md:max-w-full lg:flex-wrap">
+          <div className="">
             <div className="  bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative">
               <img
                 src="https://img.icons8.com/clouds/200/000000/bitcoin.png"
@@ -72,10 +72,10 @@ const CoinsTable = () => {
               />
               <div className="px-4 py-5 sm:p-6">
                 <dl>
-                  <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
+                  <dt className="font-title text-sm leading-5 font-medium text-gray-400 truncate">
                     Total Market Cap
                   </dt>
-                  <dd className="mt-1 text-xl leading-9 font-semibold text-gray-200">
+                  <dd className="font-text mt-1 text-xl leading-9 font-semibold text-gray-200">
                     ${globalCryptoData.data.total_market_cap.usd.toFixed(4)}
                   </dd>
                 </dl>
@@ -83,7 +83,7 @@ const CoinsTable = () => {
             </div>
           </div>
 
-          <div className="carousel-item">
+          <div className="">
             <div className="  bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative">
               <img
                 src="https://img.clankapp.com/symbol/btc.svg"
@@ -92,10 +92,10 @@ const CoinsTable = () => {
               />
               <div className="px-4 py-5 sm:p-6">
                 <dl>
-                  <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
+                  <dt className="font-title  text-sm leading-5 font-medium text-gray-400 truncate">
                     Active Cryptocurrencies
                   </dt>
-                  <dd className="mt-1 text-3xl leading-9 font-semibold text-gray-200">
+                  <dd className="font-text mt-1 text-3xl leading-9 font-semibold text-gray-200">
                     {globalCryptoData.data.active_cryptocurrencies}
                   </dd>
                 </dl>
@@ -103,7 +103,7 @@ const CoinsTable = () => {
             </div>
           </div>
 
-          <div className="carousel-item">
+          <div className="">
             <div className=" bg-gradient-to-tr from-gray-900 to-gray-700   overflow-hidden shadow rounded-lg w-60 md:w-72 relative">
               <img
                 src="https://img.icons8.com/fluency/96/000000/bullish.png"
@@ -112,11 +112,11 @@ const CoinsTable = () => {
               />
               <div className="px-4 py-5 sm:p-6">
                 <dl>
-                  <dt className="text-sm leading-5 font-medium text-gray-400 truncate">
+                  <dt className="font-title  text-sm leading-5 font-medium text-gray-400 truncate">
                     24h Market Cap Change
                   </dt>
                   <dd
-                    className={`mt-1 text-3xl leading-9 font-semibold ${
+                    className={`font-text mt-1 text-3xl leading-9 font-semibold ${
                       globalCryptoData.data.market_cap_change_percentage_24h_usd >= 0
                         ? "text-green-400"
                         : "text-red-400"
@@ -141,9 +141,9 @@ const CoinsTable = () => {
       )}
       {/* coin table */}
 
-      <ul className="md:px-4 flex flex-col space-y-1 pb-12 text-white">
+      <ul className="md:px-4 flex flex-col space-y-1 pb-12 font-text text-white">
         {/* Table Head */}
-        <li className="grid grid-cols-2 md:grid-cols-4 text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white">
+        <li className="grid grid-cols-2 md:grid-cols-4 text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white ">
           <div className="flex justify-start items-center space-x-4">
             <p className="text-white pl-4">Name</p>
           </div>
@@ -174,7 +174,9 @@ const CoinsTable = () => {
                   loading="lazy"
                 />
                 <div>
-                  <p className=" w-64 truncate text-white break-words">{coins.name}</p>
+                  <p className=" w-64 truncate text-white font-semibold break-words">
+                    {coins.name}
+                  </p>
                   <div className="flex space-x-1">
                     <p>{coins.symbol}</p>
                     <p
@@ -189,7 +191,7 @@ const CoinsTable = () => {
                 </div>
               </div>
               <div className="flex items-center justify-end ml-auto md:ml-0 ">
-                <p className="w-28 md:w-40 text-white font-medium">
+                <p className="w-28 md:w-40 text-white font-semibold">
                   ${coins.current_price}
                   <br />
                   <span className="md:hidden w-28 md:w-40 text-gray-500">

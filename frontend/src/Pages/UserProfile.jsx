@@ -62,10 +62,12 @@ const UserProfile = () => {
   } = useGetPortfolioDataQuery(currentUser.uid);
 
   return (
-    <>
-      <p className="text-white font-bold text-2xl md:text-3xl font-title my-4 ml-3">Your Profile</p>
+    <section className="lg:px-4 py-2 lg:py-8  max-w-[1600px]">
+      <p className="text-white font-bold text-2xl md:text-3xl font-title mt-4 mb-4 lg:mt-0 ml-3">
+        Your Profile
+      </p>
 
-      <div className="flex flex-wrap md:space-x-4  justify-center md:justify-start">
+      <div className="flex flex-wrap md:space-x-4  justify-center md:justify-start ">
         <div className="  bg-gradient-to-tr from-gray-900 to-gray-700  overflow-hidden shadow rounded-lg w-[100%] md:w-72 xl:w-80 relative mx-4">
           <img
             src="https://img.icons8.com/officel/80/000000/anime-emoji.png"
@@ -80,16 +82,20 @@ const UserProfile = () => {
                 className="w-12 h-12 rounded-full dark:bg-gray-500"
               />
               <div>
-                <h2 className="text-lg font-semibold text-white">{currentUser.displayName}</h2>
+                <h2 className="text-lg font-semibold text-white font-title">
+                  {currentUser.displayName}
+                </h2>
                 <span className="flex items-center space-x-1">
-                  <p className="text-xs hover:underline dark:text-gray-400">{currentUser.email}</p>
+                  <p className="text-xs hover:underline dark:text-gray-400 font-title">
+                    {currentUser.email}
+                  </p>
                 </span>
               </div>
             </div>
             <div className="my-4">
               <Link
                 to="/forgotPassword"
-                className=" text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                className=" text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-semibold font-text rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
               >
                 Change Your Password
               </Link>
@@ -98,7 +104,7 @@ const UserProfile = () => {
             <div className="my-4">
               <button
                 onClick={() => setResetModal(!resetModal)}
-                className=" text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                className=" text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-semibold font-text rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
               >
                 Reset Virtual USD Balance
               </button>
@@ -179,32 +185,28 @@ const UserProfile = () => {
             ) : (
               fetchWatchlistSuccess &&
               watchlistData.slice(0, 7).map((coin, index) => (
-                <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                <li className="font-text flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
                   <div className="flex items-center justify-start text-sm space-x-3">
-                    <img
-                      src={coin.data.image.large}
-                      alt={`${coin.data.name}`}
-                      className="w-10 h-10"
-                    />
+                    <img src={coin.image.large} alt={`${coin.name}`} className="w-10 h-10" />
                     <div className="">
-                      <p className="text-white text-xl font-bold ">{coin.data.name}</p>
-                      <p className="text-white text-sm uppercase">{coin.data.symbol}</p>
+                      <p className="text-white text-xl font-bold ">{coin.name}</p>
+                      <p className="text-white text-sm uppercase">{coin.symbol}</p>
                     </div>
                   </div>
                   <div className="">
-                    <p className="text-white font-medium">
-                      ${coin.data.market_data.current_price.usd}
+                    <p className="text-white font-semibold">
+                      ${coin.market_data.current_price.usd}
                       <br />
                     </p>
                     <p
                       className={`text-right ${
-                        coin.data?.market_data.price_change_percentage_24h >= 0
+                        coin?.market_data.price_change_percentage_24h >= 0
                           ? "text-green-400"
                           : "text-red-400"
                       } font-semibold`}
                     >
-                      {coin.data?.market_data.price_change_percentage_24h >= 0 && "+"}
-                      {coin.data?.market_data.price_change_percentage_24h?.toFixed(2)}%
+                      {coin?.market_data.price_change_percentage_24h >= 0 && "+"}
+                      {coin?.market_data.price_change_percentage_24h?.toFixed(2)}%
                     </p>
                   </div>
                 </li>
@@ -237,7 +239,7 @@ const UserProfile = () => {
             ) : (
               isSuccess &&
               portfolioData.slice(0, 7).map((coin, index) => (
-                <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                <li className="flex items-center font-text text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
                   <div className="flex items-center justify-start text-sm space-x-3">
                     <img src={coin.image} alt={`${coin.coinName}`} className="w-10 h-10" />
                     <div className="">
@@ -246,11 +248,11 @@ const UserProfile = () => {
                     </div>
                   </div>
                   <div className="">
-                    <p className="text-white font-medium text-right">
+                    <p className="text-white font-semibold text-right">
                       {coin.coinAmount} {coin.coinSymbol}
                       <br />
                     </p>
-                    <p className="text-gray-400 font-medium text-right">${coin.amount}</p>
+                    <p className="text-gray-400 font-semibold text-right">${coin.amount}</p>
                   </div>
                 </li>
               ))
@@ -266,7 +268,7 @@ const UserProfile = () => {
 
         <ul className="px-2 md:px-12 flex flex-col space-y-1 pb-12 text-white">
           {/* Table Head */}
-          <li className="grid grid-cols-3 text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white">
+          <li className="grid grid-cols-3 font-text text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white">
             <div className="">
               <p className="text-white pl-4">Rank</p>
             </div>
@@ -311,10 +313,10 @@ const UserProfile = () => {
                   )}
                 </div>
                 <div className="flex items-center justify-start ml-auto md:ml-0 ">
-                  <p className="w-28 md:w-40 truncate text-white font-medium">{user.username}</p>
+                  <p className="w-28 md:w-40 truncate text-white font-semibold">{user.username}</p>
                 </div>
                 <div className="flex items-center justify-end ml-auto md:ml-0 ">
-                  <p className="w-28 md:w-40 break-all text-white font-medium text-right">
+                  <p className="w-28 md:w-40 break-all text-white font-semibold text-right">
                     ${user.networth}
                   </p>
                 </div>
@@ -323,7 +325,7 @@ const UserProfile = () => {
           )}
         </ul>
       </div>
-    </>
+    </section>
   );
 };
 

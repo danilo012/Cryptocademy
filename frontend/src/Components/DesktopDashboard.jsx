@@ -82,11 +82,11 @@ const DesktopDashboard = () => {
         leaderboardIsLoading) && <Loader />}
       {/* credit card */}
       <div className="w-80 m-auto md:m-0 md:w-96 h-56 lg:ml-8 bg-gradient-to-tr from-gray-900 to-gray-700  rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
-        <div className="w-full px-8 absolute top-8">
+        <div className="w-full px-8 absolute top-8 font-text">
           <div className="flex justify-between">
             <div className="">
-              <h1 className="">Name</h1>
-              <p className="font-medium tracking-wide">{currentUser.displayName}</p>
+              <h4 className="">Name</h4>
+              <p className="font-semibold tracking-wide">{currentUser.displayName}</p>
             </div>
             <img
               className="w-14 h-14"
@@ -95,16 +95,16 @@ const DesktopDashboard = () => {
             />
           </div>
           <div className="pt-1">
-            <h1 className="">Account Balance</h1>
-            <p className="font-medium tracking-more-wider">
+            <h4 className="">Account Balance</h4>
+            <p className="font-semibold tracking-more-wider">
               ${fetchAvailableUsdCoinsSuccess && availableUsdCoins[0]?.amount}
             </p>
           </div>
           <div className="pt-6 pr-6">
             <div className="flex justify-between">
               <div className="">
-                <h1 className="font-light text-xs">Networth</h1>
-                <p className="font-medium tracking-wider text-sm">
+                <h4 className="font-light text-xs">Networth</h4>
+                <p className="font-semibold tracking-wider text-sm">
                   {userNetworthSuccess && <span>${userNetworth}</span>}
                 </p>
               </div>
@@ -128,7 +128,7 @@ const DesktopDashboard = () => {
 
       <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2  mt-8">
         <div className=" shadow-lg mx-auto rounded-2xl bg-black w-[90%]">
-          <p className="text-white font-bold text-2xl md:text-3xl font-title my-4">
+          <p className="font-tile text-white font-bold text-2xl md:text-3xl font-title my-4">
             Trending Coins
           </p>
 
@@ -142,13 +142,13 @@ const DesktopDashboard = () => {
                   >
                     <div className="flex items-center justify-start text-sm space-x-3">
                       <img src={coin.item.large} alt={`${coin.item.name}`} className="w-10 h-10" />
-                      <div className="">
+                      <div className="font-text">
                         <p className="text-white text-xl font-bold ">{coin.item.name}</p>
                         <p className="text-white text-sm">{coin.item.symbol}</p>
                       </div>
                     </div>
                     <div>
-                      <p className="text-xl">
+                      <p className="font-text text-xl">
                         <p className="text-white">${coin.item.price_btc.toFixed(9)}</p>
                       </p>
                     </div>
@@ -166,7 +166,7 @@ const DesktopDashboard = () => {
 
           <ul>
             {fetchWatchlistErr ? (
-              <div className=" shadow-lg rounded-2xl  px-4 py-4 md:px-4 bg-gray-900 flex flex-col ;lg:justify-center ">
+              <div className=" shadow-lg rounded-2xl  px-4 py-4 md:px-4 bg-gray-900 flex flex-col ;lg:justify-center font-text">
                 <p className="text-white text-xl font-bold my-2 lg:text-center">
                   Your watchlist is empty
                 </p>
@@ -183,32 +183,31 @@ const DesktopDashboard = () => {
             ) : (
               fetchWatchlistSuccess &&
               watchlistData.slice(0, 7).map((coin, index) => (
-                <li className="flex items-center text-gray-200 justify-between py-3 border-b-2 border-gray-800 ">
+                <li
+                  key={index}
+                  className="flex items-center font-text text-gray-200 justify-between py-3 border-b-2 border-gray-800 "
+                >
                   <div className="flex items-center justify-start text-sm space-x-3">
-                    <img
-                      src={coin.data.image.large}
-                      alt={`${coin.data.name}`}
-                      className="w-10 h-10"
-                    />
+                    <img src={coin.image.large} alt={`${coin.name}`} className="w-10 h-10" />
                     <div className="">
-                      <p className="text-white text-xl font-bold ">{coin.data.name}</p>
-                      <p className="text-white uppercase text-sm">{coin.data.symbol}</p>
+                      <p className="text-white text-xl font-bold ">{coin.name}</p>
+                      <p className="text-white uppercase text-sm">{coin.symbol}</p>
                     </div>
                   </div>
                   <div className="">
-                    <p className="text-white font-medium">
-                      ${coin.data.market_data.current_price.usd}
+                    <p className="text-white font-bold">
+                      ${coin.market_data.current_price.usd}
                       <br />
                     </p>
                     <p
                       className={`text-right ${
-                        coin.data?.market_data.price_change_percentage_24h >= 0
+                        coin?.market_data.price_change_percentage_24h >= 0
                           ? "text-green-400"
                           : "text-red-400"
                       } font-semibold`}
                     >
-                      {coin.data?.market_data.price_change_percentage_24h >= 0 && "+"}
-                      {coin.data?.market_data.price_change_percentage_24h?.toFixed(2)}%
+                      {coin?.market_data.price_change_percentage_24h >= 0 && "+"}
+                      {coin?.market_data.price_change_percentage_24h?.toFixed(2)}%
                     </p>
                   </div>
                 </li>
@@ -219,11 +218,11 @@ const DesktopDashboard = () => {
       </div>
       {/* leaderboard */}
       <div>
-        <p className="text-white font-bold text-2xl md:text-3xl font-title my-4 px-4 mt-6 md:mt-10">
+        <p className="text-white font-bold text-2xl md:text-3xl font-title my-4 px-4 mt-10 md:mt-10">
           Global Leaderboard
         </p>
 
-        <ul className="px-2 md:px-12 flex flex-col space-y-1 pb-12 text-white">
+        <ul className="px-2 font-text md:px-12 flex flex-col space-y-1 pb-12 text-white">
           {/* Table Head */}
           <li className="grid grid-cols-3 text-gray-500 py-2 px-1md:px-5 cursor-pointer border-b-2 border-white">
             <div className="">
@@ -300,8 +299,8 @@ const DesktopDashboard = () => {
 
               <div className="justify-between sm:flex">
                 <div>
-                  <h5 className="text-xl font-bold text-white">{news.name}</h5>
-                  <p className="mt-1 text-xs font-medium text-gray-400">
+                  <h5 className="font-title text-lg font-bold text-white">{news.name}</h5>
+                  <p className="font-title mt-2 text-xs font-medium text-gray-300">
                     By {news.provider[0].name}
                   </p>
                 </div>
@@ -315,14 +314,14 @@ const DesktopDashboard = () => {
                 </div>
               </div>
 
-              <div className="mt-4 sm:pr-8">
-                <p className="text-sm text-gray-500 line-clamp-4">{news.description}</p>
+              <div className="font-text mt-4 sm:pr-8">
+                <p className="text-sm text-gray-400 line-clamp-4">{news.description}</p>
               </div>
 
-              <dl className="flex mt-6">
+              <dl className="font-text flex mt-6">
                 <div className="flex flex-col-reverse">
                   <dt className="text-sm font-medium text-gray-500">Published</dt>
-                  <dd className="text-xs text-gray-500">{news.datePublished.substring(0, 10)}</dd>
+                  <dd className="text-xs text-gray-300">{news.datePublished.substring(0, 10)}</dd>
                 </div>
               </dl>
             </a>

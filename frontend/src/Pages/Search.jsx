@@ -1,9 +1,8 @@
-import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { debounce } from "lodash";
 import { useNavigate } from "react-router";
 
 import Loader from "../Components/Loader";
+import { debounce } from "../Utils/debounce";
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -18,9 +17,14 @@ const Search = () => {
       if (search) {
         try {
           setIsLoading(true);
-          const { data } = await axios.get(
-            `https://api.coingecko.com/api/v3/search?query=${search}`
-          );
+          const res = await fetch(`https://api.coingecko.com/api/v3/search?query=${search}`);
+
+          if (!res.ok) {
+            throw new Error("Something went wrong! Please try again");
+          }
+
+          const data = await res.json();
+
           setSearchData(data);
           setIsLoading(false);
         } catch (error) {
@@ -36,9 +40,9 @@ const Search = () => {
   }, [search]);
 
   return (
-    <>
+    <section className="lg:px-4 py-4 lg:py-8 max-w-[1600px] font-text">
       {/* search Bar */}
-      <div className="p-4">
+      <div className="px-4">
         <label for="table-search" className="sr-only">
           Search
         </label>
@@ -95,7 +99,7 @@ const Search = () => {
             ))}
         </ul>
       )}
-    </>
+    </section>
   );
 };
 

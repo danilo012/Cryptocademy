@@ -1,4 +1,3 @@
-import axios from "axios";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseUrl = "https://api.coingecko.com/api/v3/coins";
@@ -17,9 +16,15 @@ export const coinsDataApi = createApi({
     getTrendingCoinData: builder.query({
       queryFn: async () => {
         try {
-          const response = await axios.get("https://api.coingecko.com/api/v3/search/trending");
+          const res = await fetch(`https://api.coingecko.com/api/v3/search/trending`);
 
-          return { data: response.data };
+          if (!res.ok) {
+            throw new Error("Something went wrong! Please try again");
+          }
+
+          const data = await res.json();
+
+          return { data };
         } catch (error) {
           return { error: error };
         }
@@ -31,9 +36,15 @@ export const coinsDataApi = createApi({
     getGlobalCryptoData: builder.query({
       queryFn: async () => {
         try {
-          const response = await axios.get("https://api.coingecko.com/api/v3/global");
+          const res = await fetch(`https://api.coingecko.com/api/v3/global`);
 
-          return { data: response.data };
+          if (!res.ok) {
+            throw new Error("Something went wrong! Please try again");
+          }
+
+          const data = await res.json();
+
+          return { data };
         } catch (error) {
           return { error: error };
         }

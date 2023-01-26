@@ -24,7 +24,8 @@ const SidebarLayout = () => {
         <motion.div
           intial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.2 } }}
+          exit={{ opacity: 0, x: "-100%" }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
           className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black"
         >
           <Suspense fallback={<Loader />}>

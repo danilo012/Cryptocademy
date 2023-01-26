@@ -26,9 +26,9 @@ const News = () => {
     <>
       {fetchNewsError && <p className="text-red-400 text-xl">Something went Wrong</p>}
       {fetchNewsLoading && <Loader />}
-      <section className="px-4 py-12 mx-auto max-w-[90rem]">
-        <h2 className="mb-8 text-3xl font-extrabold leading-tight text-white font-title">
-          Latest Cryptocurrency News
+      <section className="px-4 lg:px-4 py-2 lg:py-8 mx-auto max-w-[1600px]">
+        <h2 className="mt-4 lg:mt-0 mb-8 text-2xl md:text-3xl font-extrabold leading-tight text-white font-title">
+          Cryptocurreny News
         </h2>
 
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
@@ -42,10 +42,10 @@ const News = () => {
               >
                 <span className="absolute inset-x-0 bottom-0 h-2  bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
 
-                <div className="justify-between sm:flex">
+                <div className="justify-between sm:flex font-title">
                   <div>
-                    <h5 className="text-xl font-bold text-white">{news.name}</h5>
-                    <p className="mt-1 text-xs font-medium text-gray-400">
+                    <h5 className="text-lg font-bold text-white">{news.name}</h5>
+                    <p className="mt-1 text-xs font-medium text-gray-300">
                       By {news.provider[0].name}
                     </p>
                   </div>
@@ -59,8 +59,8 @@ const News = () => {
                   </div>
                 </div>
 
-                <div className="mt-4 sm:pr-8">
-                  <p className="text-sm text-gray-500 line-clamp-4">{news.description}</p>
+                <div className="mt-4 sm:pr-8 font-text">
+                  <p className="text-sm text-gray-400 line-clamp-4">{news.description}</p>
                 </div>
 
                 <dl className="flex mt-6">

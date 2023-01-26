@@ -1,4 +1,3 @@
-import axios from "axios";
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { supabase } from "../Utils/init-supabase";
@@ -49,11 +48,20 @@ export const supabaseApi = createApi({
             let watchlistPromise = [];
             watchlistId.forEach((coinId) => {
               // create a promise for each api call
-              const request = axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}`);
+              const request = fetch(`https://api.coingecko.com/api/v3/coins/${coinId}`);
               watchlistPromise.push(request);
             });
-            const res = await Promise.all(watchlistPromise);
-            return { data: res };
+            const res = await Promise.allSettled(watchlistPromise);
+
+            const error = res.filter((result) => result.status === "rejected");
+
+            if (error.length > 0) {
+              throw new Error("Something went wrong! Please try again.");
+            }
+
+            const data = await Promise.all(res.map((r) => r?.value?.json()));
+
+            return { data };
           } else {
             return { data: [] };
           }
@@ -78,11 +86,20 @@ export const supabaseApi = createApi({
             let portfolioPromise = [];
             portfolioId.forEach((coinId) => {
               // create a promise for each api call
-              const request = axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}`);
+              const request = fetch(`https://api.coingecko.com/api/v3/coins/${coinId}`);
               portfolioPromise.push(request);
             });
-            const res = await Promise.all(portfolioPromise);
-            return { data: res };
+            const res = await Promise.allSettled(portfolioPromise);
+
+            const error = res.filter((result) => result.status === "rejected");
+
+            if (error.length > 0) {
+              throw new Error("Something went wrong! Please try again.");
+            }
+
+            const data = await Promise.all(res.map((r) => r?.value?.json()));
+
+            return { data };
           } else {
             return { data: [] };
           }

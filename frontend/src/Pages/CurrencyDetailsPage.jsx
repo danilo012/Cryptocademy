@@ -99,7 +99,7 @@ const CurrencyDetailsPage = () => {
   };
 
   return (
-    <>
+    <section className="lg:px-4 py-2  mx-auto max-w-[1600px]">
       {isSuccess && (
         <BuyCoins data={data} modal={toggleBuyCoinsModal} setModal={setToggleBuyCoinsModal} />
       )}
@@ -252,7 +252,7 @@ const CurrencyDetailsPage = () => {
       <HistoricalChart id={id} />
 
       {isSuccess && <CoinStats data={data} />}
-    </>
+    </section>
   );
 };
 

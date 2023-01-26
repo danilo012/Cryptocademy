@@ -108,7 +108,7 @@ function Signup() {
       <ErrorToast message={errorMessage} ref={toastRef} />
       <section className="grid grid-cols-1 lg:grid-cols-2 bg-black text-white">
         <div className="w-full h-screen px-4 py-20 mx-auto  xl:py-32 md:w-3/5 lg:w-4/5 xl:w-3/5">
-          <h1 className="mb-8 -mt-3 text-2xl font-extrabold leading-snug  text-left text-green-400 md:text-4xl font-title tracking-wide">
+          <h1 className="font-title mb-8 -mt-3 text-2xl font-extrabold leading-snug  text-left text-green-400 md:text-4xl font-title tracking-wide">
             Sign up{" "}
           </h1>
           {/* email password signin */}
@@ -121,7 +121,7 @@ function Signup() {
             {(formik) => {
               return (
                 <Form autoComplete="off" className="divide-y divide-gray-200">
-                  <div className=" text-base leading-6 space-y-5 text-gray-700 sm:text-lg sm:leading-7">
+                  <div className="font-text text-base leading-6 space-y-5 text-gray-700 sm:text-lg sm:leading-7">
                     <FloatingInput
                       id="username"
                       name="username"
@@ -156,7 +156,7 @@ function Signup() {
                                     ${
                                       (!formik.isValid || formik.isSubmitting) &&
                                       "focus:ring-gray-700 bg-gray-700 border hover:bg-gray-600"
-                                    } focus:ring-offset-2 focus:ring-[#1db954] text-sm font-semibold leading-none text-white focus:outline-none bg-[#1db954] border rounded hover:bg-[#1db954] py-4 w-full  `}
+                                    } focus:ring-offset-2 focus:ring-[#1db954] text-sm font-bold leading-none text-white focus:outline-none bg-[#1db954] border rounded hover:bg-[#1db954] py-4 w-full  `}
                     >
                       {formik.isSubmitting ? "Creating Your Account..." : "Create my account"}
                     </button>
@@ -166,7 +166,7 @@ function Signup() {
             }}
           </Formik>
           <Link to="/" className="text-md my-8 flex justify-center">
-            <a href="#" className="font-medium text-[#1ed760] hover:text-[#1db954]">
+            <a href="#" className="font-title font-medium text-[#1ed760] hover:text-[#1db954]">
               {" "}
               Already have an account? Login{" "}
             </a>

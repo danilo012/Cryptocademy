@@ -5,7 +5,6 @@ import { coinsDataApi } from "../services/coinsDataApi";
 import { NewsApi } from "../services/NewsApi";
 import { supabaseApi } from "../services/supabaseApi";
 
-import watchlistDataReducer from "../Features/watchlistDataSlice";
 import portfolioDataReducer from "../Features/portfolioDataSlice";
 import availableCoinsReducer from "../Features/availableCoins";
 import userReducer from "../Features/UserSlice";
@@ -15,7 +14,6 @@ export const store = configureStore({
     [coinsDataApi.reducerPath]: coinsDataApi.reducer,
     [supabaseApi.reducerPath]: supabaseApi.reducer,
     [NewsApi.reducerPath]: NewsApi.reducer,
-    watchlistData: watchlistDataReducer,
     portfolioData: portfolioDataReducer,
     availableCoins: availableCoinsReducer,
     user: userReducer
