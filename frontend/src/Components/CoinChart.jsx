@@ -102,6 +102,13 @@ export const LineChart = ({ id, data, days, name }) => {
       };
     });
 
+    console.log(
+      localChartData[localChartData.length - 1].value,
+      localChartData[localChartData.length - 2].value,
+      localChartData[localChartData.length - 1].value >
+        localChartData[localChartData.length - 2].value
+    );
+
     const handleResize = () => {
       chart.applyOptions({
         width: window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth
@@ -215,7 +222,7 @@ export const LineChart = ({ id, data, days, name }) => {
           `<div style="font-size: 24px; margin: 4px 0px; color: #ffffff">${name}</div>` +
           '<div style="font-size: 22px; margin: 4px 0px; color: #ffffff">' +
           "$" +
-          price  +
+          price +
           "</div>" +
           '<div style="font-size: 22px; margin: 4px 0px; color: #ffffff">' +
           dateStr +

@@ -28,7 +28,6 @@ const CurrencyDetailsPage = () => {
   const [addToGun, setAddToGun] = useState(false);
   const [chartDays, setChartDays] = useState("365");
   const [candleStickChart, setCandleStickChart] = useState(true);
-  
 
   const [gunError, setGunError] = useState(false);
   const [gunErrorMessage, setGunErrorMessage] = useState("");
@@ -36,10 +35,7 @@ const CurrencyDetailsPage = () => {
   const [toggleBuyCoinsModal, setToggleBuyCoinsModal] = useState(false);
   const [toggleSellCoinsModal, setToggleSellCoinsModal] = useState(false);
 
-  const { data, error, isLoading, isSuccess } = useGetCoinDataQuery(
-    id
-    // { pollingInterval: 2000 }
-  );
+  const { data, error, isLoading, isSuccess } = useGetCoinDataQuery(id, { pollingInterval: 2000 });
 
   const {
     data: chartData,
@@ -123,7 +119,7 @@ const CurrencyDetailsPage = () => {
         <SellCoins data={data} modal={toggleSellCoinsModal} setModal={setToggleSellCoinsModal} />
       )}
       {/* prettier-ignore */}
-      {(isLoading && isChartLoading) && <Loader />}
+      {isLoading && isChartLoading && <Loader />}
 
       {error && <ErrorToast message="Something Went Wrong!" ref={toastRef} />}
 
@@ -318,10 +314,10 @@ const CurrencyDetailsPage = () => {
       </div>
 
       {/* <HistoricalChart id={id} /> */}
-      {(isSuccess && chartDataSuccess && candleStickChart) && (
+      {isSuccess && chartDataSuccess && candleStickChart && (
         <HistoricalChart id={id} data={chartData} days={chartDays} />
       )}
-      {(isSuccess && chartDataSuccess && !candleStickChart) && (
+      {isSuccess && chartDataSuccess && !candleStickChart && (
         <HistoricalLineChart id={id} data={chartData} days={chartDays} name={data.name} />
       )}
 
