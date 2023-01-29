@@ -49,7 +49,7 @@ const CurrencyDetailsPage = () => {
 
   useEffect(() => {
     if (error || fetchChartDataError) {
-      toastRef.current.show();
+      toastRef.current?.show();
     }
   }, [error, fetchChartDataError]);
 
@@ -119,7 +119,7 @@ const CurrencyDetailsPage = () => {
         <SellCoins data={data} modal={toggleSellCoinsModal} setModal={setToggleSellCoinsModal} />
       )}
       {/* prettier-ignore */}
-      {isLoading && isChartLoading && <Loader />}
+      {(isLoading && isChartLoading) && <Loader />}
 
       {error && <ErrorToast message="Something Went Wrong!" ref={toastRef} />}
 
@@ -314,10 +314,10 @@ const CurrencyDetailsPage = () => {
       </div>
 
       {/* <HistoricalChart id={id} /> */}
-      {isSuccess && chartDataSuccess && candleStickChart && (
+      {(isSuccess && chartDataSuccess && candleStickChart) && (
         <HistoricalChart id={id} data={chartData} days={chartDays} />
       )}
-      {isSuccess && chartDataSuccess && !candleStickChart && (
+      {(isSuccess && chartDataSuccess && !candleStickChart) && (
         <HistoricalLineChart id={id} data={chartData} days={chartDays} name={data.name} />
       )}
 

@@ -102,13 +102,6 @@ export const LineChart = ({ id, data, days, name }) => {
       };
     });
 
-    console.log(
-      localChartData[localChartData.length - 1].value,
-      localChartData[localChartData.length - 2].value,
-      localChartData[localChartData.length - 1].value >
-        localChartData[localChartData.length - 2].value
-    );
-
     const handleResize = () => {
       chart.applyOptions({
         width: window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth
@@ -172,9 +165,21 @@ export const LineChart = ({ id, data, days, name }) => {
 
     chart.timeScale().fitContent();
     const newSeries = chart.addAreaSeries({
-      topColor: "rgba(32, 226, 47, 0.56)",
-      bottomColor: "rgba(32, 226, 47, 0.04)",
-      lineColor: "rgba(32, 226, 47, 1)",
+      topColor:
+        localChartData[localChartData.length - 1].value >=
+        localChartData[localChartData.length - 2].value
+          ? "rgba(32, 226, 47, 0.56)"
+          : "rgba(226,32,32, 0.56)",
+      bottomColor:
+        localChartData[localChartData.length - 1].value >=
+        localChartData[localChartData.length - 2].value
+          ? "rgba(32, 226, 47, 0.04)"
+          : "rgba(226,32,32, 0.04)",
+      lineColor:
+        localChartData[localChartData.length - 1].value >=
+        localChartData[localChartData.length - 2].value
+          ? "rgba(32, 226, 47, 1)"
+          : "rgba(226,32,32, 1)",
       lineWidth: 3
     });
 
