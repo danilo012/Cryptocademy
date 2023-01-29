@@ -18,7 +18,12 @@ export const store = configureStore({
     availableCoins: availableCoinsReducer,
     user: userReducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(coinsDataApi.middleware)
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      coinsDataApi.middleware,
+      supabaseApi.middleware,
+      NewsApi.middleware
+    )
 });
 
 setupListeners(store.dispatch);

@@ -1,253 +1,245 @@
 import { memo, useEffect, useRef, useState } from "react";
-import Chart from "react-apexcharts";
+import { CrosshairMode, createChart } from "lightweight-charts";
+
 import dayjs from "dayjs";
 
-import { useGetHistoricalDataQuery } from "../services/coinsDataApi";
-import ErrorToast from "./ErrorToast";
-
-// this.state = {
-
-//   series: [{
-//     data: seriesData
-//   }],
-//   options: {
-//     chart: {
-//       type: 'candlestick',
-//       height: 290,
-//       id: 'candles',
-//       toolbar: {
-//         autoSelected: 'pan',
-//         show: false
-//       },
-//       zoom: {
-//         enabled: false
-//       },
-//     },
-//     plotOptions: {
-//       candlestick: {
-//         colors: {
-//           upward: '#3C90EB',
-//           downward: '#DF7D46'
-//         }
-//       }
-//     },
-//     xaxis: {
-//       type: 'datetime'
-//     }
-//   },
-
-//   seriesBar: [{
-//     name: 'volume',
-//     data: seriesDataLinear
-//   }],
-//   optionsBar: {
-//     chart: {
-//       height: 160,
-//       type: 'bar',
-//       brush: {
-//         enabled: true,
-//         target: 'candles'
-//       },
-//       selection: {
-//         enabled: true,
-//         xaxis: {
-//           min: new Date('20 Jan 2017').getTime(),
-//           max: new Date('10 Dec 2017').getTime()
-//         },
-//         fill: {
-//           color: '#ccc',
-//           opacity: 0.4
-//         },
-//         stroke: {
-//           color: '#0D47A1',
-//         }
-//       },
-//     },
-//     dataLabels: {
-//       enabled: false
-//     },
-//     plotOptions: {
-//       bar: {
-//         columnWidth: '80%',
-//         colors: {
-//           ranges: [{
-//             from: -1000,
-//             to: 0,
-//             color: '#F15B46'
-//           }, {
-//             from: 1,
-//             to: 10000,
-//             color: '#FEB019'
-//           }],
-
-//         },
-//       }
-//     },
-//     stroke: {
-//       width: 0
-//     },
-//     xaxis: {
-//       type: 'datetime',
-//       axisBorder: {
-//         offsetX: 13
-//       }
-//     },
-//     yaxis: {
-//       labels: {
-//         show: false
-//       }
-//     }
-//   },
-
-// };
-// }
-
-const CoinChart = ({ id }) => {
-  const [chartDays, setChartDays] = useState("365");
-  const [candleStickChart, setCandleStickChart] = useState(true);
-  const toastRef = useRef(null);
-
-  const { data, error, isLoading, isSuccess } = useGetHistoricalDataQuery({
-    id,
-    chartDays
-  });
+export const TradingChart = ({ id, data, days }) => {
+  const chartContainerRef = useRef();
 
   useEffect(() => {
-    if (error) {
-      toastRef.current.show();
-    }
-  }, [error]);
+    // console.log("days", data);
+    const localChartData = data.map((price) => {
+      return {
+        time: price[0] / 1000,
+        open: price[1],
+        high: price[2],
+        low: price[3],
+        close: price[4]
+      };
+    });
 
-  const series = [
-    {
-      name: "candle",
-      data
-    }
-  ];
+    const handleResize = () => {
+      chart.applyOptions({
+        width: window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth
+      });
+    };
 
-  const options = {
-    chart: {
-      // height: 550,
-      type: "candlestick"
-    },
-    title: {
-      text: "",
-      align: "left"
-    },
-    annotations: {
-      xaxis: [
-        {
-          x: "Oct 06 14:00",
-          borderColor: "#00E396",
-          label: {
-            borderColor: "#00E396",
-            style: {
-              fontSize: "20px",
-              color: "#fff",
-              background: "#00E396"
-            },
-            orientation: "horizontal",
-            offsetY: 7,
-            text: "Annotation Test"
+    const chart = createChart(chartContainerRef.current, {
+      layout: {
+        textColor: "rgba(255, 255, 255, 0.9)",
+        background: { type: "solid", color: "#000000" }
+      },
+      grid: {
+        vertLines: {
+          color: "#0f172a"
+        },
+        horzLines: {
+          color: "#0f172a"
+        }
+      },
+      timeScale: {
+        tickMarkFormatter: (time) => {
+          if (days === "1") {
+            return dayjs.unix(time).format("hh:mm");
+          }
+          if (days === "30") {
+            return dayjs.unix(time).format("D-MMM");
+          }
+          if (days === "90") {
+            return dayjs.unix(time).format("D-MMM");
+          }
+          if (days === "365") {
+            return dayjs.unix(time).format("DD-MMM");
           }
         }
-      ]
-    },
-    tooltip: {
-      enabled: true
-    },
-    xaxis: {
-      type: "category",
-      labels: {
-        formatter: function (val) {
-          return dayjs(val).format("MMM DD HH:mm");
-        }
+      },
+      width: window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth,
+      height: 600,
+      crosshair: {
+        mode: CrosshairMode.Normal
       }
-    },
-    yaxis: {
-      tooltip: {
-        enabled: true
-      }
-    }
-    // fill: {
-    //   type: 'gradient',
-    //   gradient: {
-    //     shade: 'dark',
-    //     gradientToColors: [ '#1ce950'],
-    //     shadeIntensity: 1,
-    //     type: 'horizontal',
-    //     opacityFrom: 1,
-    //     opacityTo: 1,
-    //     stops: [0, 100, 100, 100]
-    //   },
-    // },
-  };
-  return (
-    <>
-      <div className="mb-6 ml-4 inline-flex  rounded-md shadow-sm" role="group">
-        <button
-          onClick={() => setChartDays(() => "1")}
-          type="button"
-          className="py-2 px-4 text-sm font-medium  rounded-l-lg border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
-        >
-          24 Hours
-        </button>
-        <button
-          onClick={() => setChartDays(() => "30")}
-          type="button"
-          className="py-2 px-4 text-sm font-medium  border-t border-b  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
-        >
-          30 Days
-        </button>
-        <button
-          onClick={() => setChartDays(() => "90")}
-          type="button"
-          className="py-2 px-4 text-sm font-medium   border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
-        >
-          3 Months
-        </button>
-        <button
-          onClick={() => setChartDays(() => "365")}
-          type="button"
-          className="py-2 px-4 text-sm font-medium   border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
-        >
-          1 Year
-        </button>
-        <button
-          onClick={() => setCandleStickChart(!candleStickChart)}
-          type="button"
-          className="py-2 px-4 text-sm font-medium  rounded-r-md border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
-        >
-          {candleStickChart ? (
-            <img
-              src="https://img.icons8.com/color-glass/96/000000/area-chart.png"
-              className="inline-block w-5 h-5 "
-              alt="line chart button"
-            />
-          ) : (
-            <img
-              src="https://img.icons8.com/color/48/000000/candle-sticks.png"
-              className="inline-block w-5 h-5 "
-              alt="candlestick chart button"
-            />
-          )}
-        </button>
-      </div>
-      {isLoading && <p className="text-white text-3xl">...Loading</p>}
+    });
+    chart.timeScale().fitContent();
 
-      {error && <ErrorToast message="Something Went Wrong!" ref={toastRef} />}
-      {/* chart */}
-      <div className="row">
-        <div className="mixed-chart">
-          {isSuccess && candleStickChart ? (
-            <Chart options={options} series={series} type="candlestick" height={800} />
-          ) : (
-            <Chart options={options} series={series} type="line" height={800} />
-          )}
-        </div>
-      </div>
-    </>
+    const newSeries = chart.addCandlestickSeries({
+      upColor: "#26a69a",
+      downColor: "#ef5350",
+      borderVisible: false,
+      wickUpColor: "#26a69a",
+      wickDownColor: "#ef5350"
+    });
+
+    if (!data) {
+      newSeries.setData([]);
+    }
+
+    newSeries.setData(localChartData);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+
+      chart.remove();
+    };
+  }, [data]);
+
+  return (
+    <div className="mx-auto mb-8">
+      <div ref={chartContainerRef} />
+    </div>
   );
 };
 
-export const HistoricalChart = memo(CoinChart);
+export const LineChart = ({ id, data, days, name }) => {
+  const chartContainerRef = useRef();
+  const toolTipRef = useRef();
+
+  useEffect(() => {
+    const localChartData = data.map((price) => {
+      return {
+        time: price[0] / 1000,
+        value: price[4]
+      };
+    });
+
+    const handleResize = () => {
+      chart.applyOptions({
+        width: window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth
+      });
+    };
+
+    const chart = createChart(chartContainerRef.current, {
+      width: window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth,
+      height: 600,
+      layout: {
+        textColor: "rgba(255, 255, 255, 0.9)",
+        background: { type: "solid", color: "#000000" }
+      },
+      rightPriceScale: {
+        scaleMargins: {
+          top: 0.35,
+          bottom: 0.2
+        },
+        borderVisible: false
+      },
+      grid: {
+        vertLines: {
+          color: "#0f172a"
+        },
+        horzLines: {
+          color: "#0f172a",
+          visible: false
+        }
+      },
+      timeScale: {
+        tickMarkFormatter: (time) => {
+          if (days === "1") {
+            return dayjs.unix(time).format("hh:mm");
+          }
+          if (days === "30") {
+            return dayjs.unix(time).format("D-MMM");
+          }
+          if (days === "90") {
+            return dayjs.unix(time).format("D-MMM");
+          }
+          if (days === "365") {
+            return dayjs.unix(time).format("DD-MMM");
+          }
+        },
+        borderVisible: false
+      },
+      crosshair: {
+        horzLine: {
+          visible: false,
+          labelVisible: false
+        },
+        vertLine: {
+          visible: true,
+          style: 0,
+          width: 2,
+          color: "rgba(32, 38, 46, 0.1)",
+          labelVisible: false
+        }
+      }
+    });
+
+    chart.timeScale().fitContent();
+    const newSeries = chart.addAreaSeries({
+      topColor: "rgba(32, 226, 47, 0.56)",
+      bottomColor: "rgba(32, 226, 47, 0.04)",
+      lineColor: "rgba(32, 226, 47, 1)",
+      lineWidth: 3
+    });
+
+    if (!data) {
+      newSeries.setData([]);
+    }
+
+    newSeries.setData(localChartData);
+
+    toolTipRef.current.className = "three-line-legend";
+    toolTipRef.current.style.display = "block";
+    toolTipRef.current.style.left = 3 + "px";
+    toolTipRef.current.style.top = 3 + "px";
+
+    function setLastBarText() {
+      var dateStr = dayjs(data[data.length - 1]?.time).format("YYYY-MM-DD");
+
+      toolTipRef.current.innerHTML =
+        `<div style="font-size: 24px; margin: 4px 0px; color: #ffffff">${name}</div>` +
+        '<div style="font-size: 22px; margin: 4px 0px; color: #ffffff">' +
+        "$" +
+        localChartData[data.length - 1].value +
+        "</div>" +
+        '<div style="font-size: 22px; margin: 4px 0px; color: #ffffff">' +
+        dateStr +
+        "</div>";
+    }
+
+    setLastBarText();
+
+    chart.subscribeCrosshairMove(function (param) {
+      let width = window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth;
+      if (
+        param === undefined ||
+        param.time === undefined ||
+        param.point.x < 0 ||
+        param.point.x > width ||
+        param.point.y > 600
+      ) {
+        setLastBarText();
+      } else {
+        let dateStr = dayjs.unix(param?.time).format("YYYY-MM-DD");
+        var price = param.seriesPrices.get(newSeries);
+        toolTipRef.current.innerHTML =
+          `<div style="font-size: 24px; margin: 4px 0px; color: #ffffff">${name}</div>` +
+          '<div style="font-size: 22px; margin: 4px 0px; color: #ffffff">' +
+          "$" +
+          price  +
+          "</div>" +
+          '<div style="font-size: 22px; margin: 4px 0px; color: #ffffff">' +
+          dateStr +
+          "</div>";
+      }
+    });
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+
+      chart.remove();
+    };
+  }, [data]);
+
+  return (
+    <div className="relative mx-auto mb-8">
+      <div ref={chartContainerRef}>
+        <div ref={toolTipRef}></div>
+      </div>
+    </div>
+  );
+};
+
+export const HistoricalChart = memo(TradingChart);
+export const HistoricalLineChart = memo(LineChart);
