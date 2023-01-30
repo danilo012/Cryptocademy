@@ -10,18 +10,22 @@ import ScrollToTop from "./Components/ScrollToTop";
 function App() {
   useEffect(() => {
     const registerNotifications = async () => {
-      let permStatus = await PushNotifications.checkPermissions();
+      try {
+        let permStatus = await PushNotifications.checkPermissions();
 
-      if (permStatus.receive === "prompt") {
-        permStatus = await PushNotifications.requestPermissions();
+        if (permStatus.receive === "prompt") {
+          permStatus = await PushNotifications.requestPermissions();
+        }
+
+        if (permStatus.receive !== "granted") {
+          console.log("User denied permissions!");
+          return;
+        }
+
+        await PushNotifications.register();
+      } catch (error) {
+        console.log("push notification Error: ", error);
       }
-
-      if (permStatus.receive !== "granted") {
-        console.log("User denied permissions!");
-        return;
-      }
-
-      await PushNotifications.register();
     };
     registerNotifications();
   }, []);

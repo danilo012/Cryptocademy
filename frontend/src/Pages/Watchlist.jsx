@@ -103,7 +103,7 @@ const Watchlist = () => {
         <p className="text-2xl text-red-400 px-4">Something went wrong</p>
       )}
       {/* coin table */}
-      {watchlistData.length === 0 && (
+      {watchlistData?.length === 0 && (
         <div className=" shadow-lg rounded-2xl  px-4 py-4 md:px-4 flex flex-col lg:justify-center align-center text-center max-w-xl m-auto">
           <img src={emptyWatchlistLogo} alt="empty watchlist" />
           <p className="text-white text-xl font-bold my-2 lg:text-center">

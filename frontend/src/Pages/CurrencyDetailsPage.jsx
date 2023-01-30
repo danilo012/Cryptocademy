@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { supabase } from "../Utils/init-supabase";
 
-import { useGetCoinDataQuery } from "../services/coinsDataApi";
+import { useGetCoinDataQuery, useGetHistoricalDataQuery } from "../services/coinsDataApi";
 
-import { HistoricalChart } from "../Components/CoinChart";
+import { HistoricalChart, HistoricalLineChart } from "../Components/CoinChart";
 import ErrorToast from "../Components/ErrorToast";
 import Loader from "../Components/Loader";
 
@@ -26,6 +26,8 @@ const CurrencyDetailsPage = () => {
   const { currentUser } = useAuth();
 
   const [addToGun, setAddToGun] = useState(false);
+  const [chartDays, setChartDays] = useState("365");
+  const [candleStickChart, setCandleStickChart] = useState(true);
 
   const [gunError, setGunError] = useState(false);
   const [gunErrorMessage, setGunErrorMessage] = useState("");
@@ -35,11 +37,21 @@ const CurrencyDetailsPage = () => {
 
   const { data, error, isLoading, isSuccess } = useGetCoinDataQuery(id, { pollingInterval: 2000 });
 
+  const {
+    data: chartData,
+    error: fetchChartDataError,
+    isLoading: isChartLoading,
+    isSuccess: chartDataSuccess
+  } = useGetHistoricalDataQuery({
+    id,
+    chartDays
+  });
+
   useEffect(() => {
-    if (error) {
-      toastRef.current.show();
+    if (error || fetchChartDataError) {
+      toastRef.current?.show();
     }
-  }, [error]);
+  }, [error, fetchChartDataError]);
 
   async function watchlistHandler(e) {
     e.preventDefault();
@@ -106,7 +118,8 @@ const CurrencyDetailsPage = () => {
       {isSuccess && (
         <SellCoins data={data} modal={toggleSellCoinsModal} setModal={setToggleSellCoinsModal} />
       )}
-      {isLoading && <Loader />}
+      {/* prettier-ignore */}
+      {(isLoading && isChartLoading) && <Loader />}
 
       {error && <ErrorToast message="Something Went Wrong!" ref={toastRef} />}
 
@@ -120,7 +133,7 @@ const CurrencyDetailsPage = () => {
       )}
 
       {isSuccess && (
-        <div className="mt-6 mx-2 md:mx-4 ">
+        <div className="mt-6 mx-2 md:mx-4 max-w-[1600px]">
           {/* back button */}
           <Link
             to="/app/market"
@@ -245,11 +258,68 @@ const CurrencyDetailsPage = () => {
         </button>
       </div>
       {isSuccess && (
-        <p className="text-white font-bold text-2xl font-title my-4 ml-4">
+        <p className="text-white font-bold text-2xl font-title my-4 ml-2 md:ml-4">
           {data.name} Price Chart <span className="uppercase">{data.symbol}</span>{" "}
         </p>
       )}
-      <HistoricalChart id={id} />
+
+      <div className="mb-6 ml-2 md:ml-4 inline-flex  rounded-md shadow-sm" role="group">
+        <button
+          onClick={() => setChartDays(() => "1")}
+          type="button"
+          className="py-2 px-4 font-text text-xs md:text-sm font-semibold  rounded-l-lg border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
+        >
+          24 Hours
+        </button>
+        <button
+          onClick={() => setChartDays(() => "30")}
+          type="button"
+          className="py-2 px-4 font-text text-xs md:text-sm font-semibold  border-t border-b  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
+        >
+          30 Days
+        </button>
+        <button
+          onClick={() => setChartDays(() => "90")}
+          type="button"
+          className="py-2 px-4 font-text text-xs md:text-sm font-semibold   border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
+        >
+          3 Months
+        </button>
+        <button
+          onClick={() => setChartDays(() => "365")}
+          type="button"
+          className="py-2 px-4 font-text text-xs md:text-sm font-semibold   border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
+        >
+          1 Year
+        </button>
+        <button
+          onClick={() => setCandleStickChart(!candleStickChart)}
+          type="button"
+          className="py-2 px-4 font-text text-xs md:text-sm font-semibold  rounded-r-md border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
+        >
+          {candleStickChart ? (
+            <img
+              src="https://img.icons8.com/color-glass/96/000000/area-chart.png"
+              className="inline-block w-5 h-5 "
+              alt="line chart button"
+            />
+          ) : (
+            <img
+              src="https://img.icons8.com/color/48/000000/candle-sticks.png"
+              className="inline-block w-5 h-5 "
+              alt="candlestick chart button"
+            />
+          )}
+        </button>
+      </div>
+
+      {/* <HistoricalChart id={id} /> */}
+      {(isSuccess && chartDataSuccess && candleStickChart) && (
+        <HistoricalChart id={id} data={chartData} days={chartDays} />
+      )}
+      {(isSuccess && chartDataSuccess && !candleStickChart) && (
+        <HistoricalLineChart id={id} data={chartData} days={chartDays} name={data.name} />
+      )}
 
       {isSuccess && <CoinStats data={data} />}
     </section>
