@@ -258,44 +258,44 @@ const CurrencyDetailsPage = () => {
         </button>
       </div>
       {isSuccess && (
-        <p className="text-white font-bold text-2xl font-title my-4 ml-4">
+        <p className="text-white font-bold text-2xl font-title my-4 ml-2 md:ml-4">
           {data.name} Price Chart <span className="uppercase">{data.symbol}</span>{" "}
         </p>
       )}
 
-      <div className="mb-6 ml-4 inline-flex  rounded-md shadow-sm" role="group">
+      <div className="mb-6 ml-2 md:ml-4 inline-flex  rounded-md shadow-sm" role="group">
         <button
           onClick={() => setChartDays(() => "1")}
           type="button"
-          className="py-2 px-4 text-sm font-medium  rounded-l-lg border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
+          className="py-2 px-4 font-text text-xs md:text-sm font-semibold  rounded-l-lg border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
         >
           24 Hours
         </button>
         <button
           onClick={() => setChartDays(() => "30")}
           type="button"
-          className="py-2 px-4 text-sm font-medium  border-t border-b  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
+          className="py-2 px-4 font-text text-xs md:text-sm font-semibold  border-t border-b  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
         >
           30 Days
         </button>
         <button
           onClick={() => setChartDays(() => "90")}
           type="button"
-          className="py-2 px-4 text-sm font-medium   border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
+          className="py-2 px-4 font-text text-xs md:text-sm font-semibold   border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
         >
           3 Months
         </button>
         <button
           onClick={() => setChartDays(() => "365")}
           type="button"
-          className="py-2 px-4 text-sm font-medium   border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
+          className="py-2 px-4 font-text text-xs md:text-sm font-semibold   border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
         >
           1 Year
         </button>
         <button
           onClick={() => setCandleStickChart(!candleStickChart)}
           type="button"
-          className="py-2 px-4 text-sm font-medium  rounded-r-md border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
+          className="py-2 px-4 font-text text-xs md:text-sm font-semibold  rounded-r-md border  focus:z-10 focus:ring-2  bg-gray-900 border-gray-600 text-white hover:text-white hover:bg-gray-600 focus:ring-blue-500 focus:text-white"
         >
           {candleStickChart ? (
             <img

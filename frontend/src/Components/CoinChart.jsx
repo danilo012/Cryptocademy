@@ -20,7 +20,7 @@ export const TradingChart = ({ id, data, days }) => {
 
     const handleResize = () => {
       chart.applyOptions({
-        width: window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth
+        width: window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth - 30
       });
     };
 
@@ -53,7 +53,7 @@ export const TradingChart = ({ id, data, days }) => {
           }
         }
       },
-      width: window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth,
+      width: window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth - 30,
       height: 600,
       crosshair: {
         mode: CrosshairMode.Normal
@@ -84,7 +84,7 @@ export const TradingChart = ({ id, data, days }) => {
   }, [data]);
 
   return (
-    <div className="mx-auto mb-8">
+    <div className="flex flex-col justify-center mx-auto mb-8">
       <div ref={chartContainerRef} />
     </div>
   );
@@ -104,12 +104,12 @@ export const LineChart = ({ id, data, days, name }) => {
 
     const handleResize = () => {
       chart.applyOptions({
-        width: window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth
+        width: window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth - 30
       });
     };
 
     const chart = createChart(chartContainerRef.current, {
-      width: window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth,
+      width: window.innerWidth > 1024 ? window.innerWidth - 320 : window.innerWidth - 30,
       height: 600,
       layout: {
         textColor: "rgba(255, 255, 255, 0.9)",
