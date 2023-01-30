@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 import { AiOutlineClose } from "react-icons/ai";
 import { BsArrowDownUp } from "react-icons/bs";
@@ -17,6 +18,8 @@ const BuyCoins = ({ data, modal, setModal }) => {
 
   const availableUsdCoins = useSelector((state) => state.availableCoins);
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchAvailableCoins(currentUser.uid));
@@ -115,7 +118,9 @@ const BuyCoins = ({ data, modal, setModal }) => {
       // // calculate networth
 
       setOrderLoading(false);
+      setModal(false);
       alert("Coin purchased successfully");
+      navigate("/app/portfolio");
     } catch (error) {
       setOrderLoading(false);
       alert(error);

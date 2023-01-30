@@ -5,5 +5,9 @@ import viteCompression from "vite-plugin-compression";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), eslint(), viteCompression()]
+  plugins: [
+    react(),
+    eslint()
+    // viteCompression()
+  ]
 });
