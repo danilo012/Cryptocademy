@@ -51,11 +51,12 @@ function Signup() {
     try {
       const response = await signUp(email, password);
       await updateProfileName(username);
+      let userNetworth, availableCoins;
 
       const { isNewUser } = getAdditionalUserInfo(response);
       if (isNewUser) {
         // add user data with networth on database
-        const { error } = await supabase.from("users").insert([
+        const { data: networth, error} = await supabase.from("users").insert([
           {
             userId: response.user.uid,
             username,
@@ -70,7 +71,7 @@ function Signup() {
         // }
 
         // give 100k coins to user
-        const { error: addToPortfolioError } = await supabase.from("portfolio").insert([
+        const { data: userCoin, error: addToPortfolioError } = await supabase.from("portfolio").insert([
           {
             userId: response.user.uid,
             coinId: "USD",
@@ -80,11 +81,19 @@ function Signup() {
             coinSymbol: "vusd"
           }
         ]);
+        
+        userNetworth = networth;
+        availableCoins = userCoin;
       }
 
       if (response.user) {
         console.log("created user successfully");
-        navigate("/");
+        navigate("/app", {
+          state: {
+            userNetworth,
+            availableCoins
+          }
+        });
       }
     } catch (error) {
       setErrorMessage(error.message);
