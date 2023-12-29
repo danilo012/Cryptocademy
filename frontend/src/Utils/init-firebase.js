@@ -3,13 +3,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_API_KEY,
-  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_APP_ID
-};
+    apiKey: "AIzaSyCZbHC81j94gFRxgYvqL_c_BZWvP6jKzMc",
+    authDomain: "cryptocademy-700311.firebaseapp.com",
+    projectId: "cryptocademy-700311",
+    storageBucket: "cryptocademy-700311.appspot.com",
+    messagingSenderId: "536087255810",
+    appId: "1:536087255810:web:65c98bf25ba52ef891401b",
+    measurementId: "G-BFKJWMBYZ8"
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
